@@ -5,35 +5,33 @@
 //  ************* It Has Sensitive Credentials *************
 //  ********************************************************
 //
-//  Dummy credentials file.
-//
 //  AmahiAnywhere/AmahiAnywhere/Data/Remote/ApiConfig.swift
 //
 //  AmahiAnywhere
 //
 //  Copyright © 2018 Amahi. All rights reserved.
 //
+
 import Foundation
 
 struct ApiConfig {
     
-    static let baseUrl =                       "https://example.com"
-    static let proxyUrl =                       "https://example.com"
-    static let appID =                         "AAAAAAAA"
+    static let baseUrl =                       "https://api.amahi.org"
+    static let proxyUrl =                      "https://pfe.amahi.org"
+    static let appID =                         "8AB4B9DE"
     
-    private static let clientId =              "C-I-D"
-    private static let clientSecret =          "C-S-T"
+    private static let CLIENT_ID =              "0714493ef3f647209dfe0574fbc3b426220714aaedfd6c007cd54f33e4a0d4bb"
+    private static let CLIENT_SECRET =          "7b1410c007188902f41a4c84b4fa13d25c4d663ea0c04bce434a020f00542cfe"
+    
     
     static func oauthCredentials(username: String, password: String) -> [String : String] {
         
-        let parameters =                          ["client_id": clientId,
-                                                   "client_secret": clientSecret,
+        let parameters =                          ["client_id": CLIENT_ID,
+                                                   "client_secret": CLIENT_SECRET,
                                                    "username" : username,
                                                    "password" : password ]
         
-        fatalError("You may need to get dev credentials to be able to properly login into amahi.org." +
-            "Get them from support at amahi dot org. Then remove this line")
-        
         return parameters
     }
+    
 }

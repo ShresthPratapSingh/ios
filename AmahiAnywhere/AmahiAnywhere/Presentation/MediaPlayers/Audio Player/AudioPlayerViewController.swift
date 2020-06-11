@@ -10,6 +10,11 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
+enum QueueState{
+    case collapsed
+    case open
+}
+
 class AudioPlayerViewController: UIViewController {
     
     @IBOutlet var backgroundImageView: UIImageView!
@@ -25,6 +30,34 @@ class AudioPlayerViewController: UIViewController {
     @IBOutlet weak var shuffleButton: UIButton!
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var songTitle: UILabel!
+    @IBOutlet weak var queueHeader: UIView!
+    @IBOutlet weak var nextSongLabel: UILabel!
+    @IBOutlet weak var queueHeaderArrow: UIImageView!
+    
+    lazy var playerQueueContainer:UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        let queueVC = AudioPlayerQueueViewController()
+        queueVC.delegate = self
+        queueVC.queuedItems = playerItems
+        queueVC.currentPlayerItem = startPlayerItem
+        
+        queueVC.willMove(toParent: self)
+        view.addSubview(queueVC.view)
+        self.addChild(queueVC)
+        queueVC.didMove(toParent: self)
+        queueVC.view.translatesAutoresizingMaskIntoConstraints = false
+        queueVC.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        queueVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        queueVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        queueVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        return view
+    }()
+    
+    var queueVCHeight = UIScreen.main.bounds.height * 0.70
+    
+    var queueBottomConstraintForOpen:NSLayoutConstraint?
+    var queueBottomConstraintForCollapse: NSLayoutConstraint?
     
     public var player: AVPlayer!
     public var playerItems: [AVPlayerItem]!
@@ -49,6 +82,14 @@ class AudioPlayerViewController: UIViewController {
     
     var interactor:Interactor? = nil
     var observer: Any?
+    
+    var interactiveAnimators: [UIViewPropertyAnimator] = []
+    var animationProgressWhenInterrupted:CGFloat = 0
+    
+    var currentQueueState:QueueState = .collapsed
+    var nextState:QueueState{
+        return currentQueueState == QueueState.collapsed ? .open : .collapsed
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +121,10 @@ class AudioPlayerViewController: UIViewController {
                 self?.updatePlayingSong(time)
             })
         }
+        
+        layoutPlayerQueue()
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        queueHeader.addGestureRecognizer(tapRecognizer)
     }
     
     override func viewDidAppear(_ animated: Bool) {

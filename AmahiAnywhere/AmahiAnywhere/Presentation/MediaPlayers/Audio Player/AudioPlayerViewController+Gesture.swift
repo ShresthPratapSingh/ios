@@ -6,38 +6,84 @@
 //  Copyright © 2019. Amahi. All rights reserved.
 //
 
+import UIKit
+
 extension AudioPlayerViewController{
-    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
-        
-        let percentThreshold:CGFloat = 0.3
-        
-        // convert y-position to downward pull progress (percentage)
-        let translation = sender.translation(in: view)
-        let verticalMovement = translation.y / view.bounds.height
-        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
-        let downwardMovementPercent = fminf(downwardMovement, 1.0)
-        let progress = CGFloat(downwardMovementPercent)
-        
-        guard let interactor = interactor else { return }
+    
+    @IBAction func handlePanGesture(_ sender: UIPanGestureRecognizer) {
         
         switch sender.state {
         case .began:
-            interactor.hasStarted = true
-            dismiss(animated: true, completion: nil)
+            startInteractiveTransition(state:nextState,duration: 1)
         case .changed:
-            interactor.shouldFinish = progress > percentThreshold
-            interactor.update(progress)
-        case .cancelled:
-            interactor.hasStarted = false
-            interactor.cancel()
+            let yTranslation = sender.translation(in: self.playerQueueContainer).y
+            var fractionComplete = yTranslation/self.queueVCHeight
+            fractionComplete = currentQueueState == .collapsed ? -fractionComplete : fractionComplete
+            print("\n\n$$$$$$$\nupdateTransition fractionComplete = \(fractionComplete)")
+            updateInteractiveTransition(fractionCompleted:fractionComplete)
         case .ended:
-            interactor.hasStarted = false
-            if interactor.shouldFinish{
-                cleanupBeforeExit()
+            continueInteractiveTransition()
+        default:
+            break
+        }
+    }
+    
+    func startInteractiveTransition(state:QueueState,duration: TimeInterval){
+        if interactiveAnimators.isEmpty{
+            animateIfNeeded(state: state, duration: duration)
+        }
+        for animator in interactiveAnimators{
+            animator.pauseAnimation()
+            animationProgressWhenInterrupted = animator.fractionComplete
+            print("\n\n@@@@@@@ animationProgressWhenInterrupted = \(animationProgressWhenInterrupted)")
+        }
+    }
+    
+    func animateIfNeeded(state:QueueState,duration:TimeInterval){
+        if interactiveAnimators.isEmpty{
+            let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+                switch state{
+                case .collapsed:
+                    self.queueBottomConstraintForCollapse?.isActive = true
+                    self.queueBottomConstraintForOpen?.isActive = false
+                    self.queueHeader.alpha = 1
+                    self.queueHeaderArrow.transform = self.queueHeaderArrow.transform.rotated(by: CGFloat.pi)
+                case .open:
+                    self.queueBottomConstraintForCollapse?.isActive = false
+                    self.queueBottomConstraintForOpen?.isActive = true
+                    self.queueHeader.alpha = 0
+                    self.queueHeaderArrow.transform = self.queueHeaderArrow.transform.rotated(by: CGFloat.pi)
+                }
+                
+                self.view.layoutIfNeeded()
             }
-            interactor.shouldFinish
-                ? interactor.finish()
-                : interactor.cancel()
+            
+            animator.addCompletion { (_) in
+                self.interactiveAnimators.removeAll()
+                self.currentQueueState = state
+            }
+            
+            animator.startAnimation()
+            interactiveAnimators.append(animator)
+        }
+    }
+    
+    func updateInteractiveTransition(fractionCompleted:CGFloat){
+        for animator in interactiveAnimators{
+            animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
+        }
+    }
+    
+    func continueInteractiveTransition(){
+        for animator in interactiveAnimators{
+            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+        }
+    }
+    
+   @objc func handleTapGesture(_ sender: UITapGestureRecognizer) {
+        switch sender.state {
+        case .ended:
+            animateIfNeeded(state: nextState, duration: 1)
         default:
             break
         }
