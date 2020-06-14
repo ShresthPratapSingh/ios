@@ -208,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbP-4A-Sha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3712" y="1813"/>
+            <point key="canvasLocation" x="3652" y="1813"/>
         </scene>
         <!--Audio Player View Controller-->
         <scene sceneID="o1Z-L4-Hwj">
@@ -220,6 +220,9 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="musicPlayerArtWork" translatesAutoresizingMaskIntoConstraints="NO" id="STt-AV-qDW">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="8"/>
@@ -420,9 +423,6 @@
                             <constraint firstItem="3JH-p3-RfR" firstAttribute="top" secondItem="N40-ac-vAT" secondAttribute="top" constant="20" id="zhi-ns-mlh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="N40-ac-vAT"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="rNp-Os-L35" appends="YES" id="KqQ-di-VEe"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="artistName" destination="mAd-I9-vTK" id="B9b-2t-Cew"/>
@@ -444,11 +444,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd9-W9-Hkb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer cancelsTouchesInView="NO" minimumNumberOfTouches="1" id="rNp-Os-L35">
-                    <connections>
-                        <action selector="handlePanGesture:" destination="cll-dP-OW0" id="JA8-xq-iOp"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2915.9420289855075" y="1813.3928571428571"/>
         </scene>

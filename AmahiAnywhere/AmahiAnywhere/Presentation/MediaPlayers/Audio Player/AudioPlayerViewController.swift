@@ -60,7 +60,13 @@ class AudioPlayerViewController: UIViewController {
     var queueBottomConstraintForCollapse: NSLayoutConstraint?
     
     public var player: AVPlayer!
-    public var playerItems: [AVPlayerItem]!
+    public var playerItems: [AVPlayerItem]!{
+        willSet{
+            if let _ = newValue,let queueVC = self.children.first as? AudioPlayerQueueViewController{
+                queueVC.queuedItems = newValue
+            }
+        }
+    }
     public var itemURLs: [URL]!
     var startPlayerItem: AVPlayerItem!
     
@@ -125,6 +131,11 @@ class AudioPlayerViewController: UIViewController {
         layoutPlayerQueue()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         queueHeader.addGestureRecognizer(tapRecognizer)
+        queueHeaderArrow.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        self.view.addGestureRecognizer(panRecognizer)
+        panRecognizer.cancelsTouchesInView = true
     }
     
     override func viewDidAppear(_ animated: Bool) {

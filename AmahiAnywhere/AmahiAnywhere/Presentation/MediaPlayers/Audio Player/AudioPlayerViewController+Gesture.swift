@@ -10,8 +10,8 @@ import UIKit
 
 extension AudioPlayerViewController{
     
-    @IBAction func handlePanGesture(_ sender: UIPanGestureRecognizer) {
-        
+   @objc func handlePanGesture(_ sender: UIPanGestureRecognizer) {
+    
         switch sender.state {
         case .began:
             startInteractiveTransition(state:nextState,duration: 1)
@@ -19,7 +19,6 @@ extension AudioPlayerViewController{
             let yTranslation = sender.translation(in: self.playerQueueContainer).y
             var fractionComplete = yTranslation/self.queueVCHeight
             fractionComplete = currentQueueState == .collapsed ? -fractionComplete : fractionComplete
-            print("\n\n$$$$$$$\nupdateTransition fractionComplete = \(fractionComplete)")
             updateInteractiveTransition(fractionCompleted:fractionComplete)
         case .ended:
             continueInteractiveTransition()
@@ -35,7 +34,6 @@ extension AudioPlayerViewController{
         for animator in interactiveAnimators{
             animator.pauseAnimation()
             animationProgressWhenInterrupted = animator.fractionComplete
-            print("\n\n@@@@@@@ animationProgressWhenInterrupted = \(animationProgressWhenInterrupted)")
         }
     }
     

@@ -107,10 +107,6 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
         }
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
-    }
-    
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         if let item = queuedItems?[sourceIndexPath.row]{
             queuedItems?.insert(item, at: destinationIndexPath.row)
