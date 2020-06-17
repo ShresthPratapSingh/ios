@@ -37,6 +37,9 @@ extension OfflineFilesViewController : OfflineFilesView {
         audioPlayerVc.playerItems = items
         audioPlayerVc.itemURLs = URLs
         audioPlayerVc.offlineMode = true
+        if #available(iOS 13.0, *) {
+            audioPlayerVc.isModalInPresentation = true
+        }
         self.present(audioPlayerVc)
     }
     

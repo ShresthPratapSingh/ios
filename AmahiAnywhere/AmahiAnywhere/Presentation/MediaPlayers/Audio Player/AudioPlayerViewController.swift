@@ -35,7 +35,7 @@ class AudioPlayerViewController: UIViewController {
 
     var playerQueueContainer : PlayerQueueContainerView!
     
-    var queueVCHeight = UIScreen.main.bounds.height * 0.70
+    var queueVCHeight = UIScreen.main.bounds.height * 0.72
     
     var queueTopConstraintForOpen:NSLayoutConstraint?
     var queueTopConstraintForCollapse: NSLayoutConstraint?

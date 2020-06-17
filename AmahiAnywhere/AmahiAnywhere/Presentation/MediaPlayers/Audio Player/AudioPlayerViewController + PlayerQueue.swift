@@ -26,7 +26,7 @@ extension AudioPlayerViewController: AudioPlayerQueueDelegate {
         playerQueueContainer.translatesAutoresizingMaskIntoConstraints = false
         playerQueueContainer.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 0).isActive = true
         playerQueueContainer.trailingAnchor.constraint(equalTo:self.view.trailingAnchor,constant: 0).isActive = true
-        playerQueueContainer.heightAnchor.constraint(equalToConstant: queueVCHeight + 20).isActive = true
+        playerQueueContainer.heightAnchor.constraint(equalToConstant: queueVCHeight + 10).isActive = true
         
         playerQueueContainer.layer.cornerRadius = 30
         playerQueueContainer.clipsToBounds = true

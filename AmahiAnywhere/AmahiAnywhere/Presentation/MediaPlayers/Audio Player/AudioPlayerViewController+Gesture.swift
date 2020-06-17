@@ -14,7 +14,10 @@ extension AudioPlayerViewController{
     
         switch sender.state {
         case .began:
-            startInteractiveTransition(state:nextState,duration: 0.7)
+            let yVelocity = sender.velocity(in: view).y
+            if (yVelocity > 200 && currentQueueState == .open) || (yVelocity < -200 && currentQueueState == .collapsed){
+                startInteractiveTransition(state:nextState,duration: 0.7)
+            }
         case .changed:
             let yTranslation = sender.translation(in: self.playerQueueContainer).y
             var fractionComplete = yTranslation/self.queueVCHeight
@@ -32,37 +35,15 @@ extension AudioPlayerViewController{
             animateIfNeeded(state: state, duration: duration)
         }
         for animator in interactiveAnimators{
-            animator.pauseAnimation()
+//            animator.pauseAnimation()
             animationProgressWhenInterrupted = animator.fractionComplete
         }
     }
     
     func animateIfNeeded(state:QueueState,duration:TimeInterval){
         if interactiveAnimators.isEmpty{
-            let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.7) {
-                switch state{
-                case .collapsed:
-                    self.queueTopConstraintForCollapse?.isActive = true
-                    self.queueTopConstraintForOpen?.isActive = false
-                    self.playerQueueContainer.header.alpha = 1
-                    self.playerQueueContainer.header.arrowHead.transform = self.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi)
-                case .open:
-                    self.queueTopConstraintForCollapse?.isActive = false
-                    self.queueTopConstraintForOpen?.isActive = true
-                    self.playerQueueContainer.header.alpha = 1
-                    self.playerQueueContainer.header.arrowHead.transform = self.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi)
-                }
-                
-                self.view.layoutIfNeeded()
-            }
-            
-            animator.addCompletion { (_) in
-                self.interactiveAnimators.removeAll()
-                self.currentQueueState = state
-            }
-            
-            animator.startAnimation()
-            interactiveAnimators.append(animator)
+            setupQueueAnimator(for:state, with:duration)
+            setupCornerAnimator(for:state, with:duration)
         }
     }
     
@@ -80,5 +61,63 @@ extension AudioPlayerViewController{
     
    @objc func handleArrowHeadTap() {
         animateIfNeeded(state: nextState, duration: 0.7)
+    }
+
+    private func setupQueueAnimator(for state:QueueState, with duration:TimeInterval){
+        let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.85) {
+            switch state{
+            case .collapsed:
+                self.queueTopConstraintForCollapse?.isActive = true
+                self.queueTopConstraintForOpen?.isActive = false
+                self.playerQueueContainer.header.alpha = 1
+                self.playerQueueContainer.header.arrowHead.transform = self.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi)
+            case .open:
+                self.queueTopConstraintForCollapse?.isActive = false
+                self.queueTopConstraintForOpen?.isActive = true
+                self.playerQueueContainer.header.alpha = 1
+                self.playerQueueContainer.header.arrowHead.transform = self.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi)
+            }
+            
+            self.view.layoutIfNeeded()
+        }
+        
+        animator.addCompletion { (_) in
+            if let index = self.interactiveAnimators.index(of: animator){
+                self.interactiveAnimators.remove(at: index)
+            }
+            self.currentQueueState = state
+        }
+        
+        animator.startAnimation()
+        interactiveAnimators.append(animator)
+    }
+    
+    private func setupCornerAnimator(for state:QueueState, with duration:TimeInterval){
+        
+        let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.85) {
+            switch state{
+            case .collapsed:
+                self.playerQueueContainer.clipsToBounds = true
+                self.playerQueueContainer.layer.cornerRadius = 0
+                self.playerQueueContainer.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+            case .open:
+                self.playerQueueContainer.clipsToBounds = true
+                self.playerQueueContainer.layer.cornerRadius = 30
+                self.playerQueueContainer.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+            }
+            
+            self.view.layoutIfNeeded()
+        }
+        
+        animator.addCompletion { (_) in
+            if let index = self.interactiveAnimators.index(of: animator){
+                self.interactiveAnimators.remove(at: index)
+            }
+            self.currentQueueState = state
+        }
+        
+        animator.startAnimation()
+        interactiveAnimators.append(animator)
+        
     }
 }

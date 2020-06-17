@@ -186,6 +186,9 @@ extension FilesViewController: FilesView {
             audioPlayerVc.startPlayerItem = items[currentIndex]
             audioPlayerVc.playerItems = items
             audioPlayerVc.itemURLs = URLs
+            if #available(iOS 13.0, *) {
+                audioPlayerVc.isModalInPresentation = true
+            }
             self.present(audioPlayerVc)
             
         }

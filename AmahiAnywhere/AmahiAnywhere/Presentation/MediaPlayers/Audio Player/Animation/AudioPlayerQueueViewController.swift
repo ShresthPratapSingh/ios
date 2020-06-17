@@ -104,8 +104,10 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
                     var image:UIImage?
                 DispatchQueue.global().async {
                      image = AudioThumbnailGenerator().getThumbnail(url)
+                    DispatchQueue.main.async {
+                        cell.imageView?.image = image
+                    }
                 }
-                cell.imageView?.image = image
             }
         }
         
