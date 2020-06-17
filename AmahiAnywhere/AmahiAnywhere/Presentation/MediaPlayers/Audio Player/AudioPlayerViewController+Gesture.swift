@@ -14,7 +14,7 @@ extension AudioPlayerViewController{
     
         switch sender.state {
         case .began:
-            startInteractiveTransition(state:nextState,duration: 1)
+            startInteractiveTransition(state:nextState,duration: 0.7)
         case .changed:
             let yTranslation = sender.translation(in: self.playerQueueContainer).y
             var fractionComplete = yTranslation/self.queueVCHeight
@@ -39,18 +39,18 @@ extension AudioPlayerViewController{
     
     func animateIfNeeded(state:QueueState,duration:TimeInterval){
         if interactiveAnimators.isEmpty{
-            let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+            let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.7) {
                 switch state{
                 case .collapsed:
-                    self.queueBottomConstraintForCollapse?.isActive = true
-                    self.queueBottomConstraintForOpen?.isActive = false
-                    self.queueHeader.alpha = 1
-                    self.queueHeaderArrow.transform = self.queueHeaderArrow.transform.rotated(by: CGFloat.pi)
+                    self.queueTopConstraintForCollapse?.isActive = true
+                    self.queueTopConstraintForOpen?.isActive = false
+                    self.playerQueueContainer.header.alpha = 1
+                    self.playerQueueContainer.header.arrowHead.transform = self.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi)
                 case .open:
-                    self.queueBottomConstraintForCollapse?.isActive = false
-                    self.queueBottomConstraintForOpen?.isActive = true
-                    self.queueHeader.alpha = 0
-                    self.queueHeaderArrow.transform = self.queueHeaderArrow.transform.rotated(by: CGFloat.pi)
+                    self.queueTopConstraintForCollapse?.isActive = false
+                    self.queueTopConstraintForOpen?.isActive = true
+                    self.playerQueueContainer.header.alpha = 1
+                    self.playerQueueContainer.header.arrowHead.transform = self.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi)
                 }
                 
                 self.view.layoutIfNeeded()
@@ -78,12 +78,7 @@ extension AudioPlayerViewController{
         }
     }
     
-   @objc func handleTapGesture(_ sender: UITapGestureRecognizer) {
-        switch sender.state {
-        case .ended:
-            animateIfNeeded(state: nextState, duration: 1)
-        default:
-            break
-        }
+   @objc func handleArrowHeadTap() {
+        animateIfNeeded(state: nextState, duration: 0.7)
     }
 }

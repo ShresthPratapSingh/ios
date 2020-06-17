@@ -35,24 +35,23 @@ extension AudioPlayerViewController{
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
     
-    @objc func remotePlayPause(){
-        print("marton: remote play/pause tapped")
-        
+    @objc func remotePlayPause() -> MPRemoteCommandHandlerStatus{
         if isPaused(){
-            print("marton: player was paused, start playing")
             playPlayer()
         }else{
-            print("marton: player was playing, pause playing")
             pausePlayer()
         }
+        return .success
     }
     
-    @objc func remoteNext(){
+    @objc func remoteNext() -> MPRemoteCommandHandlerStatus{
         playNextSong()
+        return .success
     }
     
-    @objc func remotePrevious(){
+    @objc func remotePrevious() -> MPRemoteCommandHandlerStatus{
         playPreviousSong()
+        return .success
     }
     
     @objc func remoteChangedPlaybackPositionCommand(_ event:MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {

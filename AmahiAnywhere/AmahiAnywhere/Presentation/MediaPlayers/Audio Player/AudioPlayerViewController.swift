@@ -17,6 +17,7 @@ enum QueueState{
 
 class AudioPlayerViewController: UIViewController {
     
+    @IBOutlet weak var playerContainer: UIView!
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
@@ -30,34 +31,14 @@ class AudioPlayerViewController: UIViewController {
     @IBOutlet weak var shuffleButton: UIButton!
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var songTitle: UILabel!
-    @IBOutlet weak var queueHeader: UIView!
-    @IBOutlet weak var nextSongLabel: UILabel!
-    @IBOutlet weak var queueHeaderArrow: UIImageView!
     
-    lazy var playerQueueContainer:UIView = {
-        let view = UIView()
-        view.backgroundColor = .red
-        let queueVC = AudioPlayerQueueViewController()
-        queueVC.delegate = self
-        queueVC.queuedItems = playerItems
-        queueVC.currentPlayerItem = startPlayerItem
-        
-        queueVC.willMove(toParent: self)
-        view.addSubview(queueVC.view)
-        self.addChild(queueVC)
-        queueVC.didMove(toParent: self)
-        queueVC.view.translatesAutoresizingMaskIntoConstraints = false
-        queueVC.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        queueVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        queueVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        queueVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        return view
-    }()
+
+    var playerQueueContainer : PlayerQueueContainerView!
     
     var queueVCHeight = UIScreen.main.bounds.height * 0.70
     
-    var queueBottomConstraintForOpen:NSLayoutConstraint?
-    var queueBottomConstraintForCollapse: NSLayoutConstraint?
+    var queueTopConstraintForOpen:NSLayoutConstraint?
+    var queueTopConstraintForCollapse: NSLayoutConstraint?
     
     public var player: AVPlayer!
     public var playerItems: [AVPlayerItem]!{
@@ -86,7 +67,7 @@ class AudioPlayerViewController: UIViewController {
     var artistNames = [AVPlayerItem: String]()
     var durations = [AVPlayerItem: CMTime]()
     
-    var interactor:Interactor? = nil
+//    var interactor:Interactor? = nil
     var observer: Any?
     
     var interactiveAnimators: [UIViewPropertyAnimator] = []
@@ -128,14 +109,17 @@ class AudioPlayerViewController: UIViewController {
             })
         }
         
-        layoutPlayerQueue()
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
-        queueHeader.addGestureRecognizer(tapRecognizer)
-        queueHeaderArrow.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-        
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        self.view.addGestureRecognizer(panRecognizer)
+        self.playerContainer.addGestureRecognizer(panRecognizer)
         panRecognizer.cancelsTouchesInView = true
+        
+        playerQueueContainer = PlayerQueueContainerView(target: self, with: playerItems, startItem: startPlayerItem)
+        playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
+        layoutPlayerQueue()
+        
+        if let urlArray = itemURLs,let queueVC = self.children.first as? AudioPlayerQueueViewController{
+             queueVC.itemURLs = urlArray
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -193,9 +177,17 @@ class AudioPlayerViewController: UIViewController {
         if shuffleButton.currentImage == UIImage(named: "shuffle") {
             shuffleButton.setImage(UIImage(named:"shuffleOn"), for: .normal)
             shuffle()
+            if let queueVC = self.children.first as? AudioPlayerQueueViewController{
+                queueVC.shuffledArray = shuffledArray
+                queueVC.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic)
+            }
         }
         else {
             shuffleButton.setImage(UIImage(named:"shuffle"), for: .normal)
+            if let queueVC = self.children.first as? AudioPlayerQueueViewController{
+                queueVC.shuffledArray = nil
+                queueVC.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic)
+            }
         }
     }
     
@@ -244,6 +236,9 @@ class AudioPlayerViewController: UIViewController {
         
         // Set lock screen data
         setLockScreenData()
+        
+        //update background color of up next label view
+        playerQueueContainer.header.updateBackgroundColor()
     }
     
     func updatePlayingSong(_ time: CMTime){

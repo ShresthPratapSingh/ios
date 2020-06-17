@@ -12,23 +12,31 @@ import AVFoundation
 extension AudioPlayerViewController: AudioPlayerQueueDelegate {
     
     func layoutPlayerQueue(){
-        self.view.addSubview(playerQueueContainer)
-        self.view.bringSubviewToFront(playerQueueContainer)
-        self.view.bringSubviewToFront(queueHeader)
+        view.addSubview(playerQueueContainer)
+        view.bringSubviewToFront(playerQueueContainer)
+        playerQueueContainer.bringSubviewToFront(playerQueueContainer.header)
                 
-        queueBottomConstraintForOpen = self.queueHeader.bottomAnchor.constraint(equalTo:self.view.bottomAnchor, constant: -queueVCHeight)
-        queueBottomConstraintForCollapse = self.queueHeader.bottomAnchor.constraint(equalTo:self.view.bottomAnchor, constant: 0)
+        queueTopConstraintForOpen = self.playerQueueContainer.topAnchor.constraint(equalTo:self.view.bottomAnchor, constant: -queueVCHeight)
+        queueTopConstraintForCollapse = self.playerQueueContainer.topAnchor.constraint(equalTo:self.view.bottomAnchor, constant: -65)
         
-        queueBottomConstraintForCollapse?.isActive = true
-        queueBottomConstraintForOpen?.isActive = false
+        queueTopConstraintForCollapse?.isActive = true
+        queueTopConstraintForOpen?.isActive = false
         
-        queueHeader.heightAnchor.constraint(equalToConstant: 65).isActive = true
         
         playerQueueContainer.translatesAutoresizingMaskIntoConstraints = false
-        playerQueueContainer.topAnchor.constraint(equalTo:queueHeader.topAnchor, constant: 0).isActive = true
         playerQueueContainer.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 0).isActive = true
         playerQueueContainer.trailingAnchor.constraint(equalTo:self.view.trailingAnchor,constant: 0).isActive = true
-        playerQueueContainer.heightAnchor.constraint(equalToConstant: queueVCHeight + 65).isActive = true
+        playerQueueContainer.heightAnchor.constraint(equalToConstant: queueVCHeight + 20).isActive = true
+        
+        playerQueueContainer.layer.cornerRadius = 30
+        playerQueueContainer.clipsToBounds = true
+        
+        playerQueueContainer.layer.shadowPath = UIBezierPath(roundedRect: playerQueueContainer.bounds, cornerRadius: playerQueueContainer.layer.cornerRadius).cgPath
+        playerQueueContainer.layer.shadowOpacity = 0.5
+        playerQueueContainer.layer.shadowRadius = 5
+        playerQueueContainer.layer.shadowColor = UIColor.systemGray.cgColor
+        playerQueueContainer.layer.shadowOffset = CGSize(width: 10, height: 10)
+        playerQueueContainer.layer.masksToBounds = false
     }
     
     
@@ -39,11 +47,16 @@ extension AudioPlayerViewController: AudioPlayerQueueDelegate {
             playNextSong()
         }
         playerItems.remove(at: indexPath.row)
+        itemURLs.remove(at: indexPath.row)
     }
     
     func didMoveItem(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        if let item = playerItems?[sourceIndexPath.row]{
+        if let item = playerItems?[sourceIndexPath.row], let url = itemURLs?[sourceIndexPath.row]{
+            playerItems.remove(at: sourceIndexPath.row)
+            itemURLs.remove(at: sourceIndexPath.row)
+            
             playerItems?.insert(item, at: destinationIndexPath.row)
+            itemURLs.insert(url, at: destinationIndexPath.row)
         }
     }
     

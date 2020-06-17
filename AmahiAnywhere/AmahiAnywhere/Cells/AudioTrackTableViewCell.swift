@@ -17,6 +17,13 @@ class AudioTrackTableViewCell:UITableViewCell{
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        layer.cornerRadius = 10
+        clipsToBounds = true
+        
+        layer.shadowColor = UIColor.systemGray.cgColor
+        layer.shadowRadius = 5
+        layer.masksToBounds = false
     }
     
     override func prepareForReuse() {

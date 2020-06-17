@@ -37,8 +37,6 @@ extension OfflineFilesViewController : OfflineFilesView {
         audioPlayerVc.playerItems = items
         audioPlayerVc.itemURLs = URLs
         audioPlayerVc.offlineMode = true
-        audioPlayerVc.transitioningDelegate = self
-        audioPlayerVc.interactor = interactor        
         self.present(audioPlayerVc)
     }
     

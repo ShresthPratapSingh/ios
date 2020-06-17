@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		04BA8996211D56F400E7A868 /* AmahiLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA8995211D56F400E7A868 /* AmahiLogger.swift */; };
 		07A3AB2E5DFE0D2AD44B0F33 /* Pods_AmahiAnywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5293AC0952F87B50DCD644D /* Pods_AmahiAnywhere.framework */; };
-		0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */; };
 		3B1B35A423080E710058B1D8 /* UINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B35A323080E710058B1D8 /* UINavigationItem.swift */; };
 		3B24FE122296F4330044721D /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B24FE112296F4330044721D /* WalkthroughViewController.swift */; };
 		3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */; };
@@ -63,6 +62,8 @@
 		46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46657182205085FC000E0D45 /* FilesPresenter.swift */; };
 		46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB896A204FB0FC0031151F /* SharesPresenter.swift */; };
 		46F87397204CC69500F1AF37 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F87396204CC69500F1AF37 /* Server.swift */; };
+		725871912496BCEB00AF0A61 /* QueueContainerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725871902496BCEB00AF0A61 /* QueueContainerHeaderView.swift */; };
+		725871932496C65300AF0A61 /* PlayerQueueContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725871922496C65300AF0A61 /* PlayerQueueContainerView.swift */; };
 		7270E663248D14A6001BE439 /* AudioPlayerQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7270E662248D14A6001BE439 /* AudioPlayerQueueViewController.swift */; };
 		7270E665248D4490001BE439 /* AudioPlayerViewController + PlayerQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7270E664248D448F001BE439 /* AudioPlayerViewController + PlayerQueue.swift */; };
 		72C6E4712490410D00EBFA7D /* AudioTrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C6E4702490410D00EBFA7D /* AudioTrackTableViewCell.swift */; };
@@ -131,7 +132,6 @@
 
 /* Begin PBXFileReference section */
 		04BA8995211D56F400E7A868 /* AmahiLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmahiLogger.swift; sourceTree = "<group>"; };
-		0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Amahi Logo White Font.png"; sourceTree = "<group>"; };
 		3B1B35A323080E710058B1D8 /* UINavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationItem.swift; sourceTree = "<group>"; };
 		3B24FE112296F4330044721D /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
 		3B24FE152297086A0044721D /* WalkthroughAmahiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughAmahiCell.xib; sourceTree = "<group>"; };
@@ -188,6 +188,8 @@
 		46F87396204CC69500F1AF37 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		499AAFCDBDAB4C05C7264992 /* Pods-AmahiAnywhere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.release.xcconfig"; sourceTree = "<group>"; };
 		665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.debug.xcconfig"; sourceTree = "<group>"; };
+		725871902496BCEB00AF0A61 /* QueueContainerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueContainerHeaderView.swift; sourceTree = "<group>"; };
+		725871922496C65300AF0A61 /* PlayerQueueContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerQueueContainerView.swift; sourceTree = "<group>"; };
 		7270E662248D14A6001BE439 /* AudioPlayerQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerQueueViewController.swift; sourceTree = "<group>"; };
 		7270E664248D448F001BE439 /* AudioPlayerViewController + PlayerQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewController + PlayerQueue.swift"; sourceTree = "<group>"; };
 		72C6E4702490410D00EBFA7D /* AudioTrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrackTableViewCell.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 		3B3F43D822FD80F000BB42B0 /* Audio Player */ = {
 			isa = PBXGroup;
 			children = (
+				7258718D2496BC6100AF0A61 /* Views */,
 				3B3F43DD22FECF5A00BB42B0 /* Animation */,
 				3B3F43D922FD812700BB42B0 /* AudioPlayerViewController.swift */,
 				3B3F43DB22FECF3700BB42B0 /* AudioPlayerViewController+Gesture.swift */,
@@ -330,6 +333,15 @@
 				3B24FE1722970B6B0044721D /* WalkthroughCell.xib */,
 			);
 			path = Walkthrough;
+			sourceTree = "<group>";
+		};
+		7258718D2496BC6100AF0A61 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				725871902496BCEB00AF0A61 /* QueueContainerHeaderView.swift */,
+				725871922496C65300AF0A61 /* PlayerQueueContainerView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		99CF9D7D22E2889F0060C0E5 /* Cast */ = {
@@ -635,7 +647,6 @@
 				C83C63782038D5150089B9D8 /* Utils */,
 				FB71BE97201CB2FC0005492C /* AppDelegate.swift */,
 				FB71BE9E201CB2FC0005492C /* Assets.xcassets */,
-				0AA5E184203F36DD0010FD47 /* Amahi Logo White Font.png */,
 				FB71BEA3201CB2FC0005492C /* Info.plist */,
 				C866E5532042373D0083A606 /* AmahiAnywhere-Bridging-Header.h */,
 			);
@@ -714,7 +725,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB71BEA2201CB2FC0005492C /* LaunchScreen.storyboard in Resources */,
-				0AA5E185203F36DD0010FD47 /* Amahi Logo White Font.png in Resources */,
 				FB71BE9F201CB2FC0005492C /* Assets.xcassets in Resources */,
 				3B24FE1822970B6B0044721D /* WalkthroughCell.xib in Resources */,
 				3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */,
@@ -823,6 +833,7 @@
 				46059643204E8B41004FA066 /* BaseUITableViewController.swift in Sources */,
 				3B37EBAF22ED11650065CB77 /* Units.swift in Sources */,
 				C88E5A7120B543B2006518B6 /* FileManager.swift in Sources */,
+				725871912496BCEB00AF0A61 /* QueueContainerHeaderView.swift in Sources */,
 				3BF1E81C22D07E9800C531CD /* UIApplication.swift in Sources */,
 				C86CA91320D3A84A00C8EDCA /* OfflineFilesModel.xcdatamodeld in Sources */,
 				ADAFF8D822501F5B00287409 /* PDFThumbnailGenerator.swift in Sources */,
@@ -860,6 +871,7 @@
 				C83C637420386DD90089B9D8 /* BaseUIViewController+BaseView.swift in Sources */,
 				C86CA91020D3937A00C8EDCA /* OfflineFilesPresenter.swift in Sources */,
 				3B3F43DF22FECF7300BB42B0 /* DissmissAnimator.swift in Sources */,
+				725871932496C65300AF0A61 /* PlayerQueueContainerView.swift in Sources */,
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
 				3B33325022BAA26600BC61EB /* FilesGridCollectionCell.swift in Sources */,
 				3BCAFBA322C537DE0044057E /* DownloadsGridCollectionCell.swift in Sources */,
@@ -972,7 +984,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1028,7 +1040,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

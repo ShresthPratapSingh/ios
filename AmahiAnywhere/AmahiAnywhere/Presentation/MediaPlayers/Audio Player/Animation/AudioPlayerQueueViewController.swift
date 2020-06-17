@@ -27,7 +27,8 @@ class AudioPlayerQueueViewController:UIViewController{
     var currentPlayerItem:AVPlayerItem?
     var trackNames = [AVPlayerItem: String]()
     var artistNames = [AVPlayerItem: String]()
-    
+    var shuffledArray: [Int]?
+    var itemURLs: [URL]?
     var delegate:AudioPlayerQueueDelegate?
 
     lazy var tableView:UITableView = {
@@ -51,6 +52,11 @@ class AudioPlayerQueueViewController:UIViewController{
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        var count = 0
+        if queuedItems != nil{
+            count = queuedItems!.count - 1
+        }
+        shuffledArray = Array((0...count).lazy)
     }
     
     func setupQueueMetadata(){
@@ -83,10 +89,26 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? AudioTrackTableViewCell else {
             return UITableViewCell()
         }
-        if let track = queuedItems?[indexPath.row]{
-            cell.titleLabel.text = trackNames[track] ?? "Title"
-            cell.artistLabel.text = artistNames[track] ?? "Artist"
+        
+        var track:AVPlayerItem?
+        
+        if let index = shuffledArray?[indexPath.row]{
+            track = queuedItems?[index]
+        }else{
+            track = queuedItems?[indexPath.row]
         }
+        if track != nil{
+                cell.titleLabel.text = trackNames[track!] ?? "Title"
+                cell.artistLabel.text = artistNames[track!] ?? "Artist"
+                if let index = shuffledArray?[indexPath.row], let url = itemURLs?[index]{
+                    var image:UIImage?
+                DispatchQueue.global().async {
+                     image = AudioThumbnailGenerator().getThumbnail(url)
+                }
+                cell.imageView?.image = image
+            }
+        }
+        
         return cell
     }
     
@@ -103,7 +125,11 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
         if let newTrack = queuedItems?[indexPath.row]{
             delegate?.shouldPlay(item: newTrack, at: indexPath)
         }else{
-            //TODO:- Handle Error
+            let alert = UIAlertController(title: "Oops! coud not load track", message: nil, preferredStyle: .alert)
+            present(alert, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                alert.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
@@ -111,6 +137,15 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
         if let item = queuedItems?[sourceIndexPath.row]{
             queuedItems?.insert(item, at: destinationIndexPath.row)
             delegate?.didMoveItem(from: sourceIndexPath, to: destinationIndexPath)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch UIDevice().userInterfaceIdiom {
+        case .tv,.pad:
+            return 100
+        default:
+            return 65
         }
     }
     

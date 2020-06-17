@@ -37,7 +37,7 @@ extension AudioPlayerViewController{
         }
         
         if shuffleButton.currentImage == UIImage(named: "shuffleOn") {
-            if shuffledArray.count == 1 {
+                if shuffledArray.count == 1 {
                 lastSongIndex = shuffledArray[0]
             }
             

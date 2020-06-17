@@ -186,8 +186,6 @@ extension FilesViewController: FilesView {
             audioPlayerVc.startPlayerItem = items[currentIndex]
             audioPlayerVc.playerItems = items
             audioPlayerVc.itemURLs = URLs
-            audioPlayerVc.transitioningDelegate = self
-            audioPlayerVc.interactor = interactor
             self.present(audioPlayerVc)
             
         }
