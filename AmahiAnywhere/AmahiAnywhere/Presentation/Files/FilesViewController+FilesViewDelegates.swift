@@ -9,6 +9,7 @@
 import AVKit
 import Foundation
 import MediaPlayer
+import GoogleCast
 
 // MARK: Files View implementations
 
@@ -23,11 +24,18 @@ extension FilesViewController: FilesView {
         isAlertShowing = false
     }
     
-    func updateDownloadProgress(for row: Int, downloadJustStarted: Bool , progress: Float) {
+    func updateDownloadProgress(for row: Int, section: Int, downloadJustStarted: Bool , progress: Float) {
         
         if downloadJustStarted {
             setupDownloadProgressIndicator()
-            downloadProgressAlertController?.title = String(format: StringLiterals.DOWNLOADING_FILE, self.filteredFiles[row].name!)
+            let file = self.filteredFiles.getFileFromIndexPath(IndexPath(row: row, section: section))
+            downloadTitleLabel?.text = String(format: StringLiterals.downloadingFile, file.name!)
+            if let cell = filesCollectionView.cellForItem(at: IndexPath(row: row, section: section)) as? FilesGridCollectionCell{
+                downloadImageView?.image = cell.iconImageView.image
+            }else if let cell = filesCollectionView.cellForItem(at: IndexPath(row: row, section: section)) as? FilesListCollectionViewCell{
+                downloadImageView?.image = cell.iconImageView.image
+            }
+            
         }
         
         if !isAlertShowing {
@@ -51,66 +59,192 @@ extension FilesViewController: FilesView {
     
     func webViewOpenContent(at url: URL, mimeType: MimeType) {
         let webViewVc = self.viewController(viewControllerClass: WebViewController.self,
-                                            from: StoryBoardIdentifiers.MAIN)
+                                            from: StoryBoardIdentifiers.main)
         webViewVc.url = url
         webViewVc.mimeType = mimeType
+        webViewVc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(webViewVc, animated: true)
     }
     
-    func playMedia(at url: URL) {
-        let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self,
-                                                from: StoryBoardIdentifiers.VIDEO_PLAYER)
-        videoPlayerVc.mediaURL = url
-        self.present(videoPlayerVc)
-    }
-    
-    func playAudio(_ items: [AVPlayerItem], startIndex: Int) {
-        
-        let avPlayerVC = AVPlayerViewController()
-        player = AVQueuePlayer(items: items)
-        player.actionAtItemEnd = .advance
-        avPlayerVC.player = player
-        
-        for item in items {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(FilesViewController.nextAudio(notification:)),
-                                                   name: .AVPlayerItemDidPlayToEndTime, object: item)
+    func playMedia(at url: URL, file: ServerFile) {
+        let hasConnectedSession: Bool = (sessionManager.hasConnectedSession())
+        if hasConnectedSession, (playbackMode != .remote) {
+            let playNow = self.creatAlertAction("Play Now", style: .default) { (action) in
+                self.playVideoRemotely(mediaURL: url, mediafile: file, queueMedia: .playItem)
+                }!
+            
+            let addQueue = self.creatAlertAction("Add to Queue", style: .default) { (action) in
+                self.playVideoRemotely(mediaURL: url, mediafile: file, queueMedia: .queueItem)
+                }!
+            
+            if sessionManager.currentCastSession?.remoteMediaClient!.mediaQueue.itemCount == 0 {
+                addQueue.isEnabled = false
+            }
+            else {
+                addQueue.isEnabled = true
+            }
+            var actions = [UIAlertAction]()
+            actions.append(playNow)
+            actions.append(addQueue)
+            let cancel = self.creatAlertAction(StringLiterals.cancel, style: .cancel, clicked: nil)!
+            actions.append(cancel)
+            
+            self.createActionSheet(title: "Play Item",
+                                   message: "Select an action",
+                                   ltrActions: actions,
+                                   preferredActionPosition: 0,
+                                   sender: filesCollectionView)
         }
-        
-        present(avPlayerVC, animated: true) {
-            self.player.play()
+
+        else if sessionManager.currentSession == nil, (playbackMode != .local) {
+            let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self,
+                                                    from: StoryBoardIdentifiers.videoPlayer)
+            videoPlayerVc.mediaURL = url
+            self.present(videoPlayerVc)
+            
         }
     }
     
-    func setNowPlayingInfo() {
-        // Get Now Playing information and set it appropriately
-        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-        var nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo ?? [String: Any]()
+    func playVideoRemotely(mediaURL: URL, mediafile: ServerFile, queueMedia: QueueMedia) {
         
-        let title = "title"
-        let album = "album"
-        let artworkData = Data()
-        let image = UIImage(data: artworkData) ?? UIImage()
-        let artwork = MPMediaItemArtwork(boundsSize: image.size, requestHandler: {  (_) -> UIImage in
-            return image
-        })
+        // Define media metadata.
+        let metadata = GCKMediaMetadata()
+        metadata.setString("\(mediafile.name!)", forKey: kGCKMetadataKeyTitle)
+        let mediaInfoBuilder = GCKMediaInformationBuilder(contentURL: mediaURL)
+        mediaInfoBuilder.streamType = GCKMediaStreamType.none
+        mediaInfoBuilder.contentType = "\(mediafile.getExtension())"
+        mediaInfoBuilder.metadata = metadata
+        mediaInformation = mediaInfoBuilder.build()
+        let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
+        mediaLoadRequestDataBuilder.mediaInformation = mediaInformation
         
-        nowPlayingInfo[MPMediaItemPropertyTitle] = title
-        nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = album
-        nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
-        
-        nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
+        if let remoteMediaClient = sessionManager.currentCastSession?.remoteMediaClient {
+            if queueMedia == .playItem {
+                let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
+                mediaQueueItemBuilder.mediaInformation = mediaInformation
+                mediaQueueItemBuilder.autoplay = true
+                mediaQueueItemBuilder.preloadTime = TimeInterval(UserDefaults.standard.integer(forKey: "preload_time_sec"))
+                let mediaQueueItem = mediaQueueItemBuilder.build()
+                let queueDataBuilder = GCKMediaQueueDataBuilder(queueType: .generic)
+                queueDataBuilder.items = [mediaQueueItem]
+                queueDataBuilder.repeatMode = remoteMediaClient.mediaStatus?.queueRepeatMode ?? .off
+                
+                let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
+                mediaLoadRequestDataBuilder.queueData = queueDataBuilder.build()
+                
+                let request = remoteMediaClient.loadMedia(with: mediaLoadRequestDataBuilder.build())
+                request.delegate = self
+            }
+            else if queueMedia == .queueItem {
+                let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
+                mediaQueueItemBuilder.mediaInformation = mediaInformation
+                mediaQueueItemBuilder.autoplay = true
+                mediaQueueItemBuilder.preloadTime = TimeInterval(UserDefaults.standard.integer(forKey: "preload_time_sec"))
+                let mediaQueueItem = mediaQueueItemBuilder.build()
+                let request = remoteMediaClient.queueInsert(mediaQueueItem, beforeItemWithID: kGCKMediaQueueInvalidItemID)
+                request.delegate = self
+                let message = "Selected media addded to queue."
+                Toast.displayMessage(message, for: 3, in: appDelegate?.window)
+            }
+        }
     }
     
-    @objc func nextAudio(notification: Notification) {
-        AmahiLogger.log("nextAudio was called")
-        guard player != nil else { return }
-        AmahiLogger.log("AVPlayerItemDidPlayToEndTime notif info  \(notification.userInfo)")
-        //        if let currentItem = player.currentItem {
-        if let currentItem = notification.userInfo!["object"] as? AVPlayerItem {
-            currentItem.seek(to: CMTime.zero)
-            self.player.advanceToNextItem()
-            self.player.insert(currentItem, after: nil)
+    func playAudio(_ items: [AVPlayerItem], startIndex: Int, currentIndex: Int,_ URLs: [URL]) {
+        let hasConnectedSession: Bool = (sessionManager.hasConnectedSession())
+        if hasConnectedSession, (playbackMode != .remote) {
+            let playNow = self.creatAlertAction("Play Now", style: .default) { (action) in
+                self.playAudioRemotely(mediaURL: URLs[currentIndex], mediafile: items[currentIndex], queueMedia: .playItem)
+                
+                }!
+            
+            let addQueue = self.creatAlertAction("Add to Queue", style: .default) { (action) in
+                self.playAudioRemotely(mediaURL: URLs[currentIndex], mediafile: items[currentIndex], queueMedia: .queueItem)
+                }!
+            
+            if sessionManager.currentCastSession?.remoteMediaClient!.mediaQueue.itemCount == 0 {
+                addQueue.isEnabled = false
+            }
+            else {
+                addQueue.isEnabled = true
+            }
+            var actions = [UIAlertAction]()
+            actions.append(playNow)
+            actions.append(addQueue)
+            let cancel = self.creatAlertAction(StringLiterals.cancel, style: .cancel, clicked: nil)!
+            actions.append(cancel)
+            
+            self.createActionSheet(title: "Play Item",
+                                   message: "Select an action",
+                                   ltrActions: actions,
+                                   preferredActionPosition: 0,
+                                   sender: filesCollectionView)
+            
+        }
+        else if sessionManager.currentSession == nil, (playbackMode != .local) {
+            let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
+                                                    from: StoryBoardIdentifiers.videoPlayer)
+            audioPlayerVc.startPlayerItem = items[currentIndex]
+            audioPlayerVc.playerItems = items
+            audioPlayerVc.itemURLs = URLs
+            audioPlayerVc.transitioningDelegate = self
+            audioPlayerVc.interactor = interactor
+            self.present(audioPlayerVc)
+            
+        }
+    }
+    
+    func playAudioRemotely(mediaURL: URL, mediafile: AVPlayerItem, queueMedia: QueueMedia) {
+        
+        var track: String = ""
+        var artist: String = ""
+        
+        let asset:AVAsset = AVAsset(url:mediaURL)
+        for metaDataItems in asset.commonMetadata {
+            if metaDataItems.commonKey == AVMetadataKey.commonKeyArtist {
+                track = metaDataItems.value as! String
+            }
+            if metaDataItems.commonKey == AVMetadataKey.commonKeyTitle {
+                artist = metaDataItems.value as! String
+            }
+        }
+        let metadata = GCKMediaMetadata()
+        metadata.setString("\(artist)", forKey: kGCKMetadataKeyTitle)
+        metadata.setString("\(track)", forKey: kGCKMetadataKeySubtitle)
+        metadata.addImage(GCKImage(url: URL(string:"http://alpha.amahi.org/cast/audio-play.jpg")!, width: 480, height: 720))
+        let mediaInfoBuilder = GCKMediaInformationBuilder(contentURL: mediaURL)
+        mediaInfoBuilder.streamType = GCKMediaStreamType.none
+        mediaInfoBuilder.metadata = metadata
+        mediaInformation = mediaInfoBuilder.build()
+        let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
+        mediaLoadRequestDataBuilder.mediaInformation = mediaInformation
+        if let remoteMediaClient = sessionManager.currentCastSession?.remoteMediaClient {
+            if queueMedia == .playItem {
+                let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
+                mediaQueueItemBuilder.mediaInformation = mediaInformation
+                mediaQueueItemBuilder.autoplay = true
+                mediaQueueItemBuilder.preloadTime = TimeInterval(UserDefaults.standard.integer(forKey: "preload_time_sec"))
+                let mediaQueueItem = mediaQueueItemBuilder.build()
+                let queueDataBuilder = GCKMediaQueueDataBuilder(queueType: .generic)
+                queueDataBuilder.items = [mediaQueueItem]
+                queueDataBuilder.repeatMode = remoteMediaClient.mediaStatus?.queueRepeatMode ?? .off
+                
+                let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
+                mediaLoadRequestDataBuilder.queueData = queueDataBuilder.build()
+                
+                let request = remoteMediaClient.loadMedia(with: mediaLoadRequestDataBuilder.build())
+                request.delegate = self
+            }
+            else if queueMedia == .queueItem {
+                let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
+                mediaQueueItemBuilder.mediaInformation = mediaInformation
+                mediaQueueItemBuilder.autoplay = true
+                mediaQueueItemBuilder.preloadTime = TimeInterval(UserDefaults.standard.integer(forKey: "preload_time_sec"))
+                let mediaQueueItem = mediaQueueItemBuilder.build()
+                let request = remoteMediaClient.queueInsert(mediaQueueItem, beforeItemWithID: kGCKMediaQueueInvalidItemID)
+                request.delegate = self
+                let message = "Selected media addded to queue."
+                Toast.displayMessage(message, for: 3, in: appDelegate?.window)
+            }
         }
     }
     
@@ -133,7 +267,7 @@ extension FilesViewController: FilesView {
         if keyPath == #keyPath(FilesViewController.player.rate) {
             let newRate = (change?[NSKeyValueChangeKey.newKey] as! NSNumber).doubleValue
             guard player != nil else { return }
-
+            
             AmahiLogger.log("CURRENT RATE IS \(newRate)")
             
             if newRate == 0.0 {
@@ -142,9 +276,6 @@ extension FilesViewController: FilesView {
                     guard currentItem.currentTime() == currentItem.duration else { return }
                     AmahiLogger.log("ENTERED LAST BLOCK")
                     currentItem.seek(to: CMTime.zero)
-                    self.player.advanceToNextItem()
-                    self.player.insert(currentItem, after: nil)
-                    
                     self.player.play()
                 }
             }
@@ -160,8 +291,21 @@ extension FilesViewController: FilesView {
     }
     
     func updateFiles(_ files: [ServerFile]) {
-        self.filteredFiles = files
-        filesTableView.reloadData()
+        // Organsing files into sections using filteredFiles
+        filteredFiles.reset()
+        let files = files.sorted(by: getSorter(fileSort))
+        
+        if fileSort == .name{
+            organizeSectionsByName(files: files)
+        }else if fileSort == .date{
+            organizeSectionsByModified(files: files)
+        }else if fileSort == .size{
+            organizeSectionsBySize(files: files)
+        }else{
+            organizeSectionsByType(files: files)
+        }
+        
+        filesCollectionView.reloadData()
     }
     
     func updateRefreshing(isRefreshing: Bool) {

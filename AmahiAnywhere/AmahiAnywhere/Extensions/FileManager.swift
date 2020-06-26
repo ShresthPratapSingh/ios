@@ -30,14 +30,15 @@ extension FileManager {
         return folderPath
     }
     
-    func deleteFolder(in directory: URL, folderName: String) {
+    func deleteFolder(in directory: URL, folderName: String, completion: @escaping(_ success: Bool)->() ) {
         do {
             let fileManager =  self
-            
             let folderPath = directory.appendingPathComponent(folderName)
             try fileManager.removeItem(at: folderPath)
+            completion(true)
         } catch let error {
             AmahiLogger.log("Error while trying to delete files: \(error.localizedDescription)")
+            completion(false)
         }
     }
     
@@ -128,10 +129,29 @@ extension FileManager {
         return cacheFolderPath.appendingPathComponent(file.getPath())
     }
     
+    func localPathInCache(for file: Recent) -> URL{
+        let fileManager = self
+        let tempDirectory = fileManager.temporaryDirectory
+        let cacheFolderPath = tempDirectory.appendingPathComponent("cache")
+        
+        return cacheFolderPath.appendingPathComponent(file.path)
+    }
+    
     func fileExistsInCache(_ file: ServerFile) -> Bool {
         let fileManager =  self
         let pathComponent = localPathInCache(for: file)
 
+        if fileManager.fileExists(atPath: pathComponent.path) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func fileExistsInCache(_ file: Recent) -> Bool {
+        let fileManager =  self
+        let pathComponent = localPathInCache(for: file)
+        
         if fileManager.fileExists(atPath: pathComponent.path) {
             return true
         } else {

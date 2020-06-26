@@ -30,9 +30,9 @@ class ConnectionModeManager {
     
     func setupReachability(_ hostName: String?) {
         if let hostName = hostName {
-            reachability = Reachability(hostname: hostName)
+         try!   reachability = Reachability(hostname: hostName)
         } else {
-            reachability = Reachability()
+          try!  reachability = Reachability()
         }
         
         NotificationCenter.default.addObserver(
@@ -89,7 +89,7 @@ class ConnectionModeManager {
         AmahiLogger.log("Making server availability request  \(url!)")
 
         Alamofire.SessionManager.default.requestWithoutCache(url!,
-                                                             headers: ServerApi.shared!.getSessionHeader(),
+                                                             headers: ServerApi.shared!.getServerHeaders(),
                                                              timeoutInterval: 3.0)?
             .responseJSON(completionHandler: { (response) in
 
@@ -102,8 +102,12 @@ class ConnectionModeManager {
                         }
                     
                     case .failure(let error):
-                        self.lastCheckPassed = false
-                        AmahiLogger.log("local availability check return with error \(error)")
+                        if response.response?.statusCode == 401{
+                            self.lastCheckPassed = true
+                        }else{
+                            self.lastCheckPassed = false
+                            AmahiLogger.log("local availability check return with error \(error)")
+                        }
                 }
                 
                 self.lastCheckedAt = Date()

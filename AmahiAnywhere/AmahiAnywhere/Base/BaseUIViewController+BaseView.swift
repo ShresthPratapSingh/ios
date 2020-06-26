@@ -13,7 +13,7 @@ import MBProgressHUD
 extension BaseUIViewController: BaseView {
     
     func showLoading() {
-        showProgressIndicator(withMessage: StringLiterals.PLEASE_WAIT)
+        showProgressIndicator(withMessage: StringLiterals.pleaseWait)
     }
     
     func showLoading(withMessage text: String) {
@@ -40,7 +40,7 @@ extension BaseUIViewController: BaseView {
 extension BaseUITableViewController: BaseView {
     
     func showLoading() {
-        showProgressIndicator(withMessage: StringLiterals.PLEASE_WAIT)
+        showProgressIndicator(withMessage: StringLiterals.pleaseWait)
     }
     
     func showLoading(withMessage text: String) {
@@ -72,7 +72,7 @@ extension UIViewController {
             let connectionMode = LocalStorage.shared.userConnectionPreference
             let color = connectionMode == .remote ? UIColor.remoteIndicatorBrown : UIColor.localIndicatorBlack
             self.navigationController?.navigationBar.backgroundColor = color
-
+            
         }
     }
     
@@ -84,74 +84,26 @@ extension UIViewController {
         self.navigationController?.navigationBar.backgroundColor = UIColor.remoteIndicatorBrown
     }
     
-    func showDownloadsIconIfOfflineFileExists() {
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        let stack = delegate.stack
-        
-        if !stack.isDownloadsEmpty {
-            let rightButton = UIBarButtonItem(image: UIImage(named: "cellphoneIcon"),
-                                              style: .plain, target: self,
-                                              action: #selector(userClickedDownloadsIcon))
-            
-            if DownloadService.shared.activeDownloads.isEmpty {
-                rightButton.tintColor = UIColor.white
-            } else {
-                rightButton.tintColor = UIColor.softYellow
-            }
-            navigationItem.rightBarButtonItem = rightButton
-        } else {
-            navigationItem.rightBarButtonItem = nil
-        }
-    }
-    
-    @objc func userClickedDownloadsIcon() {
-        let offlineFileVc = viewController(viewControllerClass: OfflineFilesTableViewController.self,
-                                           from: StoryBoardIdentifiers.MAIN)
-        navigationController?.pushViewController(offlineFileVc, animated: true)
-    }
-    
-    @objc func updateDownloadsIconOnDownloadStarted() {
-        
+    @objc func updateTabBadgeDownloadStarted() {
         AmahiLogger.log("Active Downloads count \(DownloadService.shared.activeDownloads.count)")
-        
-        if navigationItem.rightBarButtonItem == nil {
-            let rightButton = UIBarButtonItem(image: UIImage(named: "cellphoneIcon"),
-                                              style: .plain, target: self,
-                                              action: #selector(userClickedDownloadsIcon))
-            navigationItem.rightBarButtonItem = rightButton
-        }
-        
-        if DownloadService.shared.activeDownloads.isEmpty {
-            navigationController?.viewControllers.forEach({ (controller) in                    controller.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            })
-        } else {
-            navigationController?.viewControllers.forEach({ (controller) in                    controller.navigationItem.rightBarButtonItem?.tintColor = UIColor.softYellow
-            })
-        }
     }
     
-    @objc func updateDownloadsIconOnDownloadCompleted() {
+    @objc func updateTabBadgeDownloadCompleted() {
         AmahiLogger.log("Active Downloads count \(DownloadService.shared.activeDownloads.count)")
-        
-        if DownloadService.shared.activeDownloads.isEmpty {
-            navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-        } else {
-            navigationItem.rightBarButtonItem?.tintColor = UIColor.softYellow
-        }
     }
     
     func addActiveDownloadObservers() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsIconOnDownloadStarted),
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBadgeDownloadStarted),
                                                name: .DownloadStarted, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsIconOnDownloadCompleted),
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBadgeDownloadCompleted),
                                                name: .DownloadCompletedSuccessfully, object: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsIconOnDownloadCompleted),
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBadgeDownloadCompleted),
                                                name: .DownloadCompletedWithError, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsIconOnDownloadCompleted),
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBadgeDownloadCompleted),
                                                name: .DownloadCancelled, object: nil)
     }
     
@@ -193,23 +145,23 @@ extension UIViewController {
         return storyboard.instantiateViewController(withIdentifier: storyBoardID) as! T
     }
     
-    func createErrorDialog(title: String! = "Oops!", message: String! = StringLiterals.GENERIC_NETWORK_ERROR) {
+    func createErrorDialog(title: String! = "Oops!", message: String! = StringLiterals.genericNetworkError) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert);
         
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil);
         alertController.addAction(defaultAction);
-       
-                
+        
+        
         self.present(alertController, animated: true, completion: nil);
     }
     
-    func createActionSheet(title: String! = "", message: String! = StringLiterals.CHOOSE_ONE, ltrActions: [UIAlertAction]! = [] ,
+    func createActionSheet(title: String! = "", message: String! = StringLiterals.chooseOne, ltrActions: [UIAlertAction]! = [] ,
                            preferredActionPosition: Int = 0, sender: UIView? = nil ){
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.actionSheet);
         
         if(ltrActions.count == 0){
-            let defaultAction = UIAlertAction(title: StringLiterals.OK, style: .default, handler: nil);
+            let defaultAction = UIAlertAction(title: StringLiterals.ok, style: .default, handler: nil);
             alertController.addAction(defaultAction);
         } else {
             for (index , x) in ltrActions.enumerated() {
@@ -268,3 +220,4 @@ extension ProgressLoadingIndicators where Self: UIViewController {
 
 extension BaseUIViewController: ProgressLoadingIndicators {}
 extension BaseUITableViewController: ProgressLoadingIndicators {}
+

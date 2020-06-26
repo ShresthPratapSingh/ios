@@ -15,7 +15,7 @@ protocol OfflineFilesView : BaseView {
     
     func playMedia(at url: URL)
     
-    func playAudio(_ items: [AVPlayerItem], startIndex: Int)
+    func playAudio(_ items: [AVPlayerItem], startIndex: Int, currentIndex: Int,_ URLs: [URL])
     
     func webViewOpenContent(at url: URL, mimeType: MimeType)
     
@@ -34,90 +34,37 @@ class OfflineFilesPresenter: BasePresenter {
         self.view = nil
     }
     
-    func handleOfflineFile(fileIndex: Int, files: [OfflineFile], from sender : UIView?) {
-
-        let file = files[fileIndex]
+    func handleOfflineFile(selectedFile: OfflineFile, indexPath: IndexPath, files: FilteredOfflineFiles, from sender: UIView?){
+        let type = selectedFile.mimeType
         let fileManager = FileManager.default
         
-        if !fileManager.fileExistsInDownloads(file) {
+        if !fileManager.fileExistsInDownloads(selectedFile) {
             AmahiLogger.log("OFFLINE FILE DOES NOT EXIST IN EXPECTED LOCATION !!!")
             return
         }
         
-        let url = fileManager.localFilePathInDownloads(for: file)!
-        AmahiLogger.log("Path to Offline folder is \(url)")
-        
-        let type = Mimes.shared.match(file.mime!)
+        let url = fileManager.localFilePathInDownloads(for: selectedFile)!
         
         switch type {
-            
-        case MimeType.image:
+        case .image:
             // prepare ImageViewer
-            let controller = LightboxController(images: prepareImageArray(files), startIndex: fileIndex)
-            controller.dynamicBackground = false
+            let results = files.getImageFiles(selectedFile: selectedFile)
+            let controller = LightboxController(images: results.images, startIndex: results.startIndex)
+            controller.dynamicBackground = true
             self.view?.present(controller)
-            break
-            
-        case MimeType.video:
-             self.view?.playMedia(at: url)
-            break
-            
-        case MimeType.audio:
-            let audioURLs = prepareAudioItems(files)
-            var arrangedURLs = [URL]()
-            
-            for (index, url) in audioURLs.enumerated() {
-                if (index < fileIndex) {
-                    arrangedURLs.insert(url, at: arrangedURLs.endIndex)
-                } else {
-                    arrangedURLs.insert(url, at: index - fileIndex)
-                }
-            }
-            
-            var playerItems = [AVPlayerItem]()
-            
-            for _ in 0..<6 {
-                arrangedURLs.forEach({playerItems.append(AVPlayerItem(url: $0))})
-            }
-            
-            self.view?.playAudio(playerItems, startIndex: fileIndex)
-            break
-            
-        case MimeType.code, MimeType.presentation, MimeType.sharedFile, MimeType.document, MimeType.spreadsheet:
-            if type == MimeType.sharedFile {
-                self.view?.shareFile(at: url, from: sender)
-            } else {
-                self.view?.webViewOpenContent(at: url, mimeType: type)
-            }
-            break
-            
+        case .video, .flacMedia:
+            self.view?.playMedia(at: url)
+        case .audio:
+            let results = files.getAudioFiles(selectedFile: selectedFile)
+            self.view?.playAudio(results.playerItems, startIndex: 0, currentIndex: results.startIndex, results.urls)
+        case .sharedFile:
+            self.view?.shareFile(at: url, from: sender)
+        case .code, .presentation, .document, .spreadsheet:
+            self.view?.webViewOpenContent(at: url, mimeType: type)
         default:
             // TODO: show list of apps that can open the file
             return
         }
     }
     
-    private func prepareAudioItems(_ files: [OfflineFile]) -> [URL] {
-        var audioURLs = [URL]()
-        
-        for file in files {
-            if (Mimes.shared.match(file.mime!) == MimeType.audio) {
-                let url = FileManager.default.localFilePathInDownloads(for: file)!
-                audioURLs.append(url)
-            }
-        }
-        return audioURLs
-    }
-    
-    private func prepareImageArray(_ files: [OfflineFile]) -> [LightboxImage] {
-        var images: [LightboxImage] = [LightboxImage] ()
-        for file in files {
-            if (Mimes.shared.match(file.mime!) == MimeType.image) {
-                let path = FileManager.default.localFilePathInDownloads(for: file)!
-                let data = NSData(contentsOf: path)
-                images.append(LightboxImage(image: UIImage(data: data! as Data)!, text: file.name!))
-            }
-        }
-        return images
-    }
 }

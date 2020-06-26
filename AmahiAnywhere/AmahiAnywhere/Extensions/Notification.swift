@@ -14,6 +14,7 @@ extension Notification.Name {
     static let DownloadPaused = Notification.Name("DownloadPaused")
     static let DownloadCompletedSuccessfully = Notification.Name("DownloadCompletedSuccessfully")
     static let DownloadCompletedWithError = Notification.Name("DownloadCompletedWithError")
+    static let OfflineFileDeleted = Notification.Name("OfflineFileDeleted")
     
     static let LanTestPassed =  Notification.Name("LanTestPassed")
     static let LanTestFailed =  Notification.Name("LanTestFailed")
@@ -29,4 +30,10 @@ extension Notification.Name {
     
     /// Notification that is posted when the internal AVPlayer rate did change.
     static let PlayerRateDidChangeNotification = Notification.Name("PlayerRateDidChangeNotification")
+    
+    static let ShowMiniController = Notification.Name("ShowMiniController")
+    static let HideMiniController = Notification.Name("HideMiniController")
+    
+    static let UpdateTabBarCompleted = Notification.Name("UpdateTabBarCompleted")
+    static let UpdateTabBarStarted = Notification.Name("UpdateTabBarStarted")
 }

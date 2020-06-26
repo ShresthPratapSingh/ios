@@ -26,20 +26,22 @@ class DownloadService : NSObject {
     // MARK: - Download methods called in Server FilesViewController delegate methods
     
     func startDownload(_ offlineFile: OfflineFile) {
-        let url = offlineFile.remoteFileURL()
-
-        AmahiLogger.log("Download Has Started for url \(url)")
-        let download = Download(offlineFile: offlineFile)
-        download.task = downloadsSession.downloadTask(with: url)
-        download.task!.resume()
-        download.isDownloading = true
-        
-        activeDownloads[url] = download
-        NotificationCenter.default.post(name: .DownloadStarted, object: nil, userInfo: [:])
+        if let url = offlineFile.remoteFileURL() {
+            offlineFile.stateEnum = .downloading
+            NotificationCenter.default.post(name: .DownloadStarted, object: offlineFile, userInfo: nil)
+            AmahiLogger.log("Download Has Started for url \(url)")
+            let download = Download(offlineFile: offlineFile)
+            download.task = downloadsSession.downloadTask(with: url)
+            download.task!.resume()
+            download.isDownloading = true
+            
+            activeDownloads[url] = download
+            updateTabBarStarted()
+        }
     }
     
     func pauseDownload(_ offlineFile: OfflineFile) {
-        let url = offlineFile.remoteFileURL()
+        guard let url = offlineFile.remoteFileURL() else { return }
 
         guard let download = activeDownloads[url] else { return }
         
@@ -52,17 +54,35 @@ class DownloadService : NSObject {
     }
     
     func cancelDownload(_ offlineFile: OfflineFile) {
-        let url = offlineFile.remoteFileURL()
+        guard let url = offlineFile.remoteFileURL() else { return }
 
         if let download = activeDownloads[url] {
             download.task?.cancel()
             activeDownloads.removeValue(forKey: url)
         }
-        NotificationCenter.default.post(name: .DownloadCancelled, object: nil, userInfo: [:])
+        
+        updateTabBarCompleted()
+        
+        // Delete file in downloads directory
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(at: fileManager.localFilePathInDownloads(for: offlineFile)!)
+        } catch let error {
+            AmahiLogger.log("Couldn't Delete file from Downloads \(error.localizedDescription)")
+        }
+        
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let stack = delegate.stack
+        
+        // Delete Offline File from CoreData and persist new changes immediately
+        stack.context.delete(offlineFile)
+        try? stack.saveContext()
+        AmahiLogger.log("File was deleted from Downloads")
+        NotificationCenter.default.post(name: .DownloadCancelled, object: offlineFile, userInfo: ["loadOfflineFiles":true])
     }
     
     func resumeDownload(_ offlineFile: OfflineFile) {
-        let url = offlineFile.remoteFileURL()
+        guard let url = offlineFile.remoteFileURL() else { return }
 
         guard let download = activeDownloads[url] else { return }
         if let resumeData = download.resumeData {
@@ -73,4 +93,14 @@ class DownloadService : NSObject {
         download.task!.resume()
         download.isDownloading = true
     }
+    
+    func updateTabBarCompleted(){
+        NotificationCenter.default.post(name: .UpdateTabBarCompleted, object: nil)
+    }
+    
+    func updateTabBarStarted(){
+        NotificationCenter.default.post(name: .UpdateTabBarStarted, object: nil)
+    }
 }
+
+

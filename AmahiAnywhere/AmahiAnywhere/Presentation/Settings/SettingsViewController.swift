@@ -1,10 +1,10 @@
 import UIKit
 import MessageUI
 
-class SettingsViewController: BaseUITableViewController, MFMailComposeViewControllerDelegate {
+class SettingsViewController: BaseUITableViewController {
     
-    var settingItems = StringLiterals.SETTINGS_ACTION_TITLES
-    var titleForSections = StringLiterals.SETTINGS_SECTION_TITLES
+    internal var settingItems = StringLiterals.settingsSectionsSubItems
+    internal var titleForSections = StringLiterals.settingsSectionsTitle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -12,9 +12,34 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
         tableView.reloadData()
     }
     
-    func configureMailComposeViewController(recipient: String,
-                                            subject: String,
-                                            message: String) ->MFMailComposeViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        tableView.sectionFooterHeight = 0
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+        } else {
+            self.view.backgroundColor = UIColor(hex: "1E2023")
+        }
+        print(getFreeSize())
+    }
+    
+    
+    func getFreeSize() -> Int64? {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) {
+            if let freeSize = dictionary[FileAttributeKey.systemFreeSize] as? NSNumber {
+                return freeSize.int64Value
+            }
+        }else{
+            print("Error Obtaining System Memory Info:")
+        }
+        return nil
+    }
+    
+    internal func configureMailComposeViewController(recipient: String,
+                                                     subject: String,
+                                                     message: String) ->MFMailComposeViewController {
         
         let mail = MFMailComposeViewController()
         mail.mailComposeDelegate = self
@@ -25,201 +50,67 @@ class SettingsViewController: BaseUITableViewController, MFMailComposeViewContro
         return mail
     }
     
-    func showSendMailErrorAlert() {
-        let sendMailAlert = UIAlertController(title: StringLiterals.MAIL_ERROR_TITLE,
-                                              message: StringLiterals.MAIL_ERROR_MESSAGE,
-                                              preferredStyle: UIAlertController.Style.alert)
-        
-        sendMailAlert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-        })
-        self.present(sendMailAlert, animated: true)
-    }
-    
-    func mailComposeController(_ controller:MFMailComposeViewController,
-                               didFinishWith result:MFMailComposeResult, error:Error?) {
-        switch result {
-            case .cancelled:
-                let myalert = UIAlertController(title: StringLiterals.CANCEL_TITLE, message: StringLiterals.CANCEL_MESSAGE, preferredStyle: UIAlertController.Style.alert)
-                
-                myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-                })
-                self.present(myalert, animated: true)
-            case .saved:
-                let myalert = UIAlertController(title: StringLiterals.SAVED_TITLE, message: StringLiterals.SAVED_MESSAGE, preferredStyle: UIAlertController.Style.alert)
-                
-                myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-                })
-                self.present(myalert, animated: true)
-            case .sent:
-                let myalert = UIAlertController(title: StringLiterals.SENT_TITLE, message: StringLiterals.SENT_MESSAGE, preferredStyle: UIAlertController.Style.alert)
-                
-                myalert.addAction(UIAlertAction(title: StringLiterals.ALERT_ACTION, style: .default) { (action:UIAlertAction!) in
-                })
-                self.present(myalert, animated: true)
-            
-            case .failed:
-                AmahiLogger.log("Mail sent failure: \(String(describing: error?.localizedDescription))")
-                // default:
-                break
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
-    // MARK:- Signout function Added
-    
-    func signOut() {
+    internal func signOut() {
         self.dismiss(animated: false, completion: nil)
-        LocalStorage.shared.logout {}
-        let loginVc = self.viewController(viewControllerClass: LoginViewController.self, from: StoryBoardIdentifiers.MAIN)
+        LocalStorage.shared.logout{}
+        let loginVc = self.viewController(viewControllerClass: LoginViewController.self, from: StoryBoardIdentifiers.main)
         self.present(loginVc, animated: true, completion: nil)
     }
     
-    // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return titleForSections.count
+    internal func handleSignOut() {
+        let refreshAlert = UIAlertController(title: StringLiterals.signOut,
+                                             message:StringLiterals.signOutMessage,
+                                             preferredStyle: UIAlertController.Style.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: StringLiterals.cancel, style: .default, handler: { (action: UIAlertAction!) in
+            refreshAlert .dismiss(animated: true, completion: nil)
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: StringLiterals.confirm,
+                                             style: .destructive, handler: { (action: UIAlertAction!) in
+                                                self.signOut()
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return titleForSections[section]
+    internal func performCacheInvalidation() {
+        // Clear temp storage
+        
+        let clearCacheAlert = UIAlertController(title: StringLiterals.clearCacheTitle,
+                                                message:StringLiterals.clearCacheMessage,
+                                                preferredStyle: UIAlertController.Style.alert)
+        
+        clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.cancel, style: .default, handler: { (action: UIAlertAction!) in
+            clearCacheAlert .dismiss(animated: true, completion: nil)
+        }))
+        
+        clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.confirm,
+                                                style: .destructive, handler: { (action: UIAlertAction!) in
+                                                    FileManager.default.deleteFolder(in: FileManager.default.temporaryDirectory, folderName: "cache", completion: { (success) in
+                                                        if success{
+                                                            self.showStatusAlert(title: "Successfully cleared temporary downloads")
+                                                        }
+                                                    })
+                                                    self.tableView.reloadData()
+        }))
+        
+        present(clearCacheAlert, animated: true, completion: nil)
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return settingItems[section].count
-    }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func handleShareByEmail() {
+        let activityViewController = UIActivityViewController(activityItems: [productURL],
+                                                              applicationActivities: nil)
         
-        let section = indexPath.section
-        let row = indexPath.row
-        
-        var cell: UITableViewCell
-        
-        if section == 1 || (section == 2 && row == 0) {
-        
-            cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.SETTING_CELL_WITH_DETAILS, for: indexPath)
-            cell.textLabel?.text = settingItems[section][row]
-            cell.textLabel?.textColor = UIColor.white
-            cell.detailTextLabel?.textColor = UIColor.lightGray
-            
-            if section == 1 && row == 0 {
-                let connectionMode = LocalStorage.shared.userConnectionPreference
-                
-                if connectionMode == ConnectionMode.auto {
-                    let isLocalInUse = ConnectionModeManager.shared.isLocalInUse()
-                    
-                    if isLocalInUse {
-                        cell.detailTextLabel?.text =  StringLiterals.AUTO_CONNECTION_LAN
-                    } else {
-                        cell.detailTextLabel?.text =  StringLiterals.AUTO_CONNECTION_REMOTE
-                    }
-                } else {
-                  cell.detailTextLabel?.text =  LocalStorage.shared.userConnectionPreference.rawValue
-                }
-            }
-            else if section == 1 && row == 1 {
-                
-                let cacheFolderPath = FileManager.default.temporaryDirectory.appendingPathComponent("cache").path
-                
-                let cacheSize = FileManager.default.folderSizeAtPath(path: cacheFolderPath)
-                cell.detailTextLabel?.text = String(format: StringLiterals.CURRENT_SIZE, ByteCountFormatter().string(fromByteCount: cacheSize))
-            }
-            else if section == 2 && row == 0 {
-                if let versionNumber = Bundle.main.object(forInfoDictionaryKey: StringLiterals.INFO_DICTIONARY_KEY) as! String? {
-                    cell.detailTextLabel?.text = "v\(versionNumber)"
-                }
-            }
-        } else {
-            
-            cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.SETTING_CELL, for: indexPath)
-            cell.textLabel?.text = settingItems[section][row]
-            cell.textLabel?.textColor = UIColor.white
-        }
-        
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let section = indexPath.section
-        let row = indexPath.row
-        
-        switch section {
-            
-            case 0:
-                let refreshAlert = UIAlertController(title: StringLiterals.SIGNOUT_TITLE,
-                                                     message:StringLiterals.SIGNOUT_MESSAGE,
-                                                     preferredStyle: UIAlertController.Style.alert)
-                refreshAlert.addAction(UIAlertAction(title: StringLiterals.CONFIRM,
-                                                     style: .destructive, handler: { (action: UIAlertAction!) in
-                    self.signOut()
-                }))
-                refreshAlert.addAction(UIAlertAction(title: StringLiterals.CANCEL, style: .default, handler: { (action: UIAlertAction!) in
-                    refreshAlert .dismiss(animated: true, completion: nil)
-                }))
-                present(refreshAlert, animated: true, completion: nil)
-                break
-            case 1:
-                if row == 0 {
-                    performSegue(withIdentifier: SegueIdentfiers.CONNECTION, sender: nil)
-                } else if row == 1 {
-                    // Clear temp storage
-                    
-                    let clearCacheAlert = UIAlertController(title: StringLiterals.CLEAR_CACHE_TITLE,
-                                                         message:StringLiterals.CLEAR_CACHE_MESSAGE,
-                                                         preferredStyle: UIAlertController.Style.alert)
-                    clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.CONFIRM,
-                                                         style: .destructive, handler: { (action: UIAlertAction!) in
-                                                            
-                                FileManager.default.deleteFolder(in: FileManager.default.temporaryDirectory,
-                                                                                             folderName: "cache")
-                                self.tableView.reloadData()
-                    }))
-                    clearCacheAlert.addAction(UIAlertAction(title: StringLiterals.CANCEL, style: .default, handler: { (action: UIAlertAction!) in
-                        clearCacheAlert .dismiss(animated: true, completion: nil)
-                    }))
-                    present(clearCacheAlert, animated: true, completion: nil)
-                }
-                
-                break
-            case 2: 
-                if row == 1 {
-                    let urlStr = StringLiterals.URL
-                    if let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
-                        if #available(iOS 10.0, *) {
-                            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-                        } else {
-                            UIApplication.shared.openURL(url)
-                        }
-                    }
-                } else if row == 2 {
-                    let mailVc = configureMailComposeViewController(recipient: StringLiterals.FEEDBACK_RECEPIENT,
-                                                                    subject: StringLiterals.FEEDBACK_SUBJECT,
-                                                                    message: StringLiterals.FEEDBACK_MSG)
-                    if MFMailComposeViewController.canSendMail() {
-                        self.present(mailVc, animated: true, completion: nil)
-                    } else {
-                        self.showSendMailErrorAlert()
-                    }
-                } else if row == 3 {
-                    let mailVc = configureMailComposeViewController(recipient: "",
-                                                                    subject: StringLiterals.SHARE_SUBJECT,
-                                                                    message: StringLiterals.SHARE_MESSAGE)
-                    if MFMailComposeViewController.canSendMail() {
-                        self.present(mailVc, animated: true, completion: nil)
-                    } else {
-                        self.showSendMailErrorAlert()
-                    }
-                }
-                break
-            default:
-                break
-        }
+        present(activityViewController, animated: true, completion: nil)
     }
 }
 
-// Helper function inserted by Swift 4.2 migrator.
+private let productURL = URL(string: "https://apps.apple.com/us/app/amahi/id761559919?ls=1")!
+
+// Mark: Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
+
