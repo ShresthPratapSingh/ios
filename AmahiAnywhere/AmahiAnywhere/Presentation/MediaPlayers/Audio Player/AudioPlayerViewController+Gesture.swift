@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension AudioPlayerViewController{
+extension AudioPlayerViewController: QueueHeaderTapDelegate{
     
    @objc func handlePanGesture(_ sender: UIPanGestureRecognizer) {
     
@@ -35,7 +35,6 @@ extension AudioPlayerViewController{
             animateIfNeeded(state: state, duration: duration)
         }
         for animator in interactiveAnimators{
-//            animator.pauseAnimation()
             animationProgressWhenInterrupted = animator.fractionComplete
         }
     }
@@ -63,6 +62,10 @@ extension AudioPlayerViewController{
         animateIfNeeded(state: nextState, duration: 0.7)
     }
 
+    func didTapOnQueueHeader() {
+        animateIfNeeded(state: nextState, duration: 0.7)
+    }
+    
     private func setupQueueAnimator(for state:QueueState, with duration:TimeInterval){
         let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.85) {
             switch state{

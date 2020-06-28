@@ -115,6 +115,7 @@ class AudioPlayerViewController: UIViewController {
         
         playerQueueContainer = PlayerQueueContainerView(target: self, with: playerItems, startItem: startPlayerItem)
         playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
+        playerQueueContainer.header.tapDelegate = self
         layoutPlayerQueue()
         
         if let urlArray = itemURLs,let queueVC = self.children.first as? AudioPlayerQueueViewController{

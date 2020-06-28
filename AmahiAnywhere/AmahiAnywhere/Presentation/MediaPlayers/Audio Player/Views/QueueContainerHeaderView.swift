@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol QueueHeaderTapDelegate {
+    func didTapOnQueueHeader()
+}
+
 class QueueContainerHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame:frame)
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:))))
         updateBackgroundColor()
         layout()
     }
@@ -18,6 +23,8 @@ class QueueContainerHeaderView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    var tapDelegate: QueueHeaderTapDelegate?
     
     lazy var upNextLabel:UILabel = {
         let label = UILabel()
@@ -88,6 +95,10 @@ class QueueContainerHeaderView: UIView {
         arrowHead.leadingAnchor.constraint(equalTo: upNextLabel.trailingAnchor, constant: 10).isActive = true
         arrowHead.trailingAnchor.constraint(equalTo: blurEffect.trailingAnchor, constant: -15).isActive = true
         arrowHead.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .horizontal)
+    }
+    
+    @objc func handleTapGesture(_ sender: UITapGestureRecognizer){
+        tapDelegate?.didTapOnQueueHeader()
     }
     
 }
