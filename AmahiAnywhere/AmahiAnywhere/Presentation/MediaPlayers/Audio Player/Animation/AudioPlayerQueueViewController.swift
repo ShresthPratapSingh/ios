@@ -27,6 +27,7 @@ class AudioPlayerQueueViewController:UIViewController{
     var currentPlayerItem:AVPlayerItem?
     var trackNames = [AVPlayerItem: String]()
     var artistNames = [AVPlayerItem: String]()
+    var thumbnailImages = [AVPlayerItem:UIImage]()
     var shuffledArray: [Int]?
     var itemURLs: [URL]?
     var delegate:AudioPlayerQueueDelegate?
@@ -37,7 +38,7 @@ class AudioPlayerQueueViewController:UIViewController{
         tableView.delegate = self
         tableView.isEditing = true
         tableView.allowsSelectionDuringEditing = true
-        tableView.register(UINib(nibName: "AudioTrackTableViewCell", bundle: nil), forCellReuseIdentifier: cellID)
+        tableView.register(UINib(nibName: "QueueItemTableViewCell", bundle: nil), forCellReuseIdentifier: cellID)
         return tableView
     }()
     
@@ -63,14 +64,22 @@ class AudioPlayerQueueViewController:UIViewController{
         for item in queuedItems ?? []{
             let metaData = item.asset.metadata
             
+            //extracting title
             let titleMetaData = AVMetadataItem.metadataItems(from: metaData, filteredByIdentifier: .commonIdentifierTitle)
             if let title = titleMetaData.first, let titleString = title.value as? String{
                 trackNames[item] = titleString
             }
             
+            //extracting artist
             let artistMetaData = AVMetadataItem.metadataItems(from: metaData, filteredByIdentifier: .commonIdentifierArtist)
             if let artist = artistMetaData.first, let artistString = artist.value as? String{
                 artistNames[item] = artistString
+            }
+            
+            //extracting thumbnail
+            let imageMetaData = AVMetadataItem.metadataItems(from: metaData, filteredByIdentifier: .commonIdentifierArtwork)
+            if let imageData = imageMetaData.first?.dataValue, let image = UIImage(data: imageData){
+                thumbnailImages[item] = image
             }
         }
     }
@@ -86,7 +95,7 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? AudioTrackTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? QueueItemTableViewCell else {
             return UITableViewCell()
         }
         
@@ -98,18 +107,13 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
             track = queuedItems?[indexPath.row]
         }
         if track != nil{
-                cell.titleLabel.text = trackNames[track!] ?? "Title"
-                cell.artistLabel.text = artistNames[track!] ?? "Artist"
-                if let index = shuffledArray?[indexPath.row], let url = itemURLs?[index]{
-                    var image:UIImage?
-                DispatchQueue.global().async {
-                     image = AudioThumbnailGenerator().getThumbnail(url)
-                    DispatchQueue.main.async {
-                        cell.imageView?.image = image
-                    }
-                }
-            }
+            cell.titleLabel.text = trackNames[track!] ?? "Title"
+            cell.artistLabel.text = artistNames[track!] ?? "Artist"
+            cell.thumbnailView.image = thumbnailImages[track!] ?? UIImage(named:"musicPlayerArtWork")
         }
+        
+        cell.thumbnailView.layer.cornerRadius = 5
+        cell.thumbnailView.clipsToBounds = true
         
         return cell
     }

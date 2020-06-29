@@ -66,8 +66,8 @@
 		725871932496C65300AF0A61 /* PlayerQueueContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725871922496C65300AF0A61 /* PlayerQueueContainerView.swift */; };
 		7270E663248D14A6001BE439 /* AudioPlayerQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7270E662248D14A6001BE439 /* AudioPlayerQueueViewController.swift */; };
 		7270E665248D4490001BE439 /* AudioPlayerViewController + PlayerQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7270E664248D448F001BE439 /* AudioPlayerViewController + PlayerQueue.swift */; };
-		72C6E4712490410D00EBFA7D /* AudioTrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C6E4702490410D00EBFA7D /* AudioTrackTableViewCell.swift */; };
-		72C6E4732490444400EBFA7D /* AudioTrackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72C6E4722490444400EBFA7D /* AudioTrackTableViewCell.xib */; };
+		72BDA8B524A9ED6900B4469E /* QueueItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BDA8B324A9ED6900B4469E /* QueueItemTableViewCell.swift */; };
+		72BDA8B624A9ED6900B4469E /* QueueItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72BDA8B424A9ED6900B4469E /* QueueItemTableViewCell.xib */; };
 		80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */; };
 		80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F606FF206BE1530098BC60 /* SettingsViewController.swift */; };
 		8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* MimeType.swift */; };
@@ -192,8 +192,8 @@
 		725871922496C65300AF0A61 /* PlayerQueueContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerQueueContainerView.swift; sourceTree = "<group>"; };
 		7270E662248D14A6001BE439 /* AudioPlayerQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerQueueViewController.swift; sourceTree = "<group>"; };
 		7270E664248D448F001BE439 /* AudioPlayerViewController + PlayerQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewController + PlayerQueue.swift"; sourceTree = "<group>"; };
-		72C6E4702490410D00EBFA7D /* AudioTrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrackTableViewCell.swift; sourceTree = "<group>"; };
-		72C6E4722490444400EBFA7D /* AudioTrackTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioTrackTableViewCell.xib; sourceTree = "<group>"; };
+		72BDA8B324A9ED6900B4469E /* QueueItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueItemTableViewCell.swift; sourceTree = "<group>"; };
+		72BDA8B424A9ED6900B4469E /* QueueItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QueueItemTableViewCell.xib; sourceTree = "<group>"; };
 		80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		80F606FF206BE1530098BC60 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFile+MimeType.swift"; sourceTree = "<group>"; };
@@ -599,8 +599,8 @@
 				3B33325522BAA2AF00BC61EB /* FilesCollectionFooterView.swift */,
 				3B33325F22BAB2A800BC61EB /* SortViewTableViewCell.swift */,
 				3BB315D322E1143600A0FDAD /* SharesCollectionViewCell.swift */,
-				72C6E4702490410D00EBFA7D /* AudioTrackTableViewCell.swift */,
-				72C6E4722490444400EBFA7D /* AudioTrackTableViewCell.xib */,
+				72BDA8B324A9ED6900B4469E /* QueueItemTableViewCell.swift */,
+				72BDA8B424A9ED6900B4469E /* QueueItemTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -726,10 +726,10 @@
 			files = (
 				FB71BEA2201CB2FC0005492C /* LaunchScreen.storyboard in Resources */,
 				FB71BE9F201CB2FC0005492C /* Assets.xcassets in Resources */,
+				72BDA8B624A9ED6900B4469E /* QueueItemTableViewCell.xib in Resources */,
 				3B24FE1822970B6B0044721D /* WalkthroughCell.xib in Resources */,
 				3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */,
 				FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */,
-				72C6E4732490444400EBFA7D /* AudioTrackTableViewCell.xib in Resources */,
 				C8490D1520C847F90052D636 /* VideoPlayer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -807,7 +807,6 @@
 				C8DEBFAD20BB1AEF00B09AED /* Alamofire.swift in Sources */,
 				C866E5552042D02A0083A606 /* VideoPlayerViewController.swift in Sources */,
 				3B3F43DC22FECF3800BB42B0 /* AudioPlayerViewController+Gesture.swift in Sources */,
-				72C6E4712490410D00EBFA7D /* AudioTrackTableViewCell.swift in Sources */,
 				C83C63902038D5B30089B9D8 /* PersistenceIdentifiers.swift in Sources */,
 				C83C637520386DD90089B9D8 /* BaseUIViewController.swift in Sources */,
 				3BCAFBA522C5385D0044057E /* DownloadsBaseCollectionCell.swift in Sources */,
@@ -816,6 +815,7 @@
 				C86CA92920D3D26300C8EDCA /* OfflineFile+CoreData.swift in Sources */,
 				3B33325A22BAA40B00BC61EB /* FilesViewController+UICollectionViewDelegates.swift in Sources */,
 				4605964D204F3666004FA066 /* ServerShare.swift in Sources */,
+				72BDA8B524A9ED6900B4469E /* QueueItemTableViewCell.swift in Sources */,
 				3BCAFBAF22C6DC1A0044057E /* OfflineFilesViewController+Sorting.swift in Sources */,
 				AD8F2FE0226E9351009C8C4B /* SettingsViewController+TableViewDataSource.swift in Sources */,
 				3B3F43E522FED10100BB42B0 /* AudioPlayerViewController+Player.swift in Sources */,
