@@ -189,7 +189,8 @@ class AudioPlayerViewController: UIViewController {
         else if shuffleButton.currentImage == UIImage(named: "shuffleOn") {
             shuffleButton.setImage(UIImage(named:"shuffle"), for: .normal)
             if let queueVC = self.children.first as? AudioPlayerQueueViewController{
-                queueVC.shuffledArray = nil
+                let count = queueVC.queuedItems?.count ?? 0
+                queueVC.shuffledArray = Array((0...count-1).lazy)
                 queueVC.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic)
             }
         }

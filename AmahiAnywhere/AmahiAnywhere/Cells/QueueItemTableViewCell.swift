@@ -13,11 +13,38 @@ class QueueItemTableViewCell:UITableViewCell{
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
-    
+    @IBOutlet weak var nowPlayingView: UIImageView!
     
     override func prepareForReuse() {
         thumbnailView.image = UIImage(named:"musicPlayerArtWork")
         titleLabel.text = "Title"
         artistLabel.text = "Artist"
+        stopPlayAnimation()
+    }
+    
+    func animatePlaying(){
+        UIView.animate(withDuration: 0.7, animations: {
+            self.nowPlayingView.alpha = 1
+        }) { (isComplete) in
+            if isComplete{
+                UIView.animate(withDuration: 0.7, animations: {
+                    self.nowPlayingView.alpha = 0
+                }) { (isComplete) in
+                    if isComplete{
+                        self.animatePlaying()
+                    }
+                }
+            }
+        }
+    }
+    
+    func stopPlayAnimation(){
+        UIView.animate(withDuration: 0.7, animations: {
+            self.nowPlayingView.alpha = 0
+        }) { (isComplete) in
+            if isComplete{
+                self.nowPlayingView.layer.removeAllAnimations()
+            }
+        }
     }
 }

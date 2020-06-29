@@ -5,6 +5,7 @@
 //  Created by Marton Zeisler on 2019. 08. 10..
 //  Copyright © 2019. Amahi. All rights reserved.
 //
+import AVFoundation
 
 extension AudioPlayerViewController{
     
@@ -35,6 +36,8 @@ extension AudioPlayerViewController{
             restartSong()
             return
         }
+        var newItem : AVPlayerItem?
+        var newIndexPath : IndexPath?
         
         if shuffleButton.currentImage == UIImage(named: "shuffleOn") {
                 if shuffledArray.count == 1 {
@@ -49,6 +52,9 @@ extension AudioPlayerViewController{
             }
             
             player.replaceCurrentItem(with: playerItems[shuffledArray[0]])
+            
+            newIndexPath = IndexPath(row: shuffledArray[0], section: 0)
+            newItem = playerItems[shuffledArray[0]]
             shuffledArray.removeFirst()
         }else{
             var index =  playerItems.index(of: player.currentItem!) ?? 0
@@ -59,8 +65,15 @@ extension AudioPlayerViewController{
             }
             
             player.replaceCurrentItem(with: playerItems[index])
+            
+            newIndexPath = IndexPath(row: index, section: 0)
+            newItem = playerItems[index]
         }
-        
+        if newItem != nil,newIndexPath != nil, let queueVC = self.children.first as? AudioPlayerQueueViewController{
+            queueVC.updateCurrentSong(item: newItem!)
+            queueVC.currentPlayerItem = newItem!
+            queueVC.currentPlayerIndex = newIndexPath!
+        }
         loadSong()
     }
     
@@ -81,6 +94,10 @@ extension AudioPlayerViewController{
             }
             
             player.replaceCurrentItem(with: playerItems[index])
+            
+            if let queueVC = self.children.first as? AudioPlayerQueueViewController{
+                queueVC.updateCurrentSong(item: playerItems[index])
+            }
             loadSong()
         }else{
             // Restart song
