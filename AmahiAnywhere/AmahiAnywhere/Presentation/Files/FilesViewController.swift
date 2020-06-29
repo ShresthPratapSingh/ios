@@ -624,7 +624,7 @@ extension FilesViewController: UINavigationControllerDelegate, UIImagePickerCont
             guard let image = info[.editedImage] as? UIImage else {
                 return
             }
-            fileName = "IMG.jpeg" + TimeStamp().getCurrentTimeStamp()
+            fileName = "IMG-" + TimeStamp().getCurrentTimeStamp() + ".jpeg"
             let data: Data = image.jpegData(compressionQuality: 100)!
             Network.shared.uploadFile(url, data: data, fileName: fileName, mime: mimeType) { success in
              if success {
@@ -644,7 +644,7 @@ extension FilesViewController: UINavigationControllerDelegate, UIImagePickerCont
             do {
                 let data = try Data(contentsOf: videoURL as URL, options: .mappedIfSafe)
                 AmahiLogger.log(data)
-                fileName = "VIDEO.mp4 " + TimeStamp().getCurrentTimeStamp()
+                fileName = "VIDEO-" + TimeStamp().getCurrentTimeStamp() + ".mp4"
                 Network.shared.uploadFile(url, data: data, fileName: fileName, mime: mimeType) { success in
                  if success {
                     self.showStatusAlert(title: "Video was successfully uploaded", true)
