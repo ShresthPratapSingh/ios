@@ -41,7 +41,7 @@ DEPENDENCIES:
   - SwipeCellKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Cache
     - EVReflection
@@ -77,4 +77,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2fa917969f1f4a5176ea9be1efba38200556eac5
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.9.1

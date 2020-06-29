@@ -134,11 +134,11 @@ public class Network {
                                switch encodingResult {
                                case .success(let upload, _, _):
                                 upload.response { response in
-                                       debugPrint(response)
+                                    AmahiLogger.log(response)
                                        completion(true)
                                    }
                                case .failure(let encodingError):
-                                   print(encodingError)
+                                AmahiLogger.log(encodingError.localizedDescription)
                                    completion(false)
                                }
            })
