@@ -86,6 +86,9 @@ class AudioPlayerViewController: UIViewController {
         timeSlider.setThumbImage(UIImage(named: "sliderKnobIcon"), for: .normal)
         timeSlider.addTarget(self, action: #selector(timeSliderChanged(slider:event:)), for: .valueChanged)
         
+        shuffleButton.setImage(UIImage(named:"shuffle"), for: .normal)
+        repeatButton.setImage(UIImage(named:"repeat"), for: .normal)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(hadleInterruption), name: AVAudioSession.interruptionNotification, object: nil)
         
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(remotePlayPause))
@@ -183,7 +186,7 @@ class AudioPlayerViewController: UIViewController {
                 queueVC.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic)
             }
         }
-        else {
+        else if shuffleButton.currentImage == UIImage(named: "shuffleOn") {
             shuffleButton.setImage(UIImage(named:"shuffle"), for: .normal)
             if let queueVC = self.children.first as? AudioPlayerQueueViewController{
                 queueVC.shuffledArray = nil
