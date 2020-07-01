@@ -40,6 +40,9 @@ extension OfflineFilesViewController : OfflineFilesView {
         if #available(iOS 13.0, *) {
             audioPlayerVc.isModalInPresentation = true
         }
+        if UIDevice().userInterfaceIdiom == .pad{
+            audioPlayerVc.modalPresentationStyle = .fullScreen
+        }
         self.present(audioPlayerVc)
     }
     

@@ -95,6 +95,11 @@ class ServerViewController: BaseUIViewController {
         super.viewWillDisappear(animated)
         sessionManager.remove(self)
     }
+    
+    @IBAction func recentsButtonPressed(_ sender: Any) {
+        let recentsVC = self.instantiateViewController (withIdentifier: StoryBoardIdentifiers.recentsNavigationController, from: StoryBoardIdentifiers.main)
+        self.present(recentsVC, animated: true, completion: nil)
+    }
 }
 
 // Mark - CollectionView Delegates Implementations
@@ -134,6 +139,7 @@ extension ServerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }else{
             self.showStatusAlert(title: "The selected HDA is currently not available")
         }
+        AppStoreReviewManager.requestReviewIfAppropriate()
     }
     
     func showPinVC(server: Server){
