@@ -38,8 +38,8 @@ public class Network {
        private func getDefaultHeaders() -> HTTPHeaders {
            return [
                "Accept": "application/json"
-//                +
-//               "\(appNameAndVersion()) \(deviceName()) \(deviceVersion())"
+               +
+              "\(appNameAndVersion()) \(deviceName()) \(deviceVersion())"
            ]
        }
 
