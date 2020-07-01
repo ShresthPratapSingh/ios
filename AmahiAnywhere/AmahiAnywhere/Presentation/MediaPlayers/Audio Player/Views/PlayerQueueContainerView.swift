@@ -46,9 +46,6 @@ class PlayerQueueContainerView: UIView {
     private func configure(_ target: UIViewController,with queuedItems:[AVPlayerItem],startItem current:AVPlayerItem){
         if let audioPlayerVC = target as? AudioPlayerViewController{
             queueVC.delegate = audioPlayerVC
-            queueVC.queuedItems = queuedItems
-            queueVC.currentPlayerItem = current
-            
             queueVC.willMove(toParent: audioPlayerVC)
             addSubview(queueVC.view)
             audioPlayerVC.addChild(queueVC)

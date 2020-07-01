@@ -22,6 +22,11 @@ class AudioPlayerQueueViewController:UIViewController{
     var queuedItems:[AVPlayerItem]?{
         didSet{
             setupQueueMetadata()
+            var count = 0
+            if queuedItems != nil{
+                count = queuedItems!.count - 1
+            }
+            shuffledArray = Array((0...count).lazy)
         }
     }
     var currentPlayerItem:AVPlayerItem?
@@ -54,11 +59,6 @@ class AudioPlayerQueueViewController:UIViewController{
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        var count = 0
-        if queuedItems != nil{
-            count = queuedItems!.count - 1
-        }
-        shuffledArray = Array((0...count).lazy)
     }
     
     func setupQueueMetadata(){
@@ -123,7 +123,7 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
         var track:AVPlayerItem?
         
         if let index = queuedItems?.count, indexPath.row <= index{
-            track = queuedItems?[indexPath.row]
+            track = queuedItems?[shuffledArray[indexPath.row]]
         }
         
         if track != nil{

@@ -71,8 +71,6 @@ extension AudioPlayerViewController{
         }
         if newItem != nil,newIndexPath != nil, let queueVC = self.children.first as? AudioPlayerQueueViewController{
             queueVC.updateCurrentSong(item: newItem!)
-            queueVC.currentPlayerItem = newItem!
-            queueVC.currentPlayerIndex = newIndexPath!
         }
         loadSong()
     }

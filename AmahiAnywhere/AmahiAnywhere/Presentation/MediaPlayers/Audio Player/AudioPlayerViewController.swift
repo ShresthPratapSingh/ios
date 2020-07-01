@@ -136,6 +136,10 @@ class AudioPlayerViewController: UIViewController {
                 self?.updatePlayingSong(time)
             })
         }
+        
+        playerQueueContainer.queueVC.queuedItems = playerItems
+        playerQueueContainer.queueVC.currentPlayerItem = player.currentItem
+        playerQueueContainer.queueVC.tableView.reloadData()
     }
     
     func cleanupBeforeExit(){
@@ -183,7 +187,7 @@ class AudioPlayerViewController: UIViewController {
             shuffle()
             if let queueVC = self.children.first as? AudioPlayerQueueViewController{
                 queueVC.shuffledArray = shuffledArray
-                queueVC.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic)
+                queueVC.tableView.reloadData()
             }
         }
         else if shuffleButton.currentImage == UIImage(named: "shuffleOn") {
@@ -191,7 +195,7 @@ class AudioPlayerViewController: UIViewController {
             if let queueVC = self.children.first as? AudioPlayerQueueViewController{
                 let count = queueVC.queuedItems?.count ?? 0
                 queueVC.shuffledArray = Array((0...count-1).lazy)
-                queueVC.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic)
+                queueVC.tableView.reloadData()
             }
         }
     }

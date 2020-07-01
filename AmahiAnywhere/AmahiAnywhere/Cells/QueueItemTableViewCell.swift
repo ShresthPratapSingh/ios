@@ -23,19 +23,9 @@ class QueueItemTableViewCell:UITableViewCell{
     }
     
     func animatePlaying(){
-        UIView.animate(withDuration: 0.7, animations: {
+        UIView.animate(withDuration: 0.7, delay: 0, options: [.repeat,.autoreverse], animations: {
             self.nowPlayingView.alpha = 1
-        }) { (isComplete) in
-            if isComplete{
-                UIView.animate(withDuration: 0.7, animations: {
-                    self.nowPlayingView.alpha = 0
-                }) { (isComplete) in
-                    if isComplete{
-                        self.animatePlaying()
-                    }
-                }
-            }
-        }
+        }, completion: nil)
     }
     
     func stopPlayAnimation(){
