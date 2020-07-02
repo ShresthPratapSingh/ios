@@ -35,15 +35,13 @@ public class Network {
            return "\(name)/\(version)"
        }
        
-       private func getDefaultHeaders() -> HTTPHeaders {
-           return [
-               "Accept": "application/json"
-               +
-              "\(appNameAndVersion()) \(deviceName()) \(deviceVersion())"
-           ]
-       }
+    private func getDefaultHeaders() -> HTTPHeaders {
+        return [
+            "Accept": "application/json",
+            "User-Agent": "\(appNameAndVersion()) \(deviceName()) \(deviceVersion())"
+        ]
+    }
 
-    
     private func getFinalHeaders(_ headers: HTTPHeaders) -> HTTPHeaders {
         var finalHeaders = getDefaultHeaders()
         for (key, value) in headers {
