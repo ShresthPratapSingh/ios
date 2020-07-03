@@ -1123,7 +1123,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmahiAnywhere/AmahiAnywhere.entitlements;
 				CODE_SIGN_STYLE = Automatic;
                 CURRENT_PROJECT_VERSION = 330;
-				DEVELOPMENT_TEAM = 325LAYFA25;
+                DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1148,7 +1148,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmahiAnywhere/AmahiAnywhere.entitlements;
 				CODE_SIGN_STYLE = Automatic;
                 CURRENT_PROJECT_VERSION = 330;
-				DEVELOPMENT_TEAM = 325LAYFA25;
+                DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AmahiAnywhere/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
