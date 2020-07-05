@@ -136,7 +136,9 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         documentPicker = UIDocumentPickerViewController(documentTypes: documentUploadTypes, in: .import)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
-        documentPicker.modalPresentationStyle = .formSheet
+        if UIDevice().userInterfaceIdiom == .phone{
+            documentPicker.modalPresentationStyle = .formSheet
+        }
     }
     
     func setupFloaty(){
@@ -188,7 +190,8 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         }))
         
         alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
+        alertVC.popoverPresentationController?.sourceView = floaty.subviews.first
+        alertVC.popoverPresentationController?.sourceRect = floaty.subviews.first?.frame ?? floaty.frame
         self.present(alertVC, animated: true, completion: nil)
     }
     
