@@ -104,6 +104,12 @@ class AudioPlayerViewController: UIViewController {
         MPRemoteCommandCenter.shared().changePlaybackPositionCommand.addTarget(self, action:#selector(remoteChangedPlaybackPositionCommand(_:)))
         UIApplication.shared.beginReceivingRemoteControlEvents()
         
+        playerQueueContainer = PlayerQueueContainerView(target: self, with: playerItems, startItem: startPlayerItem)
+        playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
+        playerQueueContainer.header.tapDelegate = self
+        layoutPlayerQueue()
+
+        
         if offlineMode{
             loadSong()
             playPlayer()
@@ -115,12 +121,7 @@ class AudioPlayerViewController: UIViewController {
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         self.playerContainer.addGestureRecognizer(panRecognizer)
         panRecognizer.cancelsTouchesInView = true
-        
-        playerQueueContainer = PlayerQueueContainerView(target: self, with: playerItems, startItem: startPlayerItem)
-        playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
-        playerQueueContainer.header.tapDelegate = self
-        layoutPlayerQueue()
-        
+                
         if let urlArray = itemURLs,let queueVC = self.children.first as? AudioPlayerQueueViewController{
              queueVC.itemURLs = urlArray
         }

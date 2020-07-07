@@ -30,7 +30,6 @@ class AudioPlayerQueueViewController:UIViewController{
         }
     }
     var currentPlayerItem:AVPlayerItem?
-    var currentPlayerIndex:IndexPath?
     var trackNames = [AVPlayerItem: String]()
     var artistNames = [AVPlayerItem: String]()
     var thumbnailImages = [AVPlayerItem:UIImage]()
@@ -45,6 +44,8 @@ class AudioPlayerQueueViewController:UIViewController{
         tableView.isEditing = true
         tableView.allowsSelectionDuringEditing = true
         tableView.register(UINib(nibName: "QueueItemTableViewCell", bundle: nil), forCellReuseIdentifier: cellID)
+        tableView.semanticContentAttribute = .forceRightToLeft
+        tableView.backgroundColor = UIColor(named: "tabBarBackground")
         return tableView
     }()
     
@@ -84,26 +85,6 @@ class AudioPlayerQueueViewController:UIViewController{
             }
         }
     }
-    
-    func updateCurrentSong(item newItem:AVPlayerItem){
-        
-        if let cell = tableView.cellForRow(at: currentPlayerIndex!) as? QueueItemTableViewCell{
-            cell.stopPlayAnimation()
-        }
-        
-        currentPlayerItem = newItem
-        for (index,item) in (queuedItems ?? []).enumerated(){
-            if item == newItem{
-                currentPlayerItem = item
-                currentPlayerIndex = IndexPath(row: shuffledArray[index] , section: 0)
-                
-                if let cell = tableView.cellForRow(at: currentPlayerIndex!) as? QueueItemTableViewCell{
-                    cell.animatePlaying()
-                }
-                return
-            }
-        }
-    }
 
     
 }
@@ -130,12 +111,6 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
             cell.titleLabel.text = trackNames[track!] ?? "Title"
             cell.artistLabel.text = artistNames[track!] ?? "Artist"
             cell.thumbnailView.image = thumbnailImages[track!] ?? UIImage(named:"musicPlayerArtWork")
-            cell.stopPlayAnimation()
-            
-            if track == currentPlayerItem{
-                currentPlayerIndex = indexPath
-                cell.animatePlaying()
-            }
         }
         
         cell.thumbnailView.layer.cornerRadius = 5
@@ -157,7 +132,6 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let newTrack = queuedItems?[indexPath.row]{
             delegate?.shouldPlay(item: newTrack, at: indexPath)
-            updateCurrentSong(item: newTrack)
         }else{
             let alert = UIAlertController(title: "Oops! coud not load track", message: nil, preferredStyle: .alert)
             present(alert, animated: true)
@@ -169,10 +143,6 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         if let item = queuedItems?[sourceIndexPath.row]{
-            if item == currentPlayerItem{
-                updateCurrentSong(item: item)
-                currentPlayerIndex = destinationIndexPath
-            }
             queuedItems?.insert(item, at: destinationIndexPath.row)
             delegate?.didMoveItem(from: sourceIndexPath, to: destinationIndexPath)
         }
