@@ -57,7 +57,7 @@ class QueueContainerHeaderView: UIView {
         return button
     }()
     
-    var colorSchemes = ["#D01C1F","#4B878B","#755139","#D7A9E3","#a32243"]
+    var colorSchemes = ["#4B878B","#755139","#D7A9E3","#a32243"]
     var colorIndex = 0
     
     func updateBackgroundColor(){

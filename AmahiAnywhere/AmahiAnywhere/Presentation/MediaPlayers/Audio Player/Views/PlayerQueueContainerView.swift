@@ -15,10 +15,10 @@ class PlayerQueueContainerView: UIView {
     var queueVC = AudioPlayerQueueViewController()
 
     
-    init(target:UIViewController,with queuedItems: [AVPlayerItem], startItem current: AVPlayerItem) {
+    init(target:UIViewController) {
         super.init(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.7))
         
-        configure(target,with:queuedItems,startItem:current)
+        configure(target)
     }
     
     required init?(coder: NSCoder) {
@@ -43,7 +43,7 @@ class PlayerQueueContainerView: UIView {
         
     }
     
-    private func configure(_ target: UIViewController,with queuedItems:[AVPlayerItem],startItem current:AVPlayerItem){
+    private func configure(_ target: UIViewController){
         if let audioPlayerVC = target as? AudioPlayerViewController{
             queueVC.delegate = audioPlayerVC
             queueVC.willMove(toParent: audioPlayerVC)

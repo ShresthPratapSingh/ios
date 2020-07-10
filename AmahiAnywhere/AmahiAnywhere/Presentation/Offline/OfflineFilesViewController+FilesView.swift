@@ -33,10 +33,12 @@ extension OfflineFilesViewController : OfflineFilesView {
         
         let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
                                                 from: StoryBoardIdentifiers.videoPlayer)
-        audioPlayerVc.startPlayerItem = items[currentIndex]
-        audioPlayerVc.playerItems = items
-        audioPlayerVc.itemURLs = URLs
+        AudioPlayerDataModel.shared.startPlayerItem = items[currentIndex]
+        AudioPlayerDataModel.shared.unshuffledQueueItems = items
+        AudioPlayerDataModel.shared.queuedItems = items
+        AudioPlayerDataModel.shared.itemURLs = URLs
         audioPlayerVc.offlineMode = true
+        AudioPlayerDataModel.shared.setupQueueMetadata()
         if #available(iOS 13.0, *) {
             audioPlayerVc.isModalInPresentation = true
         }

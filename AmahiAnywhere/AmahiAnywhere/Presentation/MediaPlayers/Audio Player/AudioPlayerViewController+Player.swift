@@ -32,44 +32,25 @@ extension AudioPlayerViewController{
     
     
     func playNextSong(){
+        
+        if dataModel.queuedItems.isEmpty{
+            dataModel.resetQueue()
+        }
+        
         if repeatButton.currentImage == UIImage(named:"repeatCurrent"){
             restartSong()
             return
         }
-        var newItem : AVPlayerItem?
-        var newIndexPath : IndexPath?
         
-        if shuffleButton.currentImage == UIImage(named: "shuffleOn") {
-                if shuffledArray.count == 1 {
-                lastSongIndex = shuffledArray[0]
-            }
-            
-            if shuffledArray.count == 0 {
-                shuffle()
-                if shuffledArray[0] == lastSongIndex {
-                    shuffledArray.removeFirst()
-                }
-            }
-            
-            player.replaceCurrentItem(with: playerItems[shuffledArray[0]])
-            
-            newIndexPath = IndexPath(row: shuffledArray[0], section: 0)
-            newItem = playerItems[shuffledArray[0]]
-            shuffledArray.removeFirst()
+        if let nextItem = dataModel.prepareNext(){
+            player.replaceCurrentItem(with: nextItem)
         }else{
-            var index =  playerItems.index(of: player.currentItem!) ?? 0
-            if index == playerItems.count - 1 {
-                index = 0
-            }else {
-                index = index + 1
+            dataModel.resetQueue()
+            if let item = dataModel.prepareNext(){
+                player.replaceCurrentItem(with: item)
+            }else{
+                //TODO:- show error
             }
-            
-            player.replaceCurrentItem(with: playerItems[index])
-            
-            newIndexPath = IndexPath(row: index, section: 0)
-            newItem = playerItems[index]
-        }
-        if newItem != nil,newIndexPath != nil, let queueVC = self.children.first as? AudioPlayerQueueViewController{
         }
         loadSong()
     }
@@ -82,19 +63,13 @@ extension AudioPlayerViewController{
         
         if timeElapsedLabel.text == "00:00" || timeElapsedLabel.text == "00:01" || timeElapsedLabel.text == "00:02"{
             // Previous song
-            var index =  playerItems.index(of: player.currentItem!) ?? 0
             
-            if index == 0 {
-                index = playerItems.count - 1
-            }else {
-                index = index - 1
+            if let item = dataModel.preparePrevious(){
+                 player.replaceCurrentItem(with: item)
+                loadSong()
+            }else{
+                restartSong()
             }
-            
-            player.replaceCurrentItem(with: playerItems[index])
-            
-            if let queueVC = self.children.first as? AudioPlayerQueueViewController{
-            }
-            loadSong()
         }else{
             // Restart song
             restartSong()

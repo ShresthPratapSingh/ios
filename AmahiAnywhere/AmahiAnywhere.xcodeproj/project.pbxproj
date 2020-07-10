@@ -76,6 +76,7 @@
 		7270E665248D4490001BE439 /* AudioPlayerViewController + PlayerQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7270E664248D448F001BE439 /* AudioPlayerViewController + PlayerQueue.swift */; };
 		72BDA8B524A9ED6900B4469E /* QueueItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BDA8B324A9ED6900B4469E /* QueueItemTableViewCell.swift */; };
 		72BDA8B624A9ED6900B4469E /* QueueItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72BDA8B424A9ED6900B4469E /* QueueItemTableViewCell.xib */; };
+		72DAFE1C24B6276A00755E25 /* AudioPlayerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DAFE1B24B6276A00755E25 /* AudioPlayerDataModel.swift */; };
 		80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */; };
 		80F60700206BE1530098BC60 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F606FF206BE1530098BC60 /* SettingsViewController.swift */; };
 		8A0A88F8227CE39C00A1360C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612851D2051DB770061EC21 /* MimeType.swift */; };
@@ -216,6 +217,7 @@
 		7270E664248D448F001BE439 /* AudioPlayerViewController + PlayerQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewController + PlayerQueue.swift"; sourceTree = "<group>"; };
 		72BDA8B324A9ED6900B4469E /* QueueItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueItemTableViewCell.swift; sourceTree = "<group>"; };
 		72BDA8B424A9ED6900B4469E /* QueueItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QueueItemTableViewCell.xib; sourceTree = "<group>"; };
+		72DAFE1B24B6276A00755E25 /* AudioPlayerDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerDataModel.swift; sourceTree = "<group>"; };
 		80F3FDC6206C0D4D0061CD51 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		80F606FF206BE1530098BC60 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8A67FC2A22666F81005A5038 /* OfflineFile+MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineFile+MimeType.swift"; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 				3BCAFBA822C68CF70044057E /* FilteredOfflineFile.swift */,
 				9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */,
 				3B2805E32312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift */,
+				72DAFE1B24B6276A00755E25 /* AudioPlayerDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -909,6 +912,7 @@
 				3BEA683E2311899D0017779A /* RecentFilesViewController.swift in Sources */,
 				C83C63912038D5B30089B9D8 /* StringLiterals.swift in Sources */,
 				3B37EBB822F2D9F60065CB77 /* AuthTokenResponse.swift in Sources */,
+				72DAFE1C24B6276A00755E25 /* AudioPlayerDataModel.swift in Sources */,
 				FDF80E94229FB2060087F9B8 /* VideoMenuCellSettings.swift in Sources */,
 				AD8F2FE1226E9351009C8C4B /* SettingsViewController+MFMailComposeViewControllerDelegate.swift in Sources */,
 				AD8F2FE2226E9351009C8C4B /* SettingsViewController+TableViewDelegate.swift in Sources */,

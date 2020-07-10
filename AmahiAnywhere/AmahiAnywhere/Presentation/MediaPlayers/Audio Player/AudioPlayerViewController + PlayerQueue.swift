@@ -43,21 +43,9 @@ extension AudioPlayerViewController: AudioPlayerQueueDelegate {
     //MARK:- Delegate methods
     
     func didDeleteItem(at indexPath: IndexPath) {
-        if let queueVC = self.children.first as? AudioPlayerQueueViewController, playerItems[indexPath.row] == queueVC.currentPlayerItem{
-            playNextSong()
-        }
-        playerItems.remove(at: indexPath.row)
-        itemURLs.remove(at: indexPath.row)
     }
     
     func didMoveItem(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        if let item = playerItems?[sourceIndexPath.row], let url = itemURLs?[sourceIndexPath.row]{
-            playerItems.remove(at: sourceIndexPath.row)
-            itemURLs.remove(at: sourceIndexPath.row)
-            
-            playerItems?.insert(item, at: destinationIndexPath.row)
-            itemURLs.insert(url, at: destinationIndexPath.row)
-        }
     }
     
     func shouldPlay(item: AVPlayerItem, at indexPath: IndexPath) {

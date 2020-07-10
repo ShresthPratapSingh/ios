@@ -44,9 +44,11 @@ extension RecentFilesViewController{
         }else{
             let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
                                                     from: StoryBoardIdentifiers.videoPlayer)
-            audioPlayerVc.startPlayerItem = items[startIndex]
-            audioPlayerVc.playerItems = items
-            audioPlayerVc.itemURLs = URLs
+            AudioPlayerDataModel.shared.startPlayerItem = items[currentIndex]
+            AudioPlayerDataModel.shared.unshuffledQueueItems = items
+            AudioPlayerDataModel.shared.queuedItems = items
+            AudioPlayerDataModel.shared.itemURLs = URLs
+            AudioPlayerDataModel.shared.setupQueueMetadata()
             present(audioPlayerVc, animated: true, completion: nil)
         }
     }
