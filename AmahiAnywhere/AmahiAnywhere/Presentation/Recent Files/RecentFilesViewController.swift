@@ -82,6 +82,13 @@ class RecentFilesViewController: BaseUIViewController {
         super.viewDidLoad()
         setupNotifications()
         
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+            searchBar.searchTextField.tintColor = UIColor.label
+            searchBar.searchTextField.textColor = UIColor.label
+        } else {
+            self.view.backgroundColor = UIColor(named: "formal")
+        }
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         filesCollectionView.addGestureRecognizer(longPressGesture)
     }
@@ -211,6 +218,7 @@ class RecentFilesViewController: BaseUIViewController {
             let results = getImageFiles(selectedFile: recentFile)
             let controller = LightboxController(images: results.images, startIndex: results.startIndex)
             controller.dynamicBackground = true
+            controller.modalPresentationStyle = .fullScreen
             present(controller, animated: true, completion: nil)
         case "video", "flacMedia":
             playMediaItem(recentFile: recentFile)

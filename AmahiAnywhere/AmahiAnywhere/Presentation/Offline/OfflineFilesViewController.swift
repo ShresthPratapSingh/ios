@@ -67,10 +67,10 @@ class OfflineFilesViewController: BaseUIViewController{
           sortButton.titleLabel?.textColor = UIColor.label
                     
          } else {
-                    self.view.backgroundColor = UIColor(hex: "1E2023")
-          filesCollectionView.backgroundColor = UIColor(hex: "1E2023")
+            self.view.backgroundColor = UIColor(named: "formal")
+            filesCollectionView.backgroundColor = UIColor(named: "formal")
                    
-          sortButton.backgroundColor = UIColor(hex: "1E2023")
+            sortButton.backgroundColor = UIColor(named: "formal")
           sortButton.tintColor = UIColor.white
           sortButton.titleLabel?.textColor = UIColor.white
           }
@@ -306,7 +306,7 @@ extension OfflineFilesViewController: NSFetchedResultsControllerDelegate {
                     cell.updateProgress(offlineFile: file)
                 }
             }
-        }else if type == .delete, let file = anObject as? OfflineFile, let deletedIndex = offlineFiles.index(of: file){
+        }else if type == .delete, let file = anObject as? OfflineFile, let deletedIndex = offlineFiles.firstIndex(of: file){
             offlineFiles.remove(at: deletedIndex)
             organiseFilesSections(offlineFiles)
             NotificationCenter.default.post(name: .OfflineFileDeleted, object: file, userInfo: ["loadOfflineFiles": true])
