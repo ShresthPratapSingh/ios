@@ -41,7 +41,8 @@ public class Network {
             "User-Agent": "\(appNameAndVersion()) \(deviceName()) \(deviceVersion())"
         ]
     }
-
+    
+    
     private func getFinalHeaders(_ headers: HTTPHeaders) -> HTTPHeaders {
         var finalHeaders = getDefaultHeaders()
         for (key, value) in headers {
