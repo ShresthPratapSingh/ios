@@ -69,15 +69,7 @@ class AudioPlayerViewController: UIViewController {
         playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
         playerQueueContainer.header.tapDelegate = self
         layoutPlayerQueue()
-        
-        if offlineMode{
-            loadSong()
-            playPlayer()
-            observer = player.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main, using: { [weak self] (time) in
-                self?.updatePlayingSong(time)
-            })
-        }
-        
+            
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         self.playerContainer.addGestureRecognizer(panRecognizer)
         panRecognizer.cancelsTouchesInView = true
@@ -88,6 +80,14 @@ class AudioPlayerViewController: UIViewController {
         
         setupPlayer()
         setupRemoteCommandCenter()
+        
+        if offlineMode{
+            loadSong()
+            playPlayer()
+            observer = player.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main, using: { [weak self] (time) in
+                self?.updatePlayingSong(time)
+            })
+        }
         
     }
     
