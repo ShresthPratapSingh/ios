@@ -13,7 +13,7 @@ extension AudioPlayerViewController{
     
     func setLockScreenData(){
         // Setting image
-        if let image = musicArtImageView.image{
+        if let currentItem = dataModel.currentPlayerItem, let image = dataModel.thumbnailImages[currentItem]{
             dataModel.nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (size) -> UIImage in
                 return image
             })

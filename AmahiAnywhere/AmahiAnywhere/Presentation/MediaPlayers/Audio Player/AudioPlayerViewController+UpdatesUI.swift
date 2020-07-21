@@ -12,13 +12,11 @@ import MediaPlayer
 
 extension AudioPlayerViewController{
     
-    func loadImage(for item:AVPlayerItem){
+    func loadImageBackground(for item:AVPlayerItem){
         
         if let image = dataModel.thumbnailImages[item]{
-            self.musicArtImageView.image = image
             self.backgroundImageView.image = image
         }else{
-            self.musicArtImageView.image = UIImage(named: "musicPlayerArtWork")
             self.backgroundImageView.image = UIImage(named: "musicPlayerArtWork")
         }
     }

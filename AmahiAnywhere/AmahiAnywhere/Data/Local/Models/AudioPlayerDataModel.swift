@@ -36,7 +36,16 @@ class AudioPlayerDataModel{
     var queuedItems : [AVPlayerItem] = []
     var previousItems : [AVPlayerItem] = []
     
+    var collectionViewDS: [AVPlayerItem] = []
     
+    func configure(items:[AVPlayerItem],_ URLs: [URL], with currentIndex: Int){
+        startPlayerItem = items[currentIndex]
+        unshuffledQueueItems = items
+        queuedItems = Array(items.suffix(from: currentIndex))
+        collectionViewDS = items
+        itemURLs = Array(URLs.suffix(from: currentIndex))
+        setupQueueMetadata()
+    }
     
     func shuffleQueue(){
         queuedItems = queuedItems.shuffled()
@@ -52,6 +61,7 @@ class AudioPlayerDataModel{
     
     func resetQueue(){
         queuedItems = unshuffledQueueItems
+        collectionViewDS = unshuffledQueueItems
         previousItems.removeAll()
         NotificationCenter.default.post(name: .audioPlayerQueuedItemsDidUpdateNotification, object: self)
     }

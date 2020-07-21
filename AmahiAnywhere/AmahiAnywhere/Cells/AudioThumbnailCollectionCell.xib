@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AudioThumbnailCollectionCell" customModule="AmahiAnywhere" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="561" height="574"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="561" height="574"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c31-5C-Sqb">
+                        <rect key="frame" x="0.0" y="0.0" width="561" height="574"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="musicPlayerArtWork" translatesAutoresizingMaskIntoConstraints="NO" id="2Uy-7b-FSj">
+                                <rect key="frame" x="130.5" y="137" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2Uy-7b-FSj" secondAttribute="height" multiplier="1:1" id="wCn-f4-7Zz"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="2Uy-7b-FSj" secondAttribute="bottom" constant="20" id="BNB-ZS-bZG"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="centerX" secondItem="c31-5C-Sqb" secondAttribute="centerX" id="Bai-zt-Uo7"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2Uy-7b-FSj" secondAttribute="bottom" id="Gjn-la-ooH"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c31-5C-Sqb" secondAttribute="leading" constant="5" id="Hqe-cv-Liq"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="top" secondItem="c31-5C-Sqb" secondAttribute="top" constant="20" id="Q1M-e9-gKo"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="centerY" secondItem="c31-5C-Sqb" secondAttribute="centerY" id="SEf-fV-bqT"/>
+                            <constraint firstAttribute="trailing" secondItem="2Uy-7b-FSj" secondAttribute="trailing" constant="20" id="SKA-Y7-XoA"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Uy-7b-FSj" secondAttribute="trailing" constant="5" id="WDe-kD-da5"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="leading" secondItem="c31-5C-Sqb" secondAttribute="leading" constant="20" id="lAF-d3-5cL"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="c31-5C-Sqb" secondAttribute="top" id="x0K-qO-MMF"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BNB-ZS-bZG"/>
+                                <exclude reference="Q1M-e9-gKo"/>
+                                <exclude reference="SKA-Y7-XoA"/>
+                                <exclude reference="lAF-d3-5cL"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Hqe-cv-Liq"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="BNB-ZS-bZG"/>
+                                <exclude reference="Gjn-la-ooH"/>
+                                <include reference="Q1M-e9-gKo"/>
+                                <include reference="SKA-Y7-XoA"/>
+                                <exclude reference="WDe-kD-da5"/>
+                                <include reference="lAF-d3-5cL"/>
+                                <exclude reference="x0K-qO-MMF"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="c31-5C-Sqb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5yt-aS-S8g"/>
+                <constraint firstItem="c31-5C-Sqb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Eff-bT-KJm"/>
+                <constraint firstAttribute="bottom" secondItem="c31-5C-Sqb" secondAttribute="bottom" id="FlK-75-Ked"/>
+                <constraint firstAttribute="trailing" secondItem="c31-5C-Sqb" secondAttribute="trailing" id="bUV-2i-JwF"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="561" height="574"/>
+            <connections>
+                <outlet property="imageView" destination="2Uy-7b-FSj" id="NTk-9z-FtD"/>
+            </connections>
+            <point key="canvasLocation" x="536.95652173913049" y="306.02678571428572"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="musicPlayerArtWork" width="300" height="300"/>
+    </resources>
+</document>

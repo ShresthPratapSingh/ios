@@ -45,15 +45,14 @@ class AudioPlayerQueueViewController:UIViewController{
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshQueue), name: .audioPlayerQueuedItemsDidUpdateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshQueue), name: .audioPlayerShuffleStatusChangedNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshQueue), name: .audioPlayerDidSetMetaData, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .audioPlayerQueuedItemsDidUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .audioPlayerShuffleStatusChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .audioPlayerDidSetMetaData, object: nil)
     }
     
-    @objc func refreshQueue(){
+    @objc func refresh(){
         tableView.reloadData()
     }
-    
 }
 
 //MARK:- TableView Delegate And DataSource
@@ -102,6 +101,9 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row < dataModel.queuedItems.count{
             let newTrack = dataModel.queuedItems[indexPath.row]
+            if let oldTrack = dataModel.currentPlayerItem{
+                dataModel.previousItems.insert(oldTrack, at: 0)
+            }
             dataModel.currentPlayerItem = dataModel.queuedItems.remove(at: indexPath.row)
             dataModel.itemURLs.remove(at: indexPath.row)
             delegate?.shouldPlay(item: newTrack, at: indexPath)

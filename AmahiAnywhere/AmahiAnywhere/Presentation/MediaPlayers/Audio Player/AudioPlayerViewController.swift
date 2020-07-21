@@ -23,7 +23,7 @@ class AudioPlayerViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var prevButton: UIButton!
-    @IBOutlet weak var musicArtImageView: UIImageView!
+    @IBOutlet weak var thumbnailCollectionView: UICollectionView!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var timeElapsedLabel: UILabel!
     @IBOutlet weak var timeSlider: UISlider!
@@ -31,6 +31,8 @@ class AudioPlayerViewController: UIViewController {
     @IBOutlet weak var shuffleButton: UIButton!
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var songTitle: UILabel!
+    
+    var thumbnailCellID = "thumbnailCell"
     
     lazy var dataModel = AudioPlayerDataModel.shared
     
@@ -62,6 +64,36 @@ class AudioPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        playerQueueContainer = PlayerQueueContainerView(target: self)
+        playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
+        playerQueueContainer.header.tapDelegate = self
+        layoutPlayerQueue()
+        
+        if offlineMode{
+            loadSong()
+            playPlayer()
+            observer = player.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main, using: { [weak self] (time) in
+                self?.updatePlayingSong(time)
+            })
+        }
+        
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        self.playerContainer.addGestureRecognizer(panRecognizer)
+        panRecognizer.cancelsTouchesInView = true
+        
+        thumbnailCollectionView.register(UINib(nibName: "AudioThumbnailCollectionCell", bundle: nil), forCellWithReuseIdentifier: thumbnailCellID)
+        thumbnailCollectionView.delegate = self
+        thumbnailCollectionView.dataSource = self
+        
+        setupPlayer()
+        setupRemoteCommandCenter()
+        
+    }
+    
+    func setupPlayer(){
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshCollectionView), name: .audioPlayerShuffleStatusChangedNotification, object: nil)
+        
         dataModel.currentPlayerItem = dataModel.startPlayerItem
         dataModel.queuedItems.remove(at: 0)
         player = AVPlayer(playerItem: dataModel.startPlayerItem)
@@ -72,9 +104,11 @@ class AudioPlayerViewController: UIViewController {
         
         shuffleButton.setImage(UIImage(named:"shuffle"), for: .normal)
         repeatButton.setImage(UIImage(named:"repeat"), for: .normal)
-        
+    }
+    
+    func setupRemoteCommandCenter(){
         NotificationCenter.default.addObserver(self, selector: #selector(hadleInterruption), name: AVAudioSession.interruptionNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(loadSong), name: .audioPlayerDidSetMetaData, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateMetaData), name: .audioPlayerDidSetMetaData, object: nil)
         
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(self, action: #selector(remotePlayPause))
         MPRemoteCommandCenter.shared().nextTrackCommand.addTarget(self, action: #selector(remoteNext))
@@ -88,32 +122,22 @@ class AudioPlayerViewController: UIViewController {
         MPRemoteCommandCenter.shared().changePlaybackPositionCommand.isEnabled = true
         MPRemoteCommandCenter.shared().changePlaybackPositionCommand.addTarget(self, action:#selector(remoteChangedPlaybackPositionCommand(_:)))
         UIApplication.shared.beginReceivingRemoteControlEvents()
-        
-        playerQueueContainer = PlayerQueueContainerView(target: self)
-        playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
-        playerQueueContainer.header.tapDelegate = self
-        layoutPlayerQueue()
-
-        
-        if offlineMode{
-            loadSong()
-            playPlayer()
-            observer = player.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main, using: { [weak self] (time) in
-                self?.updatePlayingSong(time)
-            })
+    }
+    
+    @objc func refreshCollectionView(){
+        dataModel.collectionViewDS = dataModel.queuedItems
+        if let item = dataModel.currentPlayerItem{
+            dataModel.collectionViewDS.insert(item, at: 0)
         }
-        
-        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        self.playerContainer.addGestureRecognizer(panRecognizer)
-        panRecognizer.cancelsTouchesInView = true
+        thumbnailCollectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        loadSong()
+        playPlayer()
         if !startedPlayer && !offlineMode{
             startedPlayer = true
-            loadSong()
-            playPlayer()
             observer = player.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main, using: { [weak self] (time) in
                 self?.updatePlayingSong(time)
             })
@@ -191,15 +215,20 @@ class AudioPlayerViewController: UIViewController {
         playNextSong()
     }
 
+    @objc func updateMetaData(){
+        loadSong()
+        thumbnailCollectionView.reloadData()
+        view.layoutIfNeeded()
+    }
     
     // UI Updates
-   @objc func loadSong(){
+   func loadSong(){
         // Play button image
         configurePlayButton()
     
         if let currentItem = dataModel.currentPlayerItem{
-            // Load Image
-            loadImage(for:currentItem)
+            // Load Image Background
+            loadImageBackground(for:currentItem)
             
             // Load title and artist
             setTitleArtist(for: currentItem)

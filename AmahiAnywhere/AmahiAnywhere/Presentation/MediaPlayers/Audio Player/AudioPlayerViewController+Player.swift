@@ -33,20 +33,28 @@ extension AudioPlayerViewController{
     
     func playNextSong(){
         
-        if dataModel.queuedItems.isEmpty{
-            dataModel.resetQueue()
-        }
-        
         if repeatButton.currentImage == UIImage(named:"repeatCurrent"){
             restartSong()
             return
         }
         
+        if dataModel.queuedItems.isEmpty{
+            dataModel.resetQueue()
+            if let nextItem = dataModel.prepareNext(){
+                player.replaceCurrentItem(with: nextItem)
+                thumbnailCollectionView.reloadData()
+                loadSong()
+                return
+            }
+        }
+        
         if let nextItem = dataModel.prepareNext(){
+            updateThumbnailCollectionView(for: .next)
             player.replaceCurrentItem(with: nextItem)
         }else{
             dataModel.resetQueue()
             if let item = dataModel.prepareNext(){
+                updateThumbnailCollectionView(for: .next)
                 player.replaceCurrentItem(with: item)
             }else{
                 //TODO:- show error
@@ -65,6 +73,7 @@ extension AudioPlayerViewController{
             // Previous song
             
             if let item = dataModel.preparePrevious(){
+                updateThumbnailCollectionView(for: .previous)
                  player.replaceCurrentItem(with: item)
                 loadSong()
             }else{

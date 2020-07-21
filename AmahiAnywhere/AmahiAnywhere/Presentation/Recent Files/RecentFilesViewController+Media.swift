@@ -46,6 +46,7 @@ extension RecentFilesViewController{
                                                     from: StoryBoardIdentifiers.videoPlayer)
             AudioPlayerDataModel.shared.startPlayerItem = items[currentIndex]
             AudioPlayerDataModel.shared.unshuffledQueueItems = items
+            AudioPlayerDataModel.shared.collectionViewDS = items
             AudioPlayerDataModel.shared.queuedItems = items
             AudioPlayerDataModel.shared.itemURLs = URLs
             AudioPlayerDataModel.shared.setupQueueMetadata()
