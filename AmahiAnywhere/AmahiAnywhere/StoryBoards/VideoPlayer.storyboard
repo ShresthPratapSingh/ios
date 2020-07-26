@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -245,34 +246,46 @@
                                         <blurEffect style="dark"/>
                                     </visualEffectView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="999" text=" Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAd-I9-vTK">
-                                        <rect key="frame" x="20" y="549.5" width="374" height="23"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <rect key="frame" x="20" y="554" width="374" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" text=" Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nwy-gf-Pl3">
-                                        <rect key="frame" x="20" y="512" width="374" height="33.5"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <rect key="frame" x="20" y="521" width="374" height="29"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                                        </variation>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Xhl-yR-3Gl">
-                                        <rect key="frame" x="18" y="592.5" width="378" height="31"/>
+                                        <rect key="frame" x="18" y="593.5" width="378" height="31"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="maximumTrackTintColor" white="0.44403717180365293" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aL-3c-jw0" userLabel="Duration">
-                                        <rect key="frame" x="367" y="627.5" width="27" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                        <rect key="frame" x="369" y="628.5" width="25" height="13.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymr-h4-1XM" userLabel="Play Time Elapsed">
-                                        <rect key="frame" x="20" y="627.5" width="27" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                        <rect key="frame" x="20" y="628.5" width="25" height="13.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IrN-4V-Q8g">
                                         <rect key="frame" x="10" y="652" width="60" height="60"/>
@@ -294,7 +307,7 @@
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JUC-Ox-Esv">
-                                        <rect key="frame" x="0.0" y="75" width="414" height="422"/>
+                                        <rect key="frame" x="0.0" y="75" width="414" height="431"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Sy2-6k-ccD">
                                             <size key="itemSize" width="128" height="128"/>
@@ -304,6 +317,10 @@
                                         </collectionViewFlowLayout>
                                         <cells/>
                                     </collectionView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="9ld-De-bh7">
+                                        <rect key="frame" x="0.0" y="75" width="414" height="431"/>
+                                        <color key="color" name="tabBarBackground"/>
+                                    </activityIndicatorView>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3JH-p3-RfR">
                                         <rect key="frame" x="354" y="20" width="40" height="40"/>
                                         <constraints>
@@ -358,11 +375,13 @@
                                     <constraint firstItem="3aL-3c-jw0" firstAttribute="top" secondItem="Xhl-yR-3Gl" secondAttribute="bottom" constant="5" id="BM8-iP-vwW"/>
                                     <constraint firstItem="STt-AV-qDW" firstAttribute="leading" secondItem="B7c-EV-cp2" secondAttribute="leading" id="Gsa-3s-fIH"/>
                                     <constraint firstItem="3aL-3c-jw0" firstAttribute="centerY" secondItem="Ymr-h4-1XM" secondAttribute="centerY" id="H0G-FN-Ier"/>
+                                    <constraint firstItem="9ld-De-bh7" firstAttribute="trailing" secondItem="JUC-Ox-Esv" secondAttribute="trailing" id="IPR-xc-jdd"/>
                                     <constraint firstAttribute="bottom" secondItem="gAA-Hm-ENq" secondAttribute="bottom" constant="80" id="JS9-2H-e4t"/>
                                     <constraint firstAttribute="trailing" secondItem="Nwy-gf-Pl3" secondAttribute="trailing" constant="20" id="OOr-NK-39U"/>
                                     <constraint firstAttribute="bottom" secondItem="uvU-Os-uFi" secondAttribute="bottom" id="Q1c-wp-AeC"/>
                                     <constraint firstItem="gAA-Hm-ENq" firstAttribute="top" secondItem="IrN-4V-Q8g" secondAttribute="bottom" constant="-10" id="Qwz-37-Cve"/>
                                     <constraint firstItem="IrN-4V-Q8g" firstAttribute="top" secondItem="Ymr-h4-1XM" secondAttribute="bottom" constant="10" id="SDj-gT-lzt"/>
+                                    <constraint firstItem="9ld-De-bh7" firstAttribute="top" secondItem="JUC-Ox-Esv" secondAttribute="top" id="Tg6-V6-Asb"/>
                                     <constraint firstItem="gAA-Hm-ENq" firstAttribute="centerX" secondItem="B7c-EV-cp2" secondAttribute="centerX" id="U1l-8H-eET"/>
                                     <constraint firstAttribute="trailing" secondItem="JUC-Ox-Esv" secondAttribute="trailing" id="UCl-Z0-Gio"/>
                                     <constraint firstItem="3JH-p3-RfR" firstAttribute="top" secondItem="B7c-EV-cp2" secondAttribute="top" constant="20" id="Vhw-OW-mF8"/>
@@ -372,17 +391,21 @@
                                     <constraint firstItem="JUC-Ox-Esv" firstAttribute="leading" secondItem="B7c-EV-cp2" secondAttribute="leading" id="ZmR-qh-vQr"/>
                                     <constraint firstAttribute="trailing" secondItem="bx3-st-U8E" secondAttribute="trailing" constant="10" id="d0M-dm-72L"/>
                                     <constraint firstItem="Ymr-h4-1XM" firstAttribute="leading" secondItem="Xhl-yR-3Gl" secondAttribute="leading" id="dSQ-zo-tVM"/>
+                                    <constraint firstItem="9ld-De-bh7" firstAttribute="bottom" secondItem="JUC-Ox-Esv" secondAttribute="bottom" id="dVe-Aj-m7T"/>
+                                    <constraint firstItem="9ld-De-bh7" firstAttribute="centerY" secondItem="JUC-Ox-Esv" secondAttribute="centerY" id="dpq-b7-xob"/>
                                     <constraint firstItem="mAd-I9-vTK" firstAttribute="leading" secondItem="B7c-EV-cp2" secondAttribute="leading" constant="20" id="gWB-X3-GPN"/>
                                     <constraint firstItem="Xhl-yR-3Gl" firstAttribute="top" secondItem="mAd-I9-vTK" secondAttribute="bottom" constant="20" id="ikJ-LA-3RV"/>
                                     <constraint firstItem="IrN-4V-Q8g" firstAttribute="leading" secondItem="B7c-EV-cp2" secondAttribute="leading" constant="10" id="k94-N4-JgC"/>
                                     <constraint firstItem="STt-AV-qDW" firstAttribute="top" secondItem="B7c-EV-cp2" secondAttribute="top" id="leR-k7-UST"/>
                                     <constraint firstItem="uvU-Os-uFi" firstAttribute="top" secondItem="B7c-EV-cp2" secondAttribute="top" id="pe8-Fu-vTr"/>
                                     <constraint firstItem="mAd-I9-vTK" firstAttribute="top" secondItem="Nwy-gf-Pl3" secondAttribute="bottom" constant="4" id="rhr-1A-5Os"/>
+                                    <constraint firstItem="9ld-De-bh7" firstAttribute="leading" secondItem="JUC-Ox-Esv" secondAttribute="leading" id="sFo-fX-Ssj"/>
                                     <constraint firstAttribute="trailing" secondItem="STt-AV-qDW" secondAttribute="trailing" id="vUW-tA-aLw"/>
                                     <constraint firstItem="Xhl-yR-3Gl" firstAttribute="leading" secondItem="B7c-EV-cp2" secondAttribute="leading" constant="20" id="vxM-4X-1yh"/>
                                     <constraint firstAttribute="trailing" secondItem="uvU-Os-uFi" secondAttribute="trailing" id="w0A-hp-nvk"/>
                                     <constraint firstItem="uvU-Os-uFi" firstAttribute="leading" secondItem="B7c-EV-cp2" secondAttribute="leading" id="wXZ-iC-Ur3"/>
                                     <constraint firstAttribute="bottom" secondItem="STt-AV-qDW" secondAttribute="bottom" id="yir-RC-N5b"/>
+                                    <constraint firstItem="9ld-De-bh7" firstAttribute="centerX" secondItem="JUC-Ox-Esv" secondAttribute="centerX" id="zj2-mh-TJF"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -401,6 +424,7 @@
                         <outlet property="backgroundImageView" destination="STt-AV-qDW" id="CbX-JZ-HS1"/>
                         <outlet property="doneButton" destination="3JH-p3-RfR" id="JKl-k2-3aA"/>
                         <outlet property="durationLabel" destination="3aL-3c-jw0" id="wIp-gN-NfR"/>
+                        <outlet property="loadingIndicator" destination="9ld-De-bh7" id="UZ1-Bf-76T"/>
                         <outlet property="nextButton" destination="D7Y-Ml-44J" id="HOV-Qd-51l"/>
                         <outlet property="playPauseButton" destination="oKO-Dj-1vV" id="bPO-yX-PNP"/>
                         <outlet property="playerContainer" destination="B7c-EV-cp2" id="8Vl-JX-9Mi"/>
@@ -431,5 +455,8 @@
         <image name="prevButton" width="32" height="30"/>
         <image name="repeat" width="28.666666030883789" height="24.333333969116211"/>
         <image name="shuffle" width="28.666666030883789" height="23.333333969116211"/>
+        <namedColor name="tabBarBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

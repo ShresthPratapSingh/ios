@@ -10,6 +10,7 @@ import AVKit
 import Foundation
 import MediaPlayer
 import GoogleCast
+import Alamofire
 
 // MARK: Files View implementations
 
@@ -183,7 +184,15 @@ extension FilesViewController: FilesView {
         else if sessionManager.currentSession == nil, (playbackMode != .local) {
             let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
                                                     from: StoryBoardIdentifiers.videoPlayer)
-            AudioPlayerDataModel.shared.configure(items: items,URLs, with: currentIndex)
+            if !NetworkReachabilityManager()!.isReachable{
+                let alertVC = UIAlertController(title: "Internet Error", message: "Please check your Internet Connection!", preferredStyle: .alert)
+                alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                    alertVC.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alertVC, animated: true, completion: nil)
+                return
+            }
+            AudioPlayerDataModel.shared.configure(items: items, with: currentIndex)
             if #available(iOS 13.0, *) {
                 audioPlayerVc.isModalInPresentation = true
             }

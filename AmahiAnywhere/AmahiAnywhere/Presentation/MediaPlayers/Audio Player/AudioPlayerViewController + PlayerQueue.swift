@@ -43,22 +43,15 @@ extension AudioPlayerViewController: AudioPlayerQueueDelegate {
     //MARK:- Delegate methods
     
     func didDeleteItem(at indexPath: IndexPath) {
+        thumbnailCollectionView.reloadData()
     }
     
     func didMoveItem(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        thumbnailCollectionView.reloadData()
     }
     
     func shouldPlay(item: AVPlayerItem, at indexPath: IndexPath) {
-        thumbnailCollectionView.performBatchUpdates({
-            let firstIndex = IndexPath(item: 0, section: 0)
-            dataModel.collectionViewDS.remove(at: 0)
-            dataModel.collectionViewDS.remove(at: indexPath.item)
-            thumbnailCollectionView.deleteItems(at: [firstIndex,indexPath])
-            dataModel.collectionViewDS.insert(item, at: 0)
-            thumbnailCollectionView.insertItems(at: [firstIndex])
-        }, completion: nil)
-        player.replaceCurrentItem(with: item)
-        loadSong()
+        
     }
     
 }

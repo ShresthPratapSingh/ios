@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -17,11 +17,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="561" height="574"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c31-5C-Sqb">
-                        <rect key="frame" x="0.0" y="0.0" width="561" height="574"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c31-5C-Sqb" userLabel="containerView">
+                        <rect key="frame" x="10" y="5" width="546" height="559"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="musicPlayerArtWork" translatesAutoresizingMaskIntoConstraints="NO" id="2Uy-7b-FSj">
-                                <rect key="frame" x="130.5" y="137" width="300" height="300"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="300" verticalCompressionResistancePriority="300" image="musicPlayerArtWork" translatesAutoresizingMaskIntoConstraints="NO" id="2Uy-7b-FSj">
+                                <rect key="frame" x="5" y="5" width="549" height="549"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2Uy-7b-FSj" secondAttribute="height" multiplier="1:1" id="wCn-f4-7Zz"/>
                                 </constraints>
@@ -29,54 +29,30 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="2Uy-7b-FSj" secondAttribute="bottom" constant="20" id="BNB-ZS-bZG"/>
-                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="centerX" secondItem="c31-5C-Sqb" secondAttribute="centerX" id="Bai-zt-Uo7"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2Uy-7b-FSj" secondAttribute="bottom" id="Gjn-la-ooH"/>
-                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c31-5C-Sqb" secondAttribute="leading" constant="5" id="Hqe-cv-Liq"/>
-                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="top" secondItem="c31-5C-Sqb" secondAttribute="top" constant="20" id="Q1M-e9-gKo"/>
-                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="centerY" secondItem="c31-5C-Sqb" secondAttribute="centerY" id="SEf-fV-bqT"/>
-                            <constraint firstAttribute="trailing" secondItem="2Uy-7b-FSj" secondAttribute="trailing" constant="20" id="SKA-Y7-XoA"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Uy-7b-FSj" secondAttribute="trailing" constant="5" id="WDe-kD-da5"/>
-                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="leading" secondItem="c31-5C-Sqb" secondAttribute="leading" constant="20" id="lAF-d3-5cL"/>
-                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="c31-5C-Sqb" secondAttribute="top" id="x0K-qO-MMF"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="centerX" secondItem="c31-5C-Sqb" secondAttribute="centerX" id="ees-dT-LYl"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="leading" secondItem="c31-5C-Sqb" secondAttribute="leading" constant="5" id="i2d-La-MON"/>
+                            <constraint firstAttribute="bottom" secondItem="2Uy-7b-FSj" secondAttribute="bottom" constant="5" id="kkJ-5s-dka"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="top" secondItem="c31-5C-Sqb" secondAttribute="top" constant="5" id="uJN-2q-xHD"/>
+                            <constraint firstAttribute="trailing" secondItem="2Uy-7b-FSj" secondAttribute="trailing" constant="5" id="wAg-92-82i"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="centerY" secondItem="c31-5C-Sqb" secondAttribute="centerY" id="y1d-Dq-D0h"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="BNB-ZS-bZG"/>
-                                <exclude reference="Q1M-e9-gKo"/>
-                                <exclude reference="SKA-Y7-XoA"/>
-                                <exclude reference="lAF-d3-5cL"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="constraints">
-                                <include reference="Hqe-cv-Liq"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=regular">
-                            <mask key="constraints">
-                                <include reference="BNB-ZS-bZG"/>
-                                <exclude reference="Gjn-la-ooH"/>
-                                <include reference="Q1M-e9-gKo"/>
-                                <include reference="SKA-Y7-XoA"/>
-                                <exclude reference="WDe-kD-da5"/>
-                                <include reference="lAF-d3-5cL"/>
-                                <exclude reference="x0K-qO-MMF"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="c31-5C-Sqb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5yt-aS-S8g"/>
-                <constraint firstItem="c31-5C-Sqb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Eff-bT-KJm"/>
-                <constraint firstAttribute="bottom" secondItem="c31-5C-Sqb" secondAttribute="bottom" id="FlK-75-Ked"/>
-                <constraint firstAttribute="trailing" secondItem="c31-5C-Sqb" secondAttribute="trailing" id="bUV-2i-JwF"/>
+                <constraint firstItem="c31-5C-Sqb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="5yt-aS-S8g"/>
+                <constraint firstItem="c31-5C-Sqb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Eff-bT-KJm"/>
+                <constraint firstAttribute="bottom" secondItem="c31-5C-Sqb" secondAttribute="bottom" constant="10" id="FlK-75-Ked"/>
+                <constraint firstAttribute="trailing" secondItem="c31-5C-Sqb" secondAttribute="trailing" constant="5" id="bUV-2i-JwF"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="561" height="574"/>
             <connections>
+                <outlet property="bottomConstraint" destination="kkJ-5s-dka" id="242-BO-meK"/>
                 <outlet property="imageView" destination="2Uy-7b-FSj" id="NTk-9z-FtD"/>
+                <outlet property="leadingConstraint" destination="i2d-La-MON" id="z5Q-K6-DV4"/>
+                <outlet property="topConstraint" destination="uJN-2q-xHD" id="b3L-ac-3pu"/>
+                <outlet property="trailingConstraint" destination="wAg-92-82i" id="BsD-Hq-aUu"/>
             </connections>
             <point key="canvasLocation" x="536.95652173913049" y="306.02678571428572"/>
         </collectionViewCell>
@@ -85,3 +61,4 @@
         <image name="musicPlayerArtWork" width="300" height="300"/>
     </resources>
 </document>
+
