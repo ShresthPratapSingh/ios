@@ -37,10 +37,6 @@ class AudioPlayerQueueViewController:UIViewController{
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-         print("deinit avcq")
-     }
-    
     private func setupViews() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,8 +71,10 @@ class AudioPlayerQueueViewController:UIViewController{
     }
     
     @objc func refresh(){
+        print("reload data called shakti")
         tableView.reloadData()
     }
+    
 }
 
 //MARK:- TableView Delegate And DataSource
@@ -91,11 +89,17 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
             return UITableViewCell()
         }
         let baseIndex = indexPath.row + (dataModel.currentIndex + 1)
-        if baseIndex <= dataModel.totalFetchedSongs,baseIndex < dataModel.playerItems.count{
+        if baseIndex < dataModel.playerItems.count{
             let songItem = dataModel.playerItems[baseIndex]
             if let data = dataModel.metadata[songItem]{
                 cell.titleLabel.text = data.title ?? "Title"
                 cell.artistLabel.text = data.artist ?? "Artist"
+                cell.thumbnailView.image = data.image ?? UIImage(named:"musicPlayerArtWork")
+            }
+            else {
+               let data = dataModel.fetchAndSaveMetaData(for: songItem)
+                cell.titleLabel.text = data.title ?? "Unknown"
+                cell.artistLabel.text = data.artist ?? "Unknown"
                 cell.thumbnailView.image = data.image ?? UIImage(named:"musicPlayerArtWork")
             }
         }else{
@@ -109,10 +113,9 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         //prefetching metadata for coming up cells
-        let baseIndex = dataModel.currentIndex + indexPath.row + 1
-        if dataModel.getRowCountForTV() - indexPath.row <= 3 {
-            if dataModel.totalFetchedSongs < dataModel.playerItems.count && !dataModel.isFetchingMetadata {
-                let singleFetchMaxCount = 3
+        if dataModel.getRowCountForTV() - indexPath.row <= 12 {
+            if dataModel.totalFetchedSongs < (dataModel.playerItems.count) && !dataModel.isFetchingMetadata {
+                let singleFetchMaxCount = 12
                 let frontRemaining = max(0, dataModel.playerItems.count - (dataModel.startIndex + dataModel.totalFetchedSongs))
                 let remainingInBack = min(dataModel.startIndex, (singleFetchMaxCount - frontRemaining))
                 
@@ -121,7 +124,7 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
                     dataModel.fetchMetaData(from: dataModel.startIndex + dataModel.totalFetchedSongs, to:  dataModel.startIndex + dataModel.totalFetchedSongs + frontToBeFetched - 1)
                 }
                 if remainingInBack > 0 {
-                    dataModel.fetchMetaData(from: 0, to: min(remainingInBack, singleFetchMaxCount))
+                    dataModel.fetchMetaData(from: 0, to: max(0,remainingInBack)-1)
                 }
             }
         }

@@ -168,6 +168,8 @@ class AudioPlayerViewController: UIViewController {
             }
         }
         player = nil
+        dataModel.isFetchingMetadata = false
+        dataModel.totalFetchedSongs = 0
         dataModel.metadata.removeAll()
         NotificationCenter.default.removeObserver(self)
         if let childVC = self.children.first as? AudioPlayerQueueViewController{
@@ -239,6 +241,7 @@ class AudioPlayerViewController: UIViewController {
         loadMetadata()
         thumbnailCollectionView.reloadData()
         loadingIndicator.stopAnimating()
+        print("collection reloadata called shakti")
     }
     
     // UI Updates

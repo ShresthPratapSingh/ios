@@ -20,7 +20,7 @@ extension AudioPlayerViewController: UICollectionViewDelegate,UICollectionViewDa
         
     let baseIndex = dataModel.currentIndex + indexPath.item
         
-        if baseIndex <= dataModel.totalFetchedSongs, baseIndex<dataModel.playerItems.count{
+        if baseIndex<dataModel.playerItems.count{
             let item = dataModel.playerItems[baseIndex]
             if let data = dataModel.metadata[item]{
                 cell.imageView.image = data.image ?? UIImage(named:"musicPlayerArtWork")
@@ -33,10 +33,9 @@ extension AudioPlayerViewController: UICollectionViewDelegate,UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         //prefetching metadata for coming up cells
-        let baseIndex = dataModel.currentIndex + indexPath.row
-        if dataModel.getItemCountForCV() - indexPath.item <= 3{
-            if dataModel.totalFetchedSongs < dataModel.playerItems.count && !dataModel.isFetchingMetadata {
-                let singleFetchMaxCount = 3
+        if dataModel.getItemCountForCV() - indexPath.item <= 12{
+            if dataModel.totalFetchedSongs < (dataModel.playerItems.count) && !dataModel.isFetchingMetadata {
+                let singleFetchMaxCount = 12
                 let frontRemaining = max(0, dataModel.playerItems.count - (dataModel.startIndex + dataModel.totalFetchedSongs))
                 let remainingInBack = min(dataModel.startIndex, (singleFetchMaxCount - frontRemaining))
                 let frontToBeFetched = min(singleFetchMaxCount, frontRemaining)
@@ -44,7 +43,7 @@ extension AudioPlayerViewController: UICollectionViewDelegate,UICollectionViewDa
                     dataModel.fetchMetaData(from: dataModel.startIndex + dataModel.totalFetchedSongs, to:  dataModel.startIndex + dataModel.totalFetchedSongs + frontToBeFetched - 1)
                 }
                 if remainingInBack > 0 {
-                    dataModel.fetchMetaData(from: 0, to: min(remainingInBack, singleFetchMaxCount))
+                    dataModel.fetchMetaData(from: 0, to: max(0,remainingInBack) - 1)
                 }
             }
         }

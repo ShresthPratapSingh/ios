@@ -28,7 +28,7 @@ class AudioPlayerDataModel{
     var totalFetchedSongs = 0
     var isFetchingMetadata = false
     private var queueDidReset = false
-    private var unshuffledItems : [AVPlayerItem] = []
+    var unshuffledItems : [AVPlayerItem] = []
     var metadata : [AVPlayerItem:AudioPlayerMetadata] = [:]
     var nowPlayingInfo : [String: Any] = [:]
     var playerItems : [AVPlayerItem] = []
@@ -108,8 +108,25 @@ class AudioPlayerDataModel{
         }
     }
     
+    func fetchAndSaveMetaData(for item: AVPlayerItem) -> AudioPlayerMetadata {
+        let metaData = item.asset.metadata
+        //extracting title
+        let title = AudioPlayerDataModel.getTitle(from: metaData)
+        
+        //extracting artist
+        let artist = AudioPlayerDataModel.getArtist(from: metaData)
+        
+        //extracting thumbnail
+        let image = AudioPlayerDataModel.getImage(from: metaData)
+        
+        let data = AudioPlayerMetadata(image: image, title: title, artist: artist)
+        
+        metadata[item] = data
+        
+        return data
+    }
+    
     func fetchMetaData(from start:Int, to end: Int){
-
         if start > end || end >= playerItems.count || start < 0 {
             return
         }
@@ -117,14 +134,18 @@ class AudioPlayerDataModel{
             return
         }
         
+        
         isFetchingMetadata = true
         DispatchQueue.global(qos: .background).async { [weak self] in
             var data = [AVPlayerItem: AudioPlayerMetadata]()
             var countFetched = 0
             for index in  start ... end{
+                
                 if let item = self?.playerItems[index] {
                     let metaData = item.asset.metadata
-                    
+                    if metaData.isEmpty {
+                        continue
+                    }
                     //extracting title
                     let title = AudioPlayerDataModel.getTitle(from: metaData)
                     
@@ -136,6 +157,7 @@ class AudioPlayerDataModel{
                     
                     data[item] = AudioPlayerMetadata(image: image, title: title, artist: artist)
                     countFetched += 1
+                    
                 }
             }
             DispatchQueue.main.async {
@@ -143,8 +165,11 @@ class AudioPlayerDataModel{
                     data.forEach { (key, value) in
                         weakSelf.metadata[key] = value
                     }
+                    
                     weakSelf.totalFetchedSongs += countFetched
                     weakSelf.isFetchingMetadata = false
+                    print(weakSelf.metadata)
+                    
                     NotificationCenter.default.post(name: .audioPlayerDidSetMetaData, object: weakSelf)
                 }
             }
@@ -152,11 +177,29 @@ class AudioPlayerDataModel{
     }
     
     func getItemCountForCV() -> Int{
-        return totalFetchedSongs - (currentIndex - startIndex)
+        let totalInFrontFromStartIndex = playerItems.count - startIndex //9
+        
+        var totalFetchedFromBehind = 0
+        
+        if totalFetchedSongs > totalInFrontFromStartIndex {
+            totalFetchedFromBehind = totalFetchedSongs - totalInFrontFromStartIndex
+        }
+        
+        let totalFetchedFromCurrent = totalFetchedSongs - (currentIndex - startIndex) - totalFetchedFromBehind
+        return totalFetchedFromCurrent
     }
     
     func getRowCountForTV() -> Int{
-        return max(0,totalFetchedSongs - (currentIndex - startIndex) - 1)
+        let totalInFrontFromStartIndex = playerItems.count - startIndex //12
+        
+        var totalFetchedFromBehind = 0
+        
+        if totalFetchedSongs > totalInFrontFromStartIndex {
+            totalFetchedFromBehind = totalFetchedSongs - totalInFrontFromStartIndex
+        }
+        
+        let totalFetchedFromCurrent = totalFetchedSongs - (currentIndex - startIndex) - totalFetchedFromBehind
+        return totalFetchedFromCurrent - 1
     }
 
     static func getTitle(from metaData:[AVMetadataItem]) -> String{
