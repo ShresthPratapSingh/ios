@@ -25,6 +25,11 @@ extension AudioPlayerViewController: UICollectionViewDelegate,UICollectionViewDa
             if let data = dataModel.metadata[item]{
                 cell.imageView.image = data.image ?? UIImage(named:"musicPlayerArtWork")
             }
+            else {
+                let data = dataModel.fetchAndSaveMetaData(for: item)
+                cell.imageView.image = data.image ?? UIImage(named:"musicPlayerArtWork")
+                loadSong()
+            }
         }else{
             cell.imageView.image = UIImage(named:"musicPlayerArtWork")
         }
@@ -92,6 +97,9 @@ extension AudioPlayerViewController: UICollectionViewDelegate,UICollectionViewDa
             case .next:
                 thumbnailCollectionView.deleteItems(at: [IndexPath(item: 0, section: 0)])
                 thumbnailCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: true)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.thumbnailCollectionView.reloadData()
         }
     }
 }
