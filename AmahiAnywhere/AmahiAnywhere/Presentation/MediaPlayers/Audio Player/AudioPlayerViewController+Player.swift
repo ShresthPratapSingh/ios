@@ -44,15 +44,14 @@ extension AudioPlayerViewController{
             dataModel.resetQueue()
             repeatButton.setImage(UIImage(named:"repeatAll"), for: .normal)
             shuffleButton.setImage(UIImage(named: "shuffle"), for: .normal)
-            updateThumbnailCollectionView(for: .next)
-            loadSong()
-            thumbnailCollectionView.reloadData()
             player.replaceCurrentItem(with: dataModel.prepareNext())
+            thumbnailCollectionView.reloadData()
+            loadSong()
             return
         }
         
-        updateThumbnailCollectionView(for: .next)
         player.replaceCurrentItem(with: dataModel.prepareNext())
+        updateThumbnailCollectionView(for: .next)
         loadSong()
     }
     

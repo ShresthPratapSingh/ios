@@ -71,7 +71,6 @@ class AudioPlayerQueueViewController:UIViewController{
     }
     
     @objc func refresh(){
-        print("reload data called shakti")
         tableView.reloadData()
     }
     
@@ -98,9 +97,9 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
             }
             else {
                let data = dataModel.fetchAndSaveMetaData(for: songItem)
-                cell.titleLabel.text = data.title ?? "Unknown"
-                cell.artistLabel.text = data.artist ?? "Unknown"
-                cell.thumbnailView.image = data.image ?? UIImage(named:"musicPlayerArtWork")
+                cell.titleLabel.text = data?.title ?? "Title"
+                cell.artistLabel.text = data?.artist ?? "Artist"
+                cell.thumbnailView.image = data?.image ?? UIImage(named:"musicPlayerArtWork")
             }
         }else{
             cell.titleLabel.text = "Title"

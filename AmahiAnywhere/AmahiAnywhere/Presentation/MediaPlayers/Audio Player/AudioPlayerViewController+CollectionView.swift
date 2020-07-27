@@ -27,8 +27,8 @@ extension AudioPlayerViewController: UICollectionViewDelegate,UICollectionViewDa
             }
             else {
                 let data = dataModel.fetchAndSaveMetaData(for: item)
-                cell.imageView.image = data.image ?? UIImage(named:"musicPlayerArtWork")
-                loadSong()
+                    cell.imageView.image = data?.image ?? UIImage(named:"musicPlayerArtWork")
+                    loadSong()
             }
         }else{
             cell.imageView.image = UIImage(named:"musicPlayerArtWork")
@@ -95,8 +95,10 @@ extension AudioPlayerViewController: UICollectionViewDelegate,UICollectionViewDa
                     self.thumbnailCollectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
                 }, completion: nil)
             case .next:
-                thumbnailCollectionView.deleteItems(at: [IndexPath(item: 0, section: 0)])
-                thumbnailCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: true)
+                if thumbnailCollectionView.numberOfItems(inSection: 0) > 0{
+                    thumbnailCollectionView.deleteItems(at: [IndexPath(item: 0, section: 0)])
+                    thumbnailCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: true)
+                }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.thumbnailCollectionView.reloadData()

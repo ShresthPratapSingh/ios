@@ -108,8 +108,12 @@ class AudioPlayerDataModel{
         }
     }
     
-    func fetchAndSaveMetaData(for item: AVPlayerItem) -> AudioPlayerMetadata {
+    func fetchAndSaveMetaData(for item: AVPlayerItem) -> AudioPlayerMetadata? {
         let metaData = item.asset.metadata
+        if metaData.isEmpty{
+            return nil
+        }
+        
         //extracting title
         let title = AudioPlayerDataModel.getTitle(from: metaData)
         

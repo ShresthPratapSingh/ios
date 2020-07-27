@@ -98,6 +98,8 @@ class AudioPlayerViewController: UIViewController {
     }
     
     func setupPlayer(){
+        NotificationCenter.default.addObserver(self, selector: #selector(showLoading), name: .AVPlayerItemPlaybackStalled, object: nil)
+        
         player = AVPlayer(playerItem: dataModel.currentPlayerItem)
         player.currentItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: [.new], context: nil)
         player.currentItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: [.new], context: nil)
@@ -139,9 +141,11 @@ class AudioPlayerViewController: UIViewController {
         }
     }
     
-    func showLoading(){
-        loadingIndicator.startAnimating()
-        playerContainer.bringSubviewToFront(loadingIndicator)
+    @objc func showLoading(){
+        DispatchQueue.main.async {
+            self.loadingIndicator.startAnimating()
+            self.playerContainer.bringSubviewToFront(self.loadingIndicator)
+        }
     }
     
     @objc func refreshCollectionView(){
@@ -241,7 +245,6 @@ class AudioPlayerViewController: UIViewController {
         loadMetadata()
         thumbnailCollectionView.reloadData()
         loadingIndicator.stopAnimating()
-        print("collection reloadata called shakti")
     }
     
     // UI Updates
@@ -288,6 +291,7 @@ class AudioPlayerViewController: UIViewController {
     
     func isPaused() -> Bool {
         if ((self.player.rate != 0) && (self.player.error == nil)) {
+            loadingIndicator.stopAnimating()
             return false
         }
         else{
