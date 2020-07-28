@@ -75,8 +75,10 @@ extension AudioPlayerViewController: UICollectionViewDelegate,UICollectionViewDa
             if velocity.x < 0{
                 playPreviousSong(fromSwipe : true)
             }else{
-                playNextSong()
+                playNextSong(whileOverridingRepeatCurrent:true)
             }
+        }else{
+            thumbnailCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: true)
         }
     }
     

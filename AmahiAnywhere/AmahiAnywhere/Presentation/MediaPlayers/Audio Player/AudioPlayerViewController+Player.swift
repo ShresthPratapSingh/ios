@@ -31,9 +31,9 @@ extension AudioPlayerViewController{
     }
     
     
-    func playNextSong(){
+    func playNextSong(whileOverridingRepeatCurrent: Bool = false){
         
-        if repeatButton.currentImage == UIImage(named:"repeatCurrent"){
+        if repeatButton.currentImage == UIImage(named:"repeatCurrent"), !whileOverridingRepeatCurrent{
             restartSong()
             return
         }

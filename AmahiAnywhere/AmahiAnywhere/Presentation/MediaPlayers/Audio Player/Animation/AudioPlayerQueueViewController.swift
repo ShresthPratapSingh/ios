@@ -128,7 +128,7 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
         let baseIndex = indexPath.row + (dataModel.currentIndex + 1)
         dataModel.prepareToPlay(at:baseIndex)
         if let parent = delegate as? AudioPlayerViewController{
-            parent.playNextSong()
+            parent.playNextSong(whileOverridingRepeatCurrent: true)
         }
     }
     
