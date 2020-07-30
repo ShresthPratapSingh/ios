@@ -145,7 +145,7 @@ extension AudioPlayerQueueViewController:UITableViewDelegate,UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch UIDevice().userInterfaceIdiom {
         case .tv,.pad:
-            return 110
+            return 100
         default:
             return 65
         }

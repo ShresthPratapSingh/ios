@@ -20,7 +20,7 @@ extension AudioPlayerViewController: QueueHeaderTapDelegate{
             }
         case .changed:
             let yTranslation = sender.translation(in: self.playerQueueContainer).y
-            var fractionComplete = yTranslation/self.queueVCHeight
+            var fractionComplete = yTranslation/self.viewSize.height * 0.72
             fractionComplete = currentQueueState == .collapsed ? -fractionComplete : fractionComplete
             updateInteractiveTransition(fractionCompleted:fractionComplete)
         case .ended:
@@ -85,7 +85,7 @@ extension AudioPlayerViewController: QueueHeaderTapDelegate{
         }
         
         animator.addCompletion { (_) in
-            if let index = self.interactiveAnimators.index(of: animator){
+            if let index = self.interactiveAnimators.firstIndex(of: animator){
                 self.interactiveAnimators.remove(at: index)
             }
             self.currentQueueState = state
@@ -113,7 +113,7 @@ extension AudioPlayerViewController: QueueHeaderTapDelegate{
         }
         
         animator.addCompletion { [weak self](_) in
-            if let index = self?.interactiveAnimators.index(of: animator){
+            if let index = self?.interactiveAnimators.firstIndex(of: animator){
                 self?.interactiveAnimators.remove(at: index)
             }
             self?.currentQueueState = state
