@@ -18,41 +18,34 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c31-5C-Sqb" userLabel="containerView">
-                        <rect key="frame" x="10" y="5" width="546" height="559"/>
+                        <rect key="frame" x="0.0" y="0.0" width="561" height="574"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="300" verticalCompressionResistancePriority="300" image="musicPlayerArtWork" translatesAutoresizingMaskIntoConstraints="NO" id="2Uy-7b-FSj">
-                                <rect key="frame" x="5" y="5" width="549" height="549"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="2Uy-7b-FSj" secondAttribute="height" multiplier="1:1" id="wCn-f4-7Zz"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="musicPlayerArtWork" translatesAutoresizingMaskIntoConstraints="NO" id="2Uy-7b-FSj">
+                                <rect key="frame" x="10" y="5" width="541" height="564"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="centerX" secondItem="c31-5C-Sqb" secondAttribute="centerX" id="ees-dT-LYl"/>
-                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="leading" secondItem="c31-5C-Sqb" secondAttribute="leading" constant="5" id="i2d-La-MON"/>
-                            <constraint firstAttribute="bottom" secondItem="2Uy-7b-FSj" secondAttribute="bottom" constant="5" id="kkJ-5s-dka"/>
-                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="top" secondItem="c31-5C-Sqb" secondAttribute="top" constant="5" id="uJN-2q-xHD"/>
-                            <constraint firstAttribute="trailing" secondItem="2Uy-7b-FSj" secondAttribute="trailing" constant="5" id="wAg-92-82i"/>
-                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="centerY" secondItem="c31-5C-Sqb" secondAttribute="centerY" id="y1d-Dq-D0h"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="leading" secondItem="c31-5C-Sqb" secondAttribute="leading" constant="10" id="Prj-AY-Ufi"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="top" secondItem="c31-5C-Sqb" secondAttribute="top" constant="5" id="Tz3-OD-Zsw"/>
+                            <constraint firstAttribute="trailing" secondItem="2Uy-7b-FSj" secondAttribute="trailing" constant="10" id="cFn-n4-E6x"/>
+                            <constraint firstAttribute="bottom" secondItem="2Uy-7b-FSj" secondAttribute="bottom" constant="5" id="eWu-pO-7Jm"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="centerX" secondItem="c31-5C-Sqb" secondAttribute="centerX" id="kB5-Gr-W58"/>
+                            <constraint firstItem="2Uy-7b-FSj" firstAttribute="centerY" secondItem="c31-5C-Sqb" secondAttribute="centerY" id="uSe-pq-8Nb"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="c31-5C-Sqb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="5yt-aS-S8g"/>
-                <constraint firstItem="c31-5C-Sqb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Eff-bT-KJm"/>
-                <constraint firstAttribute="bottom" secondItem="c31-5C-Sqb" secondAttribute="bottom" constant="10" id="FlK-75-Ked"/>
-                <constraint firstAttribute="trailing" secondItem="c31-5C-Sqb" secondAttribute="trailing" constant="5" id="bUV-2i-JwF"/>
+                <constraint firstAttribute="trailing" secondItem="c31-5C-Sqb" secondAttribute="trailing" id="5JH-08-IbN"/>
+                <constraint firstItem="c31-5C-Sqb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="GeW-yd-5Ut"/>
+                <constraint firstItem="c31-5C-Sqb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="L7Q-Ml-dpa"/>
+                <constraint firstAttribute="bottom" secondItem="c31-5C-Sqb" secondAttribute="bottom" id="mCj-dU-Xab"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="561" height="574"/>
             <connections>
-                <outlet property="bottomConstraint" destination="kkJ-5s-dka" id="242-BO-meK"/>
                 <outlet property="imageView" destination="2Uy-7b-FSj" id="NTk-9z-FtD"/>
-                <outlet property="leadingConstraint" destination="i2d-La-MON" id="z5Q-K6-DV4"/>
-                <outlet property="topConstraint" destination="uJN-2q-xHD" id="b3L-ac-3pu"/>
-                <outlet property="trailingConstraint" destination="wAg-92-82i" id="BsD-Hq-aUu"/>
             </connections>
             <point key="canvasLocation" x="536.95652173913049" y="306.02678571428572"/>
         </collectionViewCell>
@@ -61,4 +54,3 @@
         <image name="musicPlayerArtWork" width="300" height="300"/>
     </resources>
 </document>
-

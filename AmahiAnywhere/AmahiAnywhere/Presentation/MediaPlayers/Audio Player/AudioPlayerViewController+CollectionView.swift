@@ -22,8 +22,12 @@ extension AudioPlayerViewController: UICollectionViewDelegate,UICollectionViewDa
         
         if baseIndex<dataModel.playerItems.count{
             let item = dataModel.playerItems[baseIndex]
-            if let data = dataModel.metadata[item]{
-                cell.imageView.image = data.image ?? UIImage(named:"musicPlayerArtWork")
+            if let data = dataModel.metadata[item],let image = data.image{
+                if let roundedAspectFitImage = image.roundedImage(cornerRadius: 17){
+                    cell.imageView.image =  roundedAspectFitImage
+                }else{
+                    cell.imageView.image = image
+                }
             }
             else {
                 let data = dataModel.fetchAndSaveMetaData(for: item)
