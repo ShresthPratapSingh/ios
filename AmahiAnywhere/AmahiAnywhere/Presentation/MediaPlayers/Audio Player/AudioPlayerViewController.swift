@@ -88,8 +88,6 @@ class AudioPlayerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateMetaData), name: .audioPlayerDidSetMetaData, object: nil)
         
         if offlineMode{
-            resetControls()
-            playPlayer()
             observer = player.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main, using: { [weak self] (time) in
                 self?.updatePlayingSong(time)
             })

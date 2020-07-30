@@ -54,6 +54,7 @@ extension RecentFilesViewController{
                 return
             }
             AudioPlayerDataModel.shared.configure(items: items, with: currentIndex)
+            audioPlayerVc.modalPresentationStyle = .fullScreen
             present(audioPlayerVc, animated: true, completion: nil)
         }
     }
@@ -90,6 +91,7 @@ extension RecentFilesViewController{
             }else{
                 let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self, from: StoryBoardIdentifiers.videoPlayer)
                 videoPlayerVc.mediaURL = url
+                videoPlayerVc.modalPresentationStyle = .fullScreen
                 present(videoPlayerVc, animated: true, completion: nil)
             }
         }
