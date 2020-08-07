@@ -70,8 +70,8 @@ extension AudioPlayerViewController: QueueHeaderTapDelegate{
         let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.85) { [weak self] in
             switch state{
             case .collapsed:
-                self?.queueTopConstraintForCollapse?.isActive = true
                 self?.queueTopConstraintForOpen?.isActive = false
+                self?.queueTopConstraintForCollapse?.isActive = true
                 self?.playerQueueContainer.header.alpha = 1
                 self?.playerQueueContainer.header.arrowHead.transform = self?.playerQueueContainer.header.arrowHead.transform.rotated(by: CGFloat.pi) ?? CGAffineTransform(rotationAngle: CGFloat.pi)
             case .open:

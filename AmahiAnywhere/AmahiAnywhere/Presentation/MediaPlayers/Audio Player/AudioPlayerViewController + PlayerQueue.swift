@@ -23,8 +23,8 @@ extension AudioPlayerViewController: AudioPlayerQueueDelegate {
         queueTopConstraintForOpen = self.playerQueueContainer.topAnchor.constraint(equalTo:self.view.bottomAnchor, constant: -viewSize.height * 0.72)
         queueTopConstraintForCollapse = self.playerQueueContainer.topAnchor.constraint(equalTo:self.view.bottomAnchor, constant: -65)
         
-        queueTopConstraintForCollapse?.isActive = true
         queueTopConstraintForOpen?.isActive = false
+        queueTopConstraintForCollapse?.isActive = true
         
         
         playerQueueContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -53,8 +53,8 @@ extension AudioPlayerViewController: AudioPlayerQueueDelegate {
         
         switch self.currentQueueState{
         case .collapsed:
-            self.queueTopConstraintForCollapse?.isActive = true
             self.queueTopConstraintForOpen?.isActive = false
+            self.queueTopConstraintForCollapse?.isActive = true
             self.playerQueueContainer.header.alpha = 1
             
             self.playerQueueContainer.clipsToBounds = true
