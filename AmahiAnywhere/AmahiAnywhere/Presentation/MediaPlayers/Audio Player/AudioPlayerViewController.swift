@@ -78,7 +78,7 @@ class AudioPlayerViewController: UIViewController {
             playerQueueContainer = PlayerQueueContainerView(target: self)
             playerQueueContainer.header.arrowHead.addTarget(self, action: #selector(handleArrowHeadTap), for: .touchDown)
             playerQueueContainer.header.tapDelegate = self
-            layoutPlayerQueue()
+            setupQueueConstraints()
             
             let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
             self.playerContainer.addGestureRecognizer(panRecognizer)
