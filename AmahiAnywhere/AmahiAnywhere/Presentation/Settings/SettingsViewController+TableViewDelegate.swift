@@ -21,7 +21,9 @@ extension SettingsViewController {
         switch section {
             
         case 0:
-            handleSignOut()
+            if indexPath.row == 0{
+                handleSignOut()
+            }
             break
         case 1:
             if row == 0 {

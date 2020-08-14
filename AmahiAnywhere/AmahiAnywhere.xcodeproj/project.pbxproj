@@ -70,6 +70,8 @@
 		46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46657182205085FC000E0D45 /* FilesPresenter.swift */; };
 		46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB896A204FB0FC0031151F /* SharesPresenter.swift */; };
 		46F87397204CC69500F1AF37 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F87396204CC69500F1AF37 /* Server.swift */; };
+		7215CACF24E55B230001CEF4 /* SettingsBiometricTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7215CACE24E55B230001CEF4 /* SettingsBiometricTVCell.swift */; };
+		7241C6E124E5B7A700415406 /* SettingsBiometricTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7241C6E024E5B7A700415406 /* SettingsBiometricTVCell.xib */; };
 		7253F21824BDA89F0094C385 /* AudioThumbnailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7253F21624BDA89F0094C385 /* AudioThumbnailCollectionCell.swift */; };
 		7253F21924BDA89F0094C385 /* AudioThumbnailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7253F21724BDA89F0094C385 /* AudioThumbnailCollectionCell.xib */; };
 		7253F21B24BDAF890094C385 /* AudioPlayerViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7253F21A24BDAF890094C385 /* AudioPlayerViewController+CollectionView.swift */; };
@@ -215,6 +217,8 @@
 		46F87396204CC69500F1AF37 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		499AAFCDBDAB4C05C7264992 /* Pods-AmahiAnywhere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.release.xcconfig"; sourceTree = "<group>"; };
 		665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.debug.xcconfig"; sourceTree = "<group>"; };
+		7215CACE24E55B230001CEF4 /* SettingsBiometricTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBiometricTVCell.swift; sourceTree = "<group>"; };
+		7241C6E024E5B7A700415406 /* SettingsBiometricTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsBiometricTVCell.xib; sourceTree = "<group>"; };
 		7253F21624BDA89F0094C385 /* AudioThumbnailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioThumbnailCollectionCell.swift; sourceTree = "<group>"; };
 		7253F21724BDA89F0094C385 /* AudioThumbnailCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioThumbnailCollectionCell.xib; sourceTree = "<group>"; };
 		7253F21A24BDAF890094C385 /* AudioPlayerViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewController+CollectionView.swift"; sourceTree = "<group>"; };
@@ -650,6 +654,7 @@
 		C8DA5B2120D5E0C600F5A527 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7215CACE24E55B230001CEF4 /* SettingsBiometricTVCell.swift */,
 				3BCAFBA022C537C10044057E /* DownloadsListCollectionCell.swift */,
 				3BCAFBA222C537DE0044057E /* DownloadsGridCollectionCell.swift */,
 				3BCAFBA422C5385D0044057E /* DownloadsBaseCollectionCell.swift */,
@@ -666,6 +671,7 @@
 				72BDA8B424A9ED6900B4469E /* QueueItemTableViewCell.xib */,
 				7253F21624BDA89F0094C385 /* AudioThumbnailCollectionCell.swift */,
 				7253F21724BDA89F0094C385 /* AudioThumbnailCollectionCell.xib */,
+				7241C6E024E5B7A700415406 /* SettingsBiometricTVCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -792,6 +798,7 @@
 				FB71BEA2201CB2FC0005492C /* LaunchScreen.storyboard in Resources */,
 				FB71BE9F201CB2FC0005492C /* Assets.xcassets in Resources */,
 				72BDA8B624A9ED6900B4469E /* QueueItemTableViewCell.xib in Resources */,
+				7241C6E124E5B7A700415406 /* SettingsBiometricTVCell.xib in Resources */,
 				3B24FE1822970B6B0044721D /* WalkthroughCell.xib in Resources */,
 				3B24FE162297086A0044721D /* WalkthroughAmahiCell.xib in Resources */,
 				FB71BE9D201CB2FC0005492C /* Main.storyboard in Resources */,
@@ -943,6 +950,7 @@
 				C8DA5B1820D5D7EA00F5A527 /* Download.swift in Sources */,
 				3B2805E62312DE930022ED48 /* RecentFilesViewController+CollectionView.swift in Sources */,
 				8A67FC2B22666F81005A5038 /* OfflineFile+MimeType.swift in Sources */,
+				7215CACF24E55B230001CEF4 /* SettingsBiometricTVCell.swift in Sources */,
 				80F3FDC7206C0D4D0061CD51 /* ConnectionViewController.swift in Sources */,
 				3B1B35A423080E710058B1D8 /* UINavigationItem.swift in Sources */,
 				3B2805EC2312DFFF0022ED48 /* RecentFilesViewController+Remote.swift in Sources */,

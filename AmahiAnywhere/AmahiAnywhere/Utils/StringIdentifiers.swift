@@ -33,4 +33,5 @@ struct CellIdentifiers {
     static let settingsCellWithDetails =           "settingsCellWithDetails"
     static let settingsCellRightDetail =           "settingsCellRightDetail"
     static let serverCell =                        "serverCollectionViewCell"
+    static let biometricCell =                     "SettingsBiometricTVCell"
 }

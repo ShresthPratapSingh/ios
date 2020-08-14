@@ -14,4 +14,7 @@ struct PersistenceIdentifiers {
     
     static let accessToken =                       "access_token"
     static let prefConnection =                    "pref_connection"
+    static let biometricLoginPermissionAsked =     "biometric_login"
+    static let biometricEnabled =                  "biometric_enabled"
+    static let overrideBiometric =                 "biometric_override"
 }

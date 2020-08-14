@@ -45,7 +45,7 @@ struct StringLiterals {
     static let emailErrorTitle =                "Couldn't Send Mail"
     static let emailErrorMessage =              "Your Device Couldn't Send Mail"
     static let disabled =                       "Disabled"
-    static let accountSectionSubItems =         ["Sign Out"]
+    static let accountSectionSubItems =         ["Sign Out","Login with face/touch ID"]
     static let settingsSectionSubItems =        ["Connection", clearCacheTitle]
     static let aboutSectionSubItems =           ["Version", "Tell a friend"]
     static let settingsSectionsTitle =          ["Account", "Settings", "About"]

@@ -95,6 +95,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryBoardIdentifiers.main, bundle: nil)
         var initialViewController: UIViewController? = nil
         
+        LocalStorage.shared.persist(bool: false, for: PersistenceIdentifiers.overrideBiometric)
+        
         if LocalStorage.shared.contains(key: PersistenceIdentifiers.accessToken) {
             
             if useCastContainerViewController {

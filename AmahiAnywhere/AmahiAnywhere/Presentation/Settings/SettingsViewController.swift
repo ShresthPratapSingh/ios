@@ -16,6 +16,7 @@ class SettingsViewController: BaseUITableViewController {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         tableView.sectionFooterHeight = 0
+        tableView.register(UINib(nibName: "SettingsBiometricTVCell", bundle: nil), forCellReuseIdentifier: CellIdentifiers.biometricCell)
         if #available(iOS 13.0, *) {
             self.view.backgroundColor = UIColor.secondarySystemBackground
         } else {
@@ -35,6 +36,14 @@ class SettingsViewController: BaseUITableViewController {
             print("Error Obtaining System Memory Info:")
         }
         return nil
+    }
+    
+    func turnOffBiometric(){
+        LocalStorage.shared.persist(bool: false, for: PersistenceIdentifiers.biometricEnabled)
+    }
+    
+    func turnOnBiometric(){
+        LocalStorage.shared.persist(bool: true, for: PersistenceIdentifiers.biometricEnabled)
     }
     
     internal func configureMailComposeViewController(recipient: String,

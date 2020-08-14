@@ -21,10 +21,18 @@ final class LocalStorage: NSObject {
         UserDefaults.standard.setValue(string, forKey: key);
         UserDefaults.standard.synchronize();
     }
+    
+    public func persist(bool: Bool, for key:String){
+        UserDefaults.standard.set(bool, forKey: key)
+    }
 
     public func getString(key: String!) -> String? {
         UserDefaults.standard.synchronize()
         return UserDefaults.standard.value(forKey: key) as? String;
+    }
+    
+    public func getBool(for key: String) -> Bool{
+        return UserDefaults.standard.bool(forKey: key)
     }
     
     public func contains(key: String!) -> Bool{
@@ -37,8 +45,17 @@ final class LocalStorage: NSObject {
     }
     
     public func logout(_ complete: () -> Void){
+        var permissionAsked = false
+        var biometricEnabled = false
+        //saving permision state for biometrics
+        if contains(key: PersistenceIdentifiers.biometricLoginPermissionAsked){
+            permissionAsked = getBool(for: PersistenceIdentifiers.biometricLoginPermissionAsked)
+            biometricEnabled = getBool(for: PersistenceIdentifiers.biometricEnabled)
+        }
         clearAll()
         persistString(string: "completed", key: "walkthrough")
+        persist(bool: permissionAsked, for: PersistenceIdentifiers.biometricLoginPermissionAsked)
+        persist(bool: biometricEnabled , for: PersistenceIdentifiers.biometricEnabled)
         complete();
     }
     

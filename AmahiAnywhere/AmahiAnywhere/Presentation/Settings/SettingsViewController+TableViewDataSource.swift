@@ -55,20 +55,55 @@ extension SettingsViewController {
                 }
                 cell.detailTextLabel?.text = sizeString
             }
-        }else if section == 2 && row == 0{
-            cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.settingsCellRightDetail, for: indexPath)
-            cell.textLabel?.text = settingItems[section][row]
-            formatCell(cell: &cell)
-            if let versionNumber = Bundle.main.object(forInfoDictionaryKey: StringLiterals.versionNumberDictionaryKey) as! String? {
-                cell.detailTextLabel?.text = "v\(versionNumber)"
+            cell.backgroundColor = .clear
+            cell.contentView.backgroundColor = .clear
+            return cell
+        }else if section == 2 {
+            if row == 0{
+                cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.settingsCellRightDetail, for: indexPath)
+                cell.textLabel?.text = settingItems[section][row]
+                formatCell(cell: &cell)
+                if let versionNumber = Bundle.main.object(forInfoDictionaryKey: StringLiterals.versionNumberDictionaryKey) as! String? {
+                    cell.detailTextLabel?.text = "v\(versionNumber)"
+                }
+                cell.backgroundColor = .clear
+                cell.contentView.backgroundColor = .clear
+                return cell
+            }
+            else if row == 1{
+                cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.settingsCell, for: indexPath)
+                cell.textLabel?.text = settingItems[section][row]
+                formatCell(cell: &cell)
+                cell.backgroundColor = .clear
+                cell.contentView.backgroundColor = .clear
+                return cell
+            }else{
+                return UITableViewCell()
+            }
+        }else if section == 0{
+            if row == 0{
+                cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.settingsCell, for: indexPath)
+                cell.textLabel?.text = settingItems[section][row]
+                formatCell(cell: &cell)
+                return cell
+            }else if row == 1{
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.biometricCell) as? SettingsBiometricTVCell else{
+                    return UITableViewCell()
+                }
+                cell.titleLabel?.text = settingItems[section][row]
+                cell.delegate = self
+                cell.toggleSwitch.setOn(LocalStorage.shared.getBool(for: PersistenceIdentifiers.biometricEnabled), animated: false)
+                return cell
+            }else{
+                return UITableViewCell()
             }
         }else{
-            cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.settingsCell, for: indexPath)
-            cell.textLabel?.text = settingItems[section][row]
-            formatCell(cell: &cell)
+            return UITableViewCell()
         }
-        
-        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
     }
     
     func formatCell(cell: inout UITableViewCell){
