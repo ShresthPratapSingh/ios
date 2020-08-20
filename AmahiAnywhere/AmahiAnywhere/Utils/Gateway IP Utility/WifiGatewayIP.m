@@ -23,7 +23,7 @@
     if(r >= 0) {
         ipString = [NSString stringWithFormat: @"%s",inet_ntoa(gatewayaddr)];
     } else {
-        NSLog(@"Wifi is not connected or you are using simulator Gateway ip address will be nil");
+        NSLog(@"Could not locate gateway IP :- possibly Wifi is not connected");
     }
     
     return ipString;

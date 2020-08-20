@@ -70,4 +70,15 @@ class RecentsDatabaseHelper {
         }
     }
     
+    func clearAllRecents(){
+        let entityFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "RecentFile")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: entityFetch)
+        do{
+            try context.execute(deleteRequest)
+            try context.save()
+        }catch(let error){
+            AmahiLogger.log("Failed to clear Recents Files due to error : " + error.localizedDescription)
+        }
+    }
+    
 }

@@ -240,7 +240,7 @@ public class Network {
     }
     
     public func login(pin:String,url:URL,completion: @escaping (_ success:Bool,_ authToken:String?)->Void){
-        Alamofire.request(url, method: .post, parameters: ["pin":pin], encoding: JSONEncoding.default, headers: [:]).responseJSON{ response in
+        Alamofire.request(url, method: .post, parameters: ["pin":pin], encoding: JSONEncoding.default, headers: getDefaultHeaders()).responseJSON{ response in
             
             switch response.result{
             case .success(let json):

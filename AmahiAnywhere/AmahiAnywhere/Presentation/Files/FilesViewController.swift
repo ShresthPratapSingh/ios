@@ -95,7 +95,10 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         setupNotifications()
         presenter = FilesPresenter(self)
         if share.writable{
+            floaty.isHidden = false
             setupFloaty()
+        }else{
+            floaty.isHidden = true
         }
         setupLayoutView()
         setupRefreshControl()

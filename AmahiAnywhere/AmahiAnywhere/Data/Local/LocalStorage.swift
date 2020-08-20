@@ -22,12 +22,12 @@ final class LocalStorage: NSObject {
         UserDefaults.standard.synchronize();
     }
     
-    public func persistDictionaryArray(_ dictionary:[[String:String]],for key: String){
+    public func persistDictionary(_ dictionary:[String:[String:String]],for key: String){
         UserDefaults.standard.set(dictionary, forKey: key)
     }
     
-    public func getDictionaryArray(for key: String)->[[String:String]]?{
-        return UserDefaults.standard.object(forKey: key) as? [[String:String]]
+    public func getDictionary(for key: String)->[String:[String:String]]?{
+        return UserDefaults.standard.object(forKey: key) as? [String:[String:String]]
     }
 
 
@@ -54,9 +54,20 @@ final class LocalStorage: NSObject {
     }
     
     public func logout(_ complete: () -> Void){
+        var hac = getDictionary(for: PersistenceIdentifiers.hdaAuthCache)
         clearAll()
         persistString(string: "completed", key: "walkthrough")
-        complete();
+        
+        //wiping auth_token for cached HDA
+        if hac != nil{
+            for ip in hac!.keys{
+                hac![ip]?[HACIdentifiers.auth_token] = ""
+            }
+            persistDictionary(hac!, for: PersistenceIdentifiers.hdaAuthCache)
+        }
+        
+        RecentsDatabaseHelper.shareInstance.clearAllRecents()
+        complete()
     }
     
     public func clearAll(){

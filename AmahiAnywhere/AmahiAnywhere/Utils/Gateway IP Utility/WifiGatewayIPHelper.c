@@ -15,12 +15,13 @@
 #include <arpa/inet.h>
 #include <TargetConditionals.h>
 
+//Uncoment the following lines when building on simulator
 
-#if TARGET_IPHONE_SIMULATOR
-#include <net/route.h>
-#else
+//#if TARGET_IPHONE_SIMULATOR
+//#include <net/route.h>
+//#else
 #include "route.h"
-#endif
+//#endif
 
 #define CTL_NET         4
 

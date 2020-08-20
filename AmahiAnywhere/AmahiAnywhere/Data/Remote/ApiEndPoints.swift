@@ -26,6 +26,14 @@ struct ApiEndPoints {
         return "\(serverUrl!)/shares"
     }
     
+    static func getNauAuthUrl(from ip:String)->URL?{
+        return URL(string: "http://" + ip + ":4563/auth")
+    }
+    
+    static func getNauAddress(from ip:String) -> String{
+        return "http://"+ip+":4563"
+    }
+    
     static func authenticateServerWithPin(_ serverUrl: String!) -> String! {
         return "\(serverUrl!)/auth"
     }

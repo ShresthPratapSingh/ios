@@ -223,7 +223,6 @@
 		7229DB3924EAF4700081AEF9 /* NAULoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAULoginController.swift; sourceTree = "<group>"; };
 		7229DB4224EB303A0081AEF9 /* WifiGatewayIP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WifiGatewayIP.m; sourceTree = "<group>"; };
 		7229DB4624EB31910081AEF9 /* WifiGatewayIPHelper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = WifiGatewayIPHelper.c; sourceTree = "<group>"; };
-		7229DB4824EB31CA0081AEF9 /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
 		723E3D2124EBA26600FFFA9A /* WifiGatewayIP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WifiGatewayIP.h; sourceTree = "<group>"; };
 		723E3D2924EBD20C00FFFA9A /* NAUPinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUPinResponse.swift; sourceTree = "<group>"; };
 		7253F21624BDA89F0094C385 /* AudioThumbnailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioThumbnailCollectionCell.swift; sourceTree = "<group>"; };
@@ -406,7 +405,6 @@
 			children = (
 				7229DB4224EB303A0081AEF9 /* WifiGatewayIP.m */,
 				723E3D2124EBA26600FFFA9A /* WifiGatewayIP.h */,
-				7229DB4824EB31CA0081AEF9 /* route.h */,
 				7229DB4624EB31910081AEF9 /* WifiGatewayIPHelper.c */,
 			);
 			path = "Gateway IP Utility";

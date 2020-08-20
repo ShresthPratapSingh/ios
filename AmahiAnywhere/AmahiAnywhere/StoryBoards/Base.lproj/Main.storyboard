@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AUj-7H-KuY">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -12,13 +12,13 @@
         <!--Walkthrough View Controller-->
         <scene sceneID="0tZ-xD-8uh">
             <objects>
-                <viewController storyboardIdentifier="WalkthroughViewController" id="gnb-XN-qtm" customClass="WalkthroughViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalkthroughViewController" id="gnb-XN-qtm" customClass="WalkthroughViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="edA-We-vEt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1gg-dZ-u9A">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="vIv-rl-rOa">
                                     <size key="itemSize" width="80" height="53"/>
@@ -38,7 +38,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0W-f3-bLf">
-                                <rect key="frame" x="0.0" y="607" width="100" height="60"/>
+                                <rect key="frame" x="0.0" y="802" width="100" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="eBF-T1-tSe"/>
                                 </constraints>
@@ -51,10 +51,10 @@
                                 </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="Vof-uq-fVl">
-                                <rect key="frame" x="144" y="617" width="87" height="40"/>
+                                <rect key="frame" x="163.5" y="812" width="87" height="40"/>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2A-iy-3vs">
-                                <rect key="frame" x="285" y="607" width="100" height="60"/>
+                                <rect key="frame" x="324" y="802" width="100" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="eoq-L4-Xa1"/>
                                     <constraint firstAttribute="height" constant="60" id="ywd-Wm-jzL"/>
@@ -66,7 +66,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJ1-o5-g9s">
-                                <rect key="frame" x="0.0" y="606" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="801" width="414" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.19606164383561644" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="UDx-a8-vbN"/>
@@ -109,7 +109,7 @@
             <objects>
                 <navigationController id="AUj-7H-KuY" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yuW-wM-gkx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -123,25 +123,25 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="3Ft-iL-P01">
-                                <rect key="frame" x="20" y="129.5" width="335" height="308"/>
+                                <rect key="frame" x="20" y="232.5" width="374" height="331"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dnj-cA-cdc">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="187"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="210"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="amahi-logo-a36008f915e1ad5efaaf8e468ac614d888ece91aca11db69666e2055f1307964" translatesAutoresizingMaskIntoConstraints="NO" id="g1P-zr-2vs">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="67"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="90"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MRw-dg-epc">
-                                                <rect key="frame" x="0.0" y="87" width="335" height="100"/>
+                                                <rect key="frame" x="0.0" y="110" width="374" height="100"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username or email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6a6-YJ-EQp" userLabel="Username Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="fFK-aS-ffR"/>
                                                         </constraints>
@@ -169,7 +169,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JCZ-iH-nSx" userLabel="Password Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                                        <rect key="frame" x="0.0" y="60" width="335" height="40"/>
+                                                        <rect key="frame" x="0.0" y="60" width="374" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                                         <userDefinedRuntimeAttributes>
@@ -201,10 +201,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="aG7-vh-mTU">
-                                        <rect key="frame" x="0.0" y="218" width="335" height="90"/>
+                                        <rect key="frame" x="0.0" y="241" width="374" height="90"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9H-Gg-dc4">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="45"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
                                                 <color key="backgroundColor" red="0.28979468349999998" green="0.71102970840000002" blue="0.94655948879999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="b5H-7h-Gka"/>
@@ -222,7 +222,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxp-Gn-PbM">
-                                                <rect key="frame" x="0.0" y="60" width="335" height="30"/>
+                                                <rect key="frame" x="0.0" y="60" width="374" height="30"/>
                                                 <state key="normal" title="Forgot password?">
                                                     <color key="titleColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -235,7 +235,7 @@
                                 </subviews>
                             </stackView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAj-2G-5Oo">
-                                <rect key="frame" x="310" y="276.5" width="45" height="40"/>
+                                <rect key="frame" x="349" y="402.5" width="45" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="PF7-dT-yzS"/>
                                 </constraints>
@@ -247,10 +247,10 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uOe-1R-5bn">
-                                <rect key="frame" x="20" y="442.5" width="335" height="25"/>
+                                <rect key="frame" x="20" y="568.5" width="374" height="25"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-lZ-OCG">
-                                        <rect key="frame" x="0.0" y="11.5" width="152" height="2"/>
+                                        <rect key="frame" x="0.0" y="11.5" width="171.5" height="2"/>
                                         <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="ifq-U3-ii2"/>
@@ -262,13 +262,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSi-tm-wwA">
-                                        <rect key="frame" x="157" y="3.5" width="21" height="18"/>
+                                        <rect key="frame" x="176.5" y="3.5" width="21" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zey-w0-JrR">
-                                        <rect key="frame" x="183" y="11.5" width="152" height="2"/>
+                                        <rect key="frame" x="202.5" y="11.5" width="171.5" height="2"/>
                                         <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="JAi-vG-adt"/>
@@ -286,7 +286,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEy-Lt-Jxk">
-                                <rect key="frame" x="20" y="482.5" width="335" height="45"/>
+                                <rect key="frame" x="20" y="608.5" width="374" height="45"/>
                                 <color key="backgroundColor" red="0.28979468349999998" green="0.71102970840000002" blue="0.94655948879999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="vTf-9N-frj"/>
@@ -304,7 +304,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="tabBarBackground"/>
                         <constraints>
                             <constraint firstItem="kAj-2G-5Oo" firstAttribute="trailing" secondItem="JCZ-iH-nSx" secondAttribute="trailing" id="65B-Pe-Woc"/>
                             <constraint firstItem="IEy-Lt-Jxk" firstAttribute="leading" secondItem="3Ft-iL-P01" secondAttribute="leading" id="7i1-tw-xG5"/>
@@ -339,22 +339,22 @@
         <!--PIN Access-->
         <scene sceneID="TW2-7Y-I4q">
             <objects>
-                <viewController storyboardIdentifier="HDAPinAuthVC" title="PIN Access" id="DEe-Fc-GBx" customClass="HDAPinAuthVC" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HDAPinAuthVC" title="PIN Access" id="DEe-Fc-GBx" customClass="HDAPinAuthVC" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J4b-ga-hT3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your PIN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="as4-zL-0Jk">
-                                <rect key="frame" x="20" y="55.5" width="335" height="21.5"/>
+                                <rect key="frame" x="20" y="99.5" width="374" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veP-75-cd2">
-                                <rect key="frame" x="20" y="137" width="335" height="60"/>
+                                <rect key="frame" x="20" y="181" width="374" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dDX-nF-APk">
-                                        <rect key="frame" x="12" y="8" width="311" height="44"/>
+                                        <rect key="frame" x="12" y="8" width="350" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.14470982551574707" green="0.15669330954551697" blue="0.16919142007827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -376,7 +376,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jtb-YW-cAW">
-                                <rect key="frame" x="20" y="535.5" width="335" height="60"/>
+                                <rect key="frame" x="20" y="730.5" width="374" height="60"/>
                                 <color key="backgroundColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="R7y-XN-Spf"/>
@@ -395,13 +395,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your HDA's admin can change your PIN in their dashboard under Setup &gt; Users" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVE-tO-Egz">
-                                <rect key="frame" x="20" y="615.5" width="335" height="31.5"/>
+                                <rect key="frame" x="20" y="810.5" width="374" height="31.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Server Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTU-55-I0s">
-                                <rect key="frame" x="20" y="20" width="335" height="25.5"/>
+                                <rect key="frame" x="20" y="64" width="374" height="25.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -439,18 +439,18 @@
         <!--Your HDAs-->
         <scene sceneID="NmK-gy-odb">
             <objects>
-                <viewController storyboardIdentifier="ServerViewController" id="Dbq-Bw-ca9" customClass="ServerViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ServerViewController" id="Dbq-Bw-ca9" customClass="ServerViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LDY-OA-sHr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available HDAs: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atT-2S-a7r">
-                                <rect key="frame" x="136" y="20" width="103" height="16"/>
+                                <rect key="frame" x="155.5" y="20" width="103" height="16"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNe-vj-6KD">
-                                <rect key="frame" x="0.0" y="56" width="375" height="518"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="0ur-he-7fE">
                                     <size key="itemSize" width="138" height="144"/>
@@ -459,7 +459,7 @@
                                     <inset key="sectionInset" minX="20" minY="30" maxX="20" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="serverCollectionViewCell" id="ile-mq-aYp" customClass="ServerCollectionViewCell" customModule="NAUAmahi" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="serverCollectionViewCell" id="ile-mq-aYp" customClass="ServerCollectionViewCell" customModule="AmahiAnywhere" customModuleProvider="target">
                                         <rect key="frame" x="20" y="30" width="138" height="144"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -525,18 +525,18 @@
         <!--Shares View Controller-->
         <scene sceneID="yld-jc-3HM">
             <objects>
-                <viewController storyboardIdentifier="SharesViewController" id="vlL-j8-ksh" customClass="SharesViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SharesViewController" id="vlL-j8-ksh" customClass="SharesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ttH-my-MBX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HDA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aq4-M7-H2P">
-                                <rect key="frame" x="20" y="20" width="335" height="21.5"/>
+                                <rect key="frame" x="20" y="64" width="374" height="21.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pLP-wo-oBx">
-                                <rect key="frame" x="0.0" y="81.5" width="375" height="585.5"/>
+                                <rect key="frame" x="0.0" y="125.5" width="414" height="736.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="E6b-sG-Bfo">
                                     <size key="itemSize" width="138" height="133"/>
@@ -545,7 +545,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SharesCollectionViewCell" id="mCE-y0-dkM" customClass="SharesCollectionViewCell" customModule="NAUAmahi" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SharesCollectionViewCell" id="mCE-y0-dkM" customClass="SharesCollectionViewCell" customModule="AmahiAnywhere" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="138" height="133"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -580,12 +580,12 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="09m-3b-PbQ" customClass="FilesCollectionFooterView" customModule="NAUAmahi" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="133" width="375" height="50"/>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="09m-3b-PbQ" customClass="FilesCollectionFooterView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="133" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shares" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Mg-ac-0Fj">
-                                            <rect key="frame" x="166" y="17" width="43" height="16"/>
+                                            <rect key="frame" x="185.5" y="17" width="43" height="16"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -626,9 +626,9 @@
         <!--Settings-->
         <scene sceneID="VyZ-qs-6yT">
             <objects>
-                <tableViewController storyboardIdentifier="SettingsViewController" automaticallyAdjustsScrollViewInsets="NO" id="teI-x8-nnt" customClass="SettingsViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsViewController" automaticallyAdjustsScrollViewInsets="NO" id="teI-x8-nnt" customClass="SettingsViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="lKs-ES-BcF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -637,20 +637,20 @@
                         <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCellWithDetails" textLabel="nz1-7O-hcH" detailTextLabel="GMh-KW-T4B" style="IBUITableViewCellStyleSubtitle" id="MI2-Jo-Dng" userLabel="SettingsCell">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MI2-Jo-Dng" id="BHp-3b-3cf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nz1-7O-hcH">
-                                            <rect key="frame" x="16" y="9" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="20" y="9" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GMh-KW-T4B">
-                                            <rect key="frame" x="16" y="31.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="20" y="31.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -662,14 +662,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" textLabel="1eu-Nr-smG" style="IBUITableViewCellStyleDefault" id="CWE-XZ-1Fv" userLabel="SettingsCell">
-                                <rect key="frame" x="0.0" y="111.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="111.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CWE-XZ-1Fv" id="6te-E3-bds">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1eu-Nr-smG">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
@@ -680,20 +680,20 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCellRightDetail" textLabel="D10-EA-ERg" detailTextLabel="jZs-WI-rOd" style="IBUITableViewCellStyleValue1" id="fHr-OP-jW8" userLabel="SettingsCell">
-                                <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="155.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fHr-OP-jW8" id="e5X-2o-IYB">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D10-EA-ERg">
-                                            <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="20" y="12" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jZs-WI-rOd">
-                                            <rect key="frame" x="315" y="12" width="44" height="20.5"/>
+                                            <rect key="frame" x="350" y="12" width="44" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
@@ -723,9 +723,9 @@
         <!--Connection-->
         <scene sceneID="EdA-nu-gkA">
             <objects>
-                <tableViewController storyboardIdentifier="ConnectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="Mr0-gg-hDA" customClass="ConnectionViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ConnectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="Mr0-gg-hDA" customClass="ConnectionViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LUY-ls-ZtF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -735,10 +735,10 @@
                         <color key="sectionIndexTrackingBackgroundColor" red="0.12156862745098039" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="connectionCell" id="Ef4-Fb-MQH">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ef4-Fb-MQH" id="XeH-n0-Bf9">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableViewCellContentView>
@@ -760,16 +760,16 @@
         <!--Web View Controller-->
         <scene sceneID="bel-Fa-pLo">
             <objects>
-                <viewController storyboardIdentifier="WebViewController" hidesBottomBarWhenPushed="YES" id="0f9-Lu-Bbk" customClass="WebViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" hidesBottomBarWhenPushed="YES" id="0f9-Lu-Bbk" customClass="WebViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IBn-or-nmx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFh-xv-r73">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.050000000000000003" translatesAutoresizingMaskIntoConstraints="NO" id="Hp5-8b-TAf">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2"/>
                                     </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -827,7 +827,7 @@
                     <tabBarItem key="tabBarItem" title="HDA" image="tabBarHDA" id="WTc-UA-2c9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Lwr-GL-RId">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" name="tabBarBackground"/>
@@ -853,7 +853,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="p5F-yM-5Bs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -878,7 +878,7 @@
                     <tabBarItem key="tabBarItem" title="Downloads" image="tabBarDownloads" id="Dm2-Dp-tOg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="cYN-a3-fzX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="tabBarBackground"/>
                         <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -899,13 +899,13 @@
         <!--Server Files-->
         <scene sceneID="Vnd-DO-naV">
             <objects>
-                <viewController storyboardIdentifier="FilesViewController" id="NEa-Le-UPn" userLabel="Server Files" customClass="FilesViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilesViewController" id="NEa-Le-UPn" userLabel="Server Files" customClass="FilesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1gk-kz-VmG" userLabel="Server Files">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oS2-ac-k4k">
-                                <rect key="frame" x="0.0" y="76" width="311" height="30"/>
+                                <rect key="frame" x="0.0" y="76" width="350" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="zKe-zx-fP3"/>
                                 </constraints>
@@ -919,7 +919,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jIQ-g1-h7s">
-                                <rect key="frame" x="0.0" y="126" width="375" height="521"/>
+                                <rect key="frame" x="0.0" y="126" width="414" height="716"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="klD-ho-5Z8">
                                     <size key="itemSize" width="50" height="50"/>
@@ -928,8 +928,8 @@
                                     <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="Wx1-XH-peS" customClass="FilesListCollectionViewCell" customModule="NAUAmahi" customModuleProvider="target">
-                                        <rect key="frame" x="1" y="60" width="373" height="68"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="Wx1-XH-peS" customClass="FilesListCollectionViewCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                        <rect key="frame" x="20.5" y="60" width="373" height="68"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="68"/>
@@ -1005,8 +1005,8 @@
                                             <outlet property="sizeModifiedLabel" destination="dNn-m0-Xdf" id="Xmv-lM-6XY"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="dpS-lW-6Zy" customClass="FilesGridCollectionCell" customModule="NAUAmahi" customModuleProvider="target">
-                                        <rect key="frame" x="115" y="138" width="145" height="154"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="dpS-lW-6Zy" customClass="FilesGridCollectionCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                        <rect key="frame" x="134.5" y="138" width="145" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="145" height="154"/>
@@ -1069,12 +1069,12 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="header" id="Vfr-Q2-TgZ" customClass="FilesCollectionHeaderView" customModule="NAUAmahi" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="header" id="Vfr-Q2-TgZ" customClass="FilesCollectionHeaderView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xn9-rO-kv6">
-                                            <rect key="frame" x="16" y="15.5" width="331" height="19.5"/>
+                                            <rect key="frame" x="16" y="15.5" width="370" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1089,12 +1089,12 @@
                                         <outlet property="titleLabel" destination="Xn9-rO-kv6" id="1cS-eo-rYd"/>
                                     </connections>
                                 </collectionReusableView>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="3G3-Se-Wq3" customClass="FilesCollectionFooterView" customModule="NAUAmahi" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="302" width="375" height="50"/>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="3G3-Se-Wq3" customClass="FilesCollectionFooterView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="302" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folders, Files" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gg-RE-fWq">
-                                            <rect key="frame" x="146.5" y="17" width="82.5" height="16"/>
+                                            <rect key="frame" x="166" y="17" width="82.5" height="16"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1110,7 +1110,7 @@
                                 </collectionReusableView>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvr-GH-KjM">
-                                <rect key="frame" x="331" y="71" width="40" height="40"/>
+                                <rect key="frame" x="370" y="71" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="42K-ka-D1E"/>
                                     <constraint firstAttribute="width" constant="40" id="cHp-Ds-pyj"/>
@@ -1122,7 +1122,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6D-5a-cNH" customClass="Floaty" customModule="Floaty">
-                                <rect key="frame" x="305" y="577" width="50" height="50"/>
+                                <rect key="frame" x="344" y="738" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Qvc-uZ-VXj"/>
@@ -1185,13 +1185,13 @@
         <!--Offline Files-->
         <scene sceneID="Ym4-86-Afk">
             <objects>
-                <viewController id="oee-xO-Kjc" userLabel="Offline Files" customClass="OfflineFilesViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oee-xO-Kjc" userLabel="Offline Files" customClass="OfflineFilesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uSv-Qn-vLa" userLabel="Server Files">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aye-ox-RCD">
-                                <rect key="frame" x="0.0" y="64" width="311" height="30"/>
+                                <rect key="frame" x="0.0" y="108" width="350" height="30"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="BQF-OT-Tmn"/>
@@ -1206,7 +1206,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xYS-us-p6h">
-                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="158" width="414" height="738"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aLY-VL-fkc">
                                     <size key="itemSize" width="50" height="50"/>
@@ -1215,8 +1215,8 @@
                                     <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="Lpq-Lv-Uuq" customClass="DownloadsListCollectionCell" customModule="NAUAmahi" customModuleProvider="target">
-                                        <rect key="frame" x="1" y="60" width="373" height="68"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="Lpq-Lv-Uuq" customClass="DownloadsListCollectionCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                        <rect key="frame" x="20.5" y="60" width="373" height="68"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="68"/>
@@ -1294,8 +1294,8 @@
                                             <outlet property="sizeDateLabel" destination="0io-Wg-WRw" id="ntM-NN-E4Y"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="vru-Fb-Chh" customClass="DownloadsGridCollectionCell" customModule="NAUAmahi" customModuleProvider="target">
-                                        <rect key="frame" x="115" y="138" width="145" height="154"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="vru-Fb-Chh" customClass="DownloadsGridCollectionCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                        <rect key="frame" x="134.5" y="138" width="145" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="145" height="154"/>
@@ -1364,12 +1364,12 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="header" id="3tD-Db-GUq" customClass="FilesCollectionHeaderView" customModule="NAUAmahi" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="header" id="3tD-Db-GUq" customClass="FilesCollectionHeaderView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dow-Qc-QAa">
-                                            <rect key="frame" x="16" y="15.5" width="331" height="19.5"/>
+                                            <rect key="frame" x="16" y="15.5" width="370" height="19.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                             <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1386,12 +1386,12 @@
                                         <outlet property="titleLabel" destination="Dow-Qc-QAa" id="V55-md-Y4G"/>
                                     </connections>
                                 </collectionReusableView>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="P07-VY-ZjU" customClass="FilesCollectionFooterView" customModule="NAUAmahi" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="302" width="375" height="50"/>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="P07-VY-ZjU" customClass="FilesCollectionFooterView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="302" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Files" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMU-DB-IxA">
-                                            <rect key="frame" x="173" y="17" width="29" height="16"/>
+                                            <rect key="frame" x="192.5" y="17" width="29" height="16"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1407,7 +1407,7 @@
                                 </collectionReusableView>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IFR-JF-fHa">
-                                <rect key="frame" x="331" y="59" width="40" height="40"/>
+                                <rect key="frame" x="370" y="103" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Ou0-gb-DqD"/>
                                     <constraint firstAttribute="height" constant="40" id="SXY-tY-YJL"/>
@@ -1449,17 +1449,17 @@
         <!--Media Queue-->
         <scene sceneID="sCz-ac-iR1">
             <objects>
-                <viewController title="Media Queue" id="Vyj-1d-WzD" customClass="QueueViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Media Queue" id="Vyj-1d-WzD" customClass="QueueViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vN8-gm-h0u"/>
                         <viewControllerLayoutGuide type="bottom" id="6Ss-aI-Kpe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="j6G-ru-fOw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="83" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="6wc-Af-ZZU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1467,20 +1467,20 @@
                                 <color key="sectionIndexTrackingBackgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MediaCell" rowHeight="83" id="bXJ-d8-VBF">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="83"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="83"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bXJ-d8-VBF" id="fuF-hf-GRK">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GDX-pS-Zbo">
-                                                    <rect key="frame" x="15" y="6" width="108" height="69"/>
+                                                    <rect key="frame" x="20" y="6" width="108" height="69"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="108" id="m2E-bw-eJd"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake It Off" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74N-PD-KWa">
-                                                    <rect key="frame" x="131" y="3" width="158" height="38"/>
+                                                    <rect key="frame" x="136" y="3" width="158" height="38"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="158" id="Vmi-HX-ZzF"/>
                                                     </constraints>
@@ -1488,7 +1488,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taylor Swift" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffd-3Y-X96">
-                                                    <rect key="frame" x="131" y="44" width="229" height="21"/>
+                                                    <rect key="frame" x="136" y="44" width="258" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="NbQ-ob-aLu"/>
                                                     </constraints>
@@ -1565,7 +1565,7 @@
                 <navigationController storyboardIdentifier="UINavigationBarController" automaticallyAdjustsScrollViewInsets="NO" id="MsN-yA-Bvh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Qd7-bc-Ffb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1592,18 +1592,18 @@
                         <viewControllerLayoutGuide type="bottom" id="7lo-ZG-yem"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="i3P-mu-uGU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Jg-9l-J7K">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="ght-RR-FaW" kind="embed" identifier="NavigationVCEmbedSegue" id="uUJ-Qn-wEL"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="foD-v2-PKP">
-                                <rect key="frame" x="0.0" y="578" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="773" width="414" height="40"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="NUJ-lX-JXR"/>
@@ -1634,13 +1634,13 @@
         <!--Recent Files-->
         <scene sceneID="mUc-u7-Njn">
             <objects>
-                <viewController id="gwW-ua-gcL" customClass="RecentFilesViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gwW-ua-gcL" customClass="RecentFilesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y6Y-Pz-rkA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLj-rv-YNE">
-                                <rect key="frame" x="331" y="20" width="40" height="40"/>
+                                <rect key="frame" x="370" y="20" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="1A6-NN-vXa"/>
                                     <constraint firstAttribute="height" constant="40" id="gUp-zo-kLV"/>
@@ -1652,7 +1652,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xRB-zz-YtC">
-                                <rect key="frame" x="0.0" y="68" width="375" height="555"/>
+                                <rect key="frame" x="0.0" y="68" width="414" height="740"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OVL-cs-kqS">
                                     <size key="itemSize" width="50" height="50"/>
@@ -1661,8 +1661,8 @@
                                     <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="x1o-77-eoS" customClass="FilesListCollectionViewCell" customModule="NAUAmahi" customModuleProvider="target">
-                                        <rect key="frame" x="1" y="10" width="373" height="68"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="x1o-77-eoS" customClass="FilesListCollectionViewCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                        <rect key="frame" x="20.5" y="10" width="373" height="68"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="68"/>
@@ -1739,8 +1739,8 @@
                                             <outlet property="sizeModifiedLabel" destination="2eX-cH-byh" id="aoZ-7d-y3v"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="K26-rs-veV" customClass="FilesGridCollectionCell" customModule="NAUAmahi" customModuleProvider="target">
-                                        <rect key="frame" x="115" y="88" width="145" height="154"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="K26-rs-veV" customClass="FilesGridCollectionCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                        <rect key="frame" x="134.5" y="88" width="145" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="145" height="154"/>
@@ -1801,12 +1801,12 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="Bn9-yp-VdM" customClass="FilesCollectionFooterView" customModule="NAUAmahi" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="252" width="375" height="50"/>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="Bn9-yp-VdM" customClass="FilesCollectionFooterView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="252" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folders, Files" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BId-PL-anX">
-                                            <rect key="frame" x="146.5" y="17" width="82.5" height="16"/>
+                                            <rect key="frame" x="166" y="17" width="82.5" height="16"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -1826,7 +1826,7 @@
                                 </connections>
                             </collectionView>
                             <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search your recent files" translatesAutoresizingMaskIntoConstraints="NO" id="Bh1-zs-yY6">
-                                <rect key="frame" x="8" y="12" width="315" height="56"/>
+                                <rect key="frame" x="8" y="12" width="354" height="56"/>
                                 <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
@@ -1869,7 +1869,7 @@
                     <tabBarItem key="tabBarItem" title="Recent" image="recentIcon" id="moT-TR-WdW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="q0O-wS-iVn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" name="tabBarBackground"/>
@@ -1889,16 +1889,16 @@
         <!--Login Controller-->
         <scene sceneID="r0K-hu-eqD">
             <objects>
-                <viewController id="lxD-XY-HUy" customClass="NAULoginController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lxD-XY-HUy" customClass="NAULoginController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z28-2P-gW9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ruV-iH-kNq">
-                                <rect key="frame" x="30" y="278.5" width="315" height="110"/>
+                                <rect key="frame" x="30" y="393" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your pin" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dus-wU-6BH" userLabel="Password Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                         <userDefinedRuntimeAttributes>
@@ -1926,7 +1926,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBe-vh-cuR">
-                                        <rect key="frame" x="0.0" y="70" width="315" height="40"/>
+                                        <rect key="frame" x="0.0" y="70" width="354" height="40"/>
                                         <color key="backgroundColor" red="0.28979468349999998" green="0.71102970840000002" blue="0.94655948879999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="SUBMIT">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1942,41 +1942,82 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="Mcv-TQ-FE7"/>
+                                    <constraint firstAttribute="height" constant="110" id="Mcv-TQ-FE7">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="160"/>
+                                    </constraint>
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your HDA's admin can change your PIN in their dashboard under Setup &gt; Users" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2N0-TA-LCk">
-                                <rect key="frame" x="30" y="611" width="315" height="36"/>
+                                <rect key="frame" x="30" y="806" width="354" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your 3-5 digit Pin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOV-91-Wao">
-                                <rect key="frame" x="30" y="74" width="315" height="18"/>
+                                <rect key="frame" x="30" y="118" width="354" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="7HW-wl-Rwv">
+                                <rect key="frame" x="194.5" y="470" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="070-9j-2hW"/>
+                                    <constraint firstAttribute="width" constant="25" id="rom-xB-u3x"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching server IP in local subnet. This may take a few seconds!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHg-gA-l7Z">
+                                <rect key="frame" x="30" y="118" width="354" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="tabBarBackground"/>
                         <constraints>
                             <constraint firstItem="ruV-iH-kNq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AOV-91-Wao" secondAttribute="bottom" constant="30" id="3jB-4R-lvt"/>
                             <constraint firstItem="2N0-TA-LCk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ruV-iH-kNq" secondAttribute="bottom" constant="30" id="41q-PK-VNK"/>
                             <constraint firstItem="Ws2-t4-Tvc" firstAttribute="trailing" secondItem="2N0-TA-LCk" secondAttribute="trailing" constant="30" id="805-nO-D5d"/>
                             <constraint firstItem="Ws2-t4-Tvc" firstAttribute="trailing" secondItem="ruV-iH-kNq" secondAttribute="trailing" constant="30" id="D0N-oh-v6f"/>
+                            <constraint firstItem="ruV-iH-kNq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dHg-gA-l7Z" secondAttribute="bottom" constant="30" id="FvM-wB-tjm"/>
+                            <constraint firstItem="ruV-iH-kNq" firstAttribute="bottom" secondItem="7HW-wl-Rwv" secondAttribute="bottom" constant="8" id="Hmo-Po-zxu">
+                                <variation key="heightClass=regular-widthClass=regular" constant="14"/>
+                            </constraint>
                             <constraint firstItem="AOV-91-Wao" firstAttribute="leading" secondItem="Ws2-t4-Tvc" secondAttribute="leading" constant="30" id="LJ6-La-XpN"/>
+                            <constraint firstItem="ruV-iH-kNq" firstAttribute="centerX" secondItem="z28-2P-gW9" secondAttribute="centerX" id="Prc-tt-LKq"/>
                             <constraint firstItem="Ws2-t4-Tvc" firstAttribute="bottom" secondItem="2N0-TA-LCk" secondAttribute="bottom" constant="20" id="QCR-DQ-zSw"/>
+                            <constraint firstItem="ruV-iH-kNq" firstAttribute="leading" secondItem="Ws2-t4-Tvc" secondAttribute="leading" constant="30" id="aLe-4p-aRS"/>
+                            <constraint firstItem="ruV-iH-kNq" firstAttribute="width" secondItem="z28-2P-gW9" secondAttribute="width" multiplier="0.5" id="b1e-f8-GcI"/>
                             <constraint firstItem="AOV-91-Wao" firstAttribute="top" secondItem="Ws2-t4-Tvc" secondAttribute="top" constant="30" id="gNH-UV-5DF"/>
-                            <constraint firstItem="ruV-iH-kNq" firstAttribute="leading" secondItem="Ws2-t4-Tvc" secondAttribute="leading" constant="30" id="iCi-D2-r0A"/>
+                            <constraint firstItem="dHg-gA-l7Z" firstAttribute="top" secondItem="Ws2-t4-Tvc" secondAttribute="top" constant="30" id="kMN-lx-XrX"/>
+                            <constraint firstAttribute="trailing" secondItem="dHg-gA-l7Z" secondAttribute="trailing" constant="30" id="lls-e8-jtn"/>
+                            <constraint firstItem="7HW-wl-Rwv" firstAttribute="centerX" secondItem="ruV-iH-kNq" secondAttribute="centerX" id="nEP-MO-HID"/>
                             <constraint firstItem="Ws2-t4-Tvc" firstAttribute="trailing" secondItem="AOV-91-Wao" secondAttribute="trailing" constant="30" id="o8J-cu-g8A"/>
                             <constraint firstItem="ruV-iH-kNq" firstAttribute="centerY" secondItem="z28-2P-gW9" secondAttribute="centerY" id="sf1-0R-azu"/>
+                            <constraint firstItem="dHg-gA-l7Z" firstAttribute="leading" secondItem="Ws2-t4-Tvc" secondAttribute="leading" constant="30" id="wSa-yd-4Cs"/>
                             <constraint firstItem="2N0-TA-LCk" firstAttribute="leading" secondItem="Ws2-t4-Tvc" secondAttribute="leading" constant="30" id="x5N-SZ-UnV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ws2-t4-Tvc"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="b1e-f8-GcI"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="D0N-oh-v6f"/>
+                                <exclude reference="aLe-4p-aRS"/>
+                                <include reference="b1e-f8-GcI"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="lOq-OC-K7t"/>
                     <connections>
+                        <outlet property="delayLabel" destination="dHg-gA-l7Z" id="Rro-UE-tqT"/>
+                        <outlet property="loaderView" destination="7HW-wl-Rwv" id="ikM-S2-4sy"/>
                         <outlet property="pinTextField" destination="Dus-wU-6BH" id="OR5-Ec-963"/>
+                        <outlet property="submitButton" destination="PBe-vh-cuR" id="BlZ-bl-LFG"/>
+                        <outlet property="titleLabel" destination="AOV-91-Wao" id="210-X8-gIx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2YS-sV-YLa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

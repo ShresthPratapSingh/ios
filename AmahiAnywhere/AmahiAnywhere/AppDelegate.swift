@@ -57,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     var orientationLock = UIInterfaceOrientationMask.all
+    let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryBoardIdentifiers.main, bundle: nil)
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return self.orientationLock
@@ -92,9 +93,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //LocalStorage.shared.delete(key: "walkthrough")
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryBoardIdentifiers.main, bundle: nil)
         var initialViewController: UIViewController? = nil
-        
+            
+        UINavigationBar.appearance().backgroundColor = UIColor(named:"tabBarBackground")
+        UINavigationBar.appearance().tintColor = UIColor(named:"tabBarBackground")
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named:"textOpenColor")]
+
         if LocalStorage.shared.contains(key: PersistenceIdentifiers.accessToken) {
             
             if useCastContainerViewController {
@@ -111,20 +116,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.rootViewController = initialViewController
                 self.window?.makeKeyAndVisible()
             }
-        }else if 2>3 {
-            //check for nau login.
+        }else if let hac = LocalStorage.shared.getDictionary(for: PersistenceIdentifiers.hdaAuthCache) {
+            for ip in hac.keys{
+                if let serverDetails = hac[ip]{
+                    let serverObject = HDAAuthCache(from: serverDetails)
+                    if let authToken = serverObject.authToken{
+                        ServerApi.shared?.auth_token = authToken
+                        let address = ApiEndPoints.getNauAddress(from: ip)
+                        ServerApi.shared?.serverAddress = address
+                        let rootVC = mainStoryboard.instantiateViewController(withIdentifier: "RootVC") as! RootContainerViewController
+                        rootVC.isNAULogin = true
+                        LocalStorage.shared.persist(true, for: PersistenceIdentifiers.isNAULogin)
+                        self.window?.rootViewController = rootVC
+                        self.window?.makeKeyAndVisible()
+                    }
+                }
+            }
+            if window?.rootViewController == nil{
+                //none of the cached server had an auth_token fallback to login flow.
+                installLoginViewController()
+            }
         }
         
         else {
-            if LocalStorage.shared.contains(key: "walkthrough"){
-                // User already completed the onboarding
-                initialViewController = mainStoryboard.instantiateInitialViewController()
-            }else{
-                // User didn't complete the onboarding yet
-                initialViewController = mainStoryboard.instantiateViewController(withIdentifier: StoryBoardIdentifiers.walktrhoughViewController)
-            }
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
+            installLoginViewController()
         }
         
         // Setting default layout view value
@@ -155,6 +170,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Start Autosaving, tries to do autosave every 5 minutes if any changes is waiting to be persisted.
         stack.autoSave(60 * 5)
         return true
+    }
+    
+    func installLoginViewController(){
+        var initialViewController : UIViewController? = nil
+        
+        if LocalStorage.shared.contains(key: "walkthrough"){
+            // User already completed the onboarding
+            initialViewController = mainStoryboard.instantiateInitialViewController()
+        }else{
+            // User didn't complete the onboarding yet
+            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: StoryBoardIdentifiers.walktrhoughViewController)
+        }
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
     }
     
     func setupMiniController(){

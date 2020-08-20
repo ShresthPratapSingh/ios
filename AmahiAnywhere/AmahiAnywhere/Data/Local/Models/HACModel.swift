@@ -30,11 +30,11 @@ struct HDAAuthCache{
         serverAddress = (dictionary[HACIdentifiers.server_address] == "") ? nil : dictionary[HACIdentifiers.server_address]
     }
     
-    init(ip:String?, _ sessionToken:String?, _ authToken:String?,_ address:String?) {
+    init(ip:String?, sessionToken:String?, authToken:String?, serverAddress:String?) {
         self.serverLocalIP = ip
         self.sessionToken = sessionToken
         self.authToken = authToken
-        self.serverAddress = address
+        self.serverAddress = serverAddress
     }
 
     var toDictionary:[String:String]{
