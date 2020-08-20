@@ -213,4 +213,47 @@ public class Network {
                 }
         }
     }
+    
+    public func pingOnce(_ ip:String,completion: @escaping (_ success:Bool)->Void){
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 0.5
+        let hostUrl: String = "http://" + ip
+        
+        if let url = URL(string: hostUrl) {
+            var request = URLRequest(url: url)
+            request.httpMethod = "HEAD"
+            URLSession(configuration: configuration)
+            .dataTask(with: request) { (_, response, error) -> Void in
+               guard error == nil else {
+                completion(false)
+                return
+               }
+               guard (response as? HTTPURLResponse)?
+               .statusCode == 200 else {
+                  completion(false)
+                  return
+               }
+               completion(true)
+            }
+            .resume()
+         }
+    }
+    
+    public func login(pin:String,url:URL,completion: @escaping (_ success:Bool,_ authToken:String?)->Void){
+        Alamofire.request(url, method: .post, parameters: ["pin":pin], encoding: JSONEncoding.default, headers: [:]).responseJSON{ response in
+            
+            switch response.result{
+            case .success(let json):
+                let dict = json as! NSDictionary
+                if let authToken = dict["auth_token"] as? String{
+                    completion(true,authToken)
+                }else{
+                    completion(false,nil)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(false,nil)
+            }
+        }
+    }
 }

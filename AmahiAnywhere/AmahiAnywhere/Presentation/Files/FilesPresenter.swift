@@ -120,7 +120,7 @@ class FilesPresenter: BasePresenter {
         /* Auth-token for HDA authorisation in PIN */
         let authToken = ServerApi.shared?.auth_token
         
-        let dict = ["day":day, "month":month!, "year":year!, "fileName":fileName, "fileURL":fileURL, "serverName":ServerApi.shared!.getServer()!.name!, "size":selectedFile.getFileSize(), "mimeType":mimeType, "mtimeDate":mtimeDate!, "authToken":authToken!, "path": path, "sizeNumber": selectedFile.size!] as [String : Any]
+        let dict = ["day":day, "month":month!, "year":year!, "fileName":fileName, "fileURL":fileURL, "serverName":(ServerApi.shared!.getServer()?.name! ?? ""), "size":selectedFile.getFileSize(), "mimeType":mimeType, "mtimeDate":mtimeDate!, "authToken":authToken!, "path": path, "sizeNumber": selectedFile.size!] as [String : Any]
         
         RecentsDatabaseHelper.shareInstance.save(object: dict)
 

@@ -14,4 +14,6 @@ struct PersistenceIdentifiers {
     
     static let accessToken =                       "access_token"
     static let prefConnection =                    "pref_connection"
+    static let hdaAuthCache =                      "hda_auth_cache"
+    static let isNAULogin =                        "nau_logged_in"
 }

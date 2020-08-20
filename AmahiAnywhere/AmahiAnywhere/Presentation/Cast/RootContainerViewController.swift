@@ -23,7 +23,7 @@ class RootContainerViewController: UIViewController, GCKUIMiniMediaControlsViewC
             }
         }
     }
-    
+    var isNAULogin = false
     var overridenNavigationController: UINavigationController?
     override var navigationController: UINavigationController? {
         get {
@@ -85,7 +85,16 @@ class RootContainerViewController: UIViewController, GCKUIMiniMediaControlsViewC
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "NavigationVCEmbedSegue" {
             if let tabBarController = segue.destination as? UITabBarController{
-                tabBarController.selectedIndex = 1
+                if isNAULogin{
+                    let sharesVC = viewController(viewControllerClass: SharesViewController.self, from: StoryBoardIdentifiers.main)
+                    sharesVC.isNAULogin = true
+                    let navCon = UINavigationController(rootViewController: sharesVC)
+                    tabBarController.viewControllers?[1] = navCon
+                    navCon.tabBarItem = UITabBarItem(title: "HDA", image: UIImage(named: "tabBarHDA"), tag: 0)
+                    tabBarController.selectedIndex = 1
+                }else{
+                    tabBarController.selectedIndex = 1
+                }
             }
             navigationController = (segue.destination as? UINavigationController)
         }

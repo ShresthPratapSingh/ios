@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AUj-7H-KuY">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -12,7 +12,7 @@
         <!--Walkthrough View Controller-->
         <scene sceneID="0tZ-xD-8uh">
             <objects>
-                <viewController storyboardIdentifier="WalkthroughViewController" id="gnb-XN-qtm" customClass="WalkthroughViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalkthroughViewController" id="gnb-XN-qtm" customClass="WalkthroughViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="edA-We-vEt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,25 +104,41 @@
             </objects>
             <point key="canvasLocation" x="-1639" y="-949"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CUf-QL-lgB">
+            <objects>
+                <navigationController id="AUj-7H-KuY" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yuW-wM-gkx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="FwZ-9a-6OX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="te1-nT-rJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2735" y="-242"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="3Ft-iL-P01">
-                                <rect key="frame" x="20" y="156" width="335" height="355"/>
+                                <rect key="frame" x="20" y="129.5" width="335" height="308"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="dnj-cA-cdc">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="209"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dnj-cA-cdc">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="187"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="amahi-logo-a36008f915e1ad5efaaf8e468ac614d888ece91aca11db69666e2055f1307964" translatesAutoresizingMaskIntoConstraints="NO" id="g1P-zr-2vs">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="67"/>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="MRw-dg-epc">
-                                                <rect key="frame" x="0.0" y="97" width="335" height="112"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MRw-dg-epc">
+                                                <rect key="frame" x="0.0" y="87" width="335" height="100"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username or email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6a6-YJ-EQp" userLabel="Username Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
@@ -153,7 +169,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JCZ-iH-nSx" userLabel="Password Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                                        <rect key="frame" x="0.0" y="72" width="335" height="40"/>
+                                                        <rect key="frame" x="0.0" y="60" width="335" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                                         <userDefinedRuntimeAttributes>
@@ -184,14 +200,14 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="aG7-vh-mTU">
-                                        <rect key="frame" x="0.0" y="240" width="335" height="115"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="aG7-vh-mTU">
+                                        <rect key="frame" x="0.0" y="218" width="335" height="90"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9H-Gg-dc4">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="45"/>
                                                 <color key="backgroundColor" red="0.28979468349999998" green="0.71102970840000002" blue="0.94655948879999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="b5H-7h-Gka"/>
+                                                    <constraint firstAttribute="height" constant="45" id="b5H-7h-Gka"/>
                                                 </constraints>
                                                 <state key="normal" title="SIGN IN">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -206,7 +222,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxp-Gn-PbM">
-                                                <rect key="frame" x="0.0" y="85" width="335" height="30"/>
+                                                <rect key="frame" x="0.0" y="60" width="335" height="30"/>
                                                 <state key="normal" title="Forgot password?">
                                                     <color key="titleColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -218,8 +234,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAj-2G-5Oo">
-                                <rect key="frame" x="310" y="325" width="45" height="40"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAj-2G-5Oo">
+                                <rect key="frame" x="310" y="276.5" width="45" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="PF7-dT-yzS"/>
                                 </constraints>
@@ -230,33 +246,100 @@
                                     <action selector="showHideTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9gQ-lc-bcm"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uOe-1R-5bn">
+                                <rect key="frame" x="20" y="442.5" width="335" height="25"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-lZ-OCG">
+                                        <rect key="frame" x="0.0" y="11.5" width="152" height="2"/>
+                                        <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="ifq-U3-ii2"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSi-tm-wwA">
+                                        <rect key="frame" x="157" y="3.5" width="21" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zey-w0-JrR">
+                                        <rect key="frame" x="183" y="11.5" width="152" height="2"/>
+                                        <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="JAi-vG-adt"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="zey-w0-JrR" firstAttribute="width" secondItem="N1L-lZ-OCG" secondAttribute="width" id="PpC-0M-sTZ"/>
+                                    <constraint firstAttribute="height" constant="25" id="lgc-LK-3lK"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEy-Lt-Jxk">
+                                <rect key="frame" x="20" y="482.5" width="335" height="45"/>
+                                <color key="backgroundColor" red="0.28979468349999998" green="0.71102970840000002" blue="0.94655948879999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="vTf-9N-frj"/>
+                                </constraints>
+                                <state key="normal" title="Login with Pin">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="lxD-XY-HUy" kind="show" identifier="NAU_pin_segue" id="4wL-0n-huF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kAj-2G-5Oo" firstAttribute="trailing" secondItem="JCZ-iH-nSx" secondAttribute="trailing" id="65B-Pe-Woc"/>
+                            <constraint firstItem="IEy-Lt-Jxk" firstAttribute="leading" secondItem="3Ft-iL-P01" secondAttribute="leading" id="7i1-tw-xG5"/>
                             <constraint firstItem="AX0-k0-ad3" firstAttribute="trailing" secondItem="3Ft-iL-P01" secondAttribute="trailing" constant="20" id="HWR-pH-gbZ"/>
+                            <constraint firstItem="AX0-k0-ad3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="IEy-Lt-Jxk" secondAttribute="bottom" constant="5" id="Mcz-gh-9Pj"/>
+                            <constraint firstItem="3Ft-iL-P01" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AX0-k0-ad3" secondAttribute="top" constant="5" id="PWg-YD-Mk3"/>
+                            <constraint firstItem="uOe-1R-5bn" firstAttribute="trailing" secondItem="3Ft-iL-P01" secondAttribute="trailing" id="Rfe-hv-7gg"/>
                             <constraint firstItem="kAj-2G-5Oo" firstAttribute="top" secondItem="JCZ-iH-nSx" secondAttribute="top" id="SRF-yt-xk8"/>
                             <constraint firstItem="kAj-2G-5Oo" firstAttribute="bottom" secondItem="JCZ-iH-nSx" secondAttribute="bottom" id="WkL-Ly-Sxw"/>
+                            <constraint firstItem="IEy-Lt-Jxk" firstAttribute="trailing" secondItem="3Ft-iL-P01" secondAttribute="trailing" id="Xl8-0j-jyJ"/>
                             <constraint firstItem="g1P-zr-2vs" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="fy6-wX-MSE"/>
-                            <constraint firstItem="3Ft-iL-P01" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ku6-Nx-wsa"/>
+                            <constraint firstItem="3Ft-iL-P01" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="ku6-Nx-wsa"/>
+                            <constraint firstItem="uOe-1R-5bn" firstAttribute="top" secondItem="3Ft-iL-P01" secondAttribute="bottom" constant="5" id="tMp-Ec-7pZ"/>
                             <constraint firstItem="3Ft-iL-P01" firstAttribute="leading" secondItem="AX0-k0-ad3" secondAttribute="leading" constant="20" id="te8-E0-MGr"/>
+                            <constraint firstItem="IEy-Lt-Jxk" firstAttribute="top" secondItem="uOe-1R-5bn" secondAttribute="bottom" constant="15" id="uug-VM-Lwa"/>
+                            <constraint firstItem="uOe-1R-5bn" firstAttribute="leading" secondItem="3Ft-iL-P01" secondAttribute="leading" id="x5e-SB-sb1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AX0-k0-ad3"/>
                     </view>
+                    <navigationItem key="navigationItem" id="bTF-bb-xLm"/>
                     <connections>
                         <outlet property="passwordInputField" destination="JCZ-iH-nSx" id="ax5-34-Tpt"/>
+                        <outlet property="pinLoginButton" destination="IEy-Lt-Jxk" id="GD4-2J-m4a"/>
                         <outlet property="showHideButton" destination="kAj-2G-5Oo" id="GnE-tZ-9j4"/>
                         <outlet property="usernameInputField" destination="6a6-YJ-EQp" id="xcU-XW-t4r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1639" y="-242"/>
+            <point key="canvasLocation" x="-1826" y="-242"/>
         </scene>
         <!--PIN Access-->
         <scene sceneID="TW2-7Y-I4q">
             <objects>
-                <viewController storyboardIdentifier="HDAPinAuthVC" title="PIN Access" id="DEe-Fc-GBx" customClass="HDAPinAuthVC" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HDAPinAuthVC" title="PIN Access" id="DEe-Fc-GBx" customClass="HDAPinAuthVC" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J4b-ga-hT3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -356,9 +439,9 @@
         <!--Your HDAs-->
         <scene sceneID="NmK-gy-odb">
             <objects>
-                <viewController storyboardIdentifier="ServerViewController" id="Dbq-Bw-ca9" customClass="ServerViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ServerViewController" id="Dbq-Bw-ca9" customClass="ServerViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LDY-OA-sHr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available HDAs: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atT-2S-a7r">
@@ -376,7 +459,7 @@
                                     <inset key="sectionInset" minX="20" minY="30" maxX="20" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="serverCollectionViewCell" id="ile-mq-aYp" customClass="ServerCollectionViewCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="serverCollectionViewCell" id="ile-mq-aYp" customClass="ServerCollectionViewCell" customModule="NAUAmahi" customModuleProvider="target">
                                         <rect key="frame" x="20" y="30" width="138" height="144"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -442,7 +525,7 @@
         <!--Shares View Controller-->
         <scene sceneID="yld-jc-3HM">
             <objects>
-                <viewController storyboardIdentifier="SharesViewController" id="vlL-j8-ksh" customClass="SharesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SharesViewController" id="vlL-j8-ksh" customClass="SharesViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ttH-my-MBX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -462,7 +545,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SharesCollectionViewCell" id="mCE-y0-dkM" customClass="SharesCollectionViewCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SharesCollectionViewCell" id="mCE-y0-dkM" customClass="SharesCollectionViewCell" customModule="NAUAmahi" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="138" height="133"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -497,7 +580,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="09m-3b-PbQ" customClass="FilesCollectionFooterView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="09m-3b-PbQ" customClass="FilesCollectionFooterView" customModule="NAUAmahi" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="133" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -543,9 +626,9 @@
         <!--Settings-->
         <scene sceneID="VyZ-qs-6yT">
             <objects>
-                <tableViewController storyboardIdentifier="SettingsViewController" automaticallyAdjustsScrollViewInsets="NO" id="teI-x8-nnt" customClass="SettingsViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsViewController" automaticallyAdjustsScrollViewInsets="NO" id="teI-x8-nnt" customClass="SettingsViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="lKs-ES-BcF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -640,9 +723,9 @@
         <!--Connection-->
         <scene sceneID="EdA-nu-gkA">
             <objects>
-                <tableViewController storyboardIdentifier="ConnectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="Mr0-gg-hDA" customClass="ConnectionViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ConnectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="Mr0-gg-hDA" customClass="ConnectionViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LUY-ls-ZtF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -677,7 +760,7 @@
         <!--Web View Controller-->
         <scene sceneID="bel-Fa-pLo">
             <objects>
-                <viewController storyboardIdentifier="WebViewController" hidesBottomBarWhenPushed="YES" id="0f9-Lu-Bbk" customClass="WebViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" hidesBottomBarWhenPushed="YES" id="0f9-Lu-Bbk" customClass="WebViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IBn-or-nmx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -816,7 +899,7 @@
         <!--Server Files-->
         <scene sceneID="Vnd-DO-naV">
             <objects>
-                <viewController storyboardIdentifier="FilesViewController" id="NEa-Le-UPn" userLabel="Server Files" customClass="FilesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilesViewController" id="NEa-Le-UPn" userLabel="Server Files" customClass="FilesViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1gk-kz-VmG" userLabel="Server Files">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -845,7 +928,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="Wx1-XH-peS" customClass="FilesListCollectionViewCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="Wx1-XH-peS" customClass="FilesListCollectionViewCell" customModule="NAUAmahi" customModuleProvider="target">
                                         <rect key="frame" x="1" y="60" width="373" height="68"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -922,7 +1005,7 @@
                                             <outlet property="sizeModifiedLabel" destination="dNn-m0-Xdf" id="Xmv-lM-6XY"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="dpS-lW-6Zy" customClass="FilesGridCollectionCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="dpS-lW-6Zy" customClass="FilesGridCollectionCell" customModule="NAUAmahi" customModuleProvider="target">
                                         <rect key="frame" x="115" y="138" width="145" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -986,7 +1069,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="header" id="Vfr-Q2-TgZ" customClass="FilesCollectionHeaderView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="header" id="Vfr-Q2-TgZ" customClass="FilesCollectionHeaderView" customModule="NAUAmahi" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -1006,7 +1089,7 @@
                                         <outlet property="titleLabel" destination="Xn9-rO-kv6" id="1cS-eo-rYd"/>
                                     </connections>
                                 </collectionReusableView>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="3G3-Se-Wq3" customClass="FilesCollectionFooterView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="3G3-Se-Wq3" customClass="FilesCollectionFooterView" customModule="NAUAmahi" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="302" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -1102,7 +1185,7 @@
         <!--Offline Files-->
         <scene sceneID="Ym4-86-Afk">
             <objects>
-                <viewController id="oee-xO-Kjc" userLabel="Offline Files" customClass="OfflineFilesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oee-xO-Kjc" userLabel="Offline Files" customClass="OfflineFilesViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uSv-Qn-vLa" userLabel="Server Files">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1132,7 +1215,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="Lpq-Lv-Uuq" customClass="DownloadsListCollectionCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="Lpq-Lv-Uuq" customClass="DownloadsListCollectionCell" customModule="NAUAmahi" customModuleProvider="target">
                                         <rect key="frame" x="1" y="60" width="373" height="68"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1211,7 +1294,7 @@
                                             <outlet property="sizeDateLabel" destination="0io-Wg-WRw" id="ntM-NN-E4Y"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="vru-Fb-Chh" customClass="DownloadsGridCollectionCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="vru-Fb-Chh" customClass="DownloadsGridCollectionCell" customModule="NAUAmahi" customModuleProvider="target">
                                         <rect key="frame" x="115" y="138" width="145" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1281,7 +1364,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="header" id="3tD-Db-GUq" customClass="FilesCollectionHeaderView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="header" id="3tD-Db-GUq" customClass="FilesCollectionHeaderView" customModule="NAUAmahi" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -1303,7 +1386,7 @@
                                         <outlet property="titleLabel" destination="Dow-Qc-QAa" id="V55-md-Y4G"/>
                                     </connections>
                                 </collectionReusableView>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="P07-VY-ZjU" customClass="FilesCollectionFooterView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="P07-VY-ZjU" customClass="FilesCollectionFooterView" customModule="NAUAmahi" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="302" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -1366,7 +1449,7 @@
         <!--Media Queue-->
         <scene sceneID="sCz-ac-iR1">
             <objects>
-                <viewController title="Media Queue" id="Vyj-1d-WzD" customClass="QueueViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Media Queue" id="Vyj-1d-WzD" customClass="QueueViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vN8-gm-h0u"/>
                         <viewControllerLayoutGuide type="bottom" id="6Ss-aI-Kpe"/>
@@ -1551,9 +1634,9 @@
         <!--Recent Files-->
         <scene sceneID="mUc-u7-Njn">
             <objects>
-                <viewController id="gwW-ua-gcL" customClass="RecentFilesViewController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gwW-ua-gcL" customClass="RecentFilesViewController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y6Y-Pz-rkA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLj-rv-YNE">
@@ -1578,7 +1661,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="x1o-77-eoS" customClass="FilesListCollectionViewCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="x1o-77-eoS" customClass="FilesListCollectionViewCell" customModule="NAUAmahi" customModuleProvider="target">
                                         <rect key="frame" x="1" y="10" width="373" height="68"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1656,7 +1739,7 @@
                                             <outlet property="sizeModifiedLabel" destination="2eX-cH-byh" id="aoZ-7d-y3v"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="K26-rs-veV" customClass="FilesGridCollectionCell" customModule="AmahiAnywhere" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="K26-rs-veV" customClass="FilesGridCollectionCell" customModule="NAUAmahi" customModuleProvider="target">
                                         <rect key="frame" x="115" y="88" width="145" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1718,7 +1801,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="Bn9-yp-VdM" customClass="FilesCollectionFooterView" customModule="AmahiAnywhere" customModuleProvider="target">
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footer" id="Bn9-yp-VdM" customClass="FilesCollectionFooterView" customModule="NAUAmahi" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="252" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -1802,6 +1885,103 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2u-0a-K8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="846" y="-2704"/>
+        </scene>
+        <!--Login Controller-->
+        <scene sceneID="r0K-hu-eqD">
+            <objects>
+                <viewController id="lxD-XY-HUy" customClass="NAULoginController" customModule="NAUAmahi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z28-2P-gW9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ruV-iH-kNq">
+                                <rect key="frame" x="30" y="278.5" width="315" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your pin" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dus-wU-6BH" userLabel="Password Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                                <color key="value" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                                <color key="value" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                                <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                                <color key="value" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="passFieldChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="f92-Qm-nxG"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBe-vh-cuR">
+                                        <rect key="frame" x="0.0" y="70" width="315" height="40"/>
+                                        <color key="backgroundColor" red="0.28979468349999998" green="0.71102970840000002" blue="0.94655948879999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="SUBMIT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitPin:" destination="lxD-XY-HUy" eventType="touchUpInside" id="NQl-hC-WP9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="Mcv-TQ-FE7"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your HDA's admin can change your PIN in their dashboard under Setup &gt; Users" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2N0-TA-LCk">
+                                <rect key="frame" x="30" y="611" width="315" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your 3-5 digit Pin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOV-91-Wao">
+                                <rect key="frame" x="30" y="74" width="315" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ruV-iH-kNq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AOV-91-Wao" secondAttribute="bottom" constant="30" id="3jB-4R-lvt"/>
+                            <constraint firstItem="2N0-TA-LCk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ruV-iH-kNq" secondAttribute="bottom" constant="30" id="41q-PK-VNK"/>
+                            <constraint firstItem="Ws2-t4-Tvc" firstAttribute="trailing" secondItem="2N0-TA-LCk" secondAttribute="trailing" constant="30" id="805-nO-D5d"/>
+                            <constraint firstItem="Ws2-t4-Tvc" firstAttribute="trailing" secondItem="ruV-iH-kNq" secondAttribute="trailing" constant="30" id="D0N-oh-v6f"/>
+                            <constraint firstItem="AOV-91-Wao" firstAttribute="leading" secondItem="Ws2-t4-Tvc" secondAttribute="leading" constant="30" id="LJ6-La-XpN"/>
+                            <constraint firstItem="Ws2-t4-Tvc" firstAttribute="bottom" secondItem="2N0-TA-LCk" secondAttribute="bottom" constant="20" id="QCR-DQ-zSw"/>
+                            <constraint firstItem="AOV-91-Wao" firstAttribute="top" secondItem="Ws2-t4-Tvc" secondAttribute="top" constant="30" id="gNH-UV-5DF"/>
+                            <constraint firstItem="ruV-iH-kNq" firstAttribute="leading" secondItem="Ws2-t4-Tvc" secondAttribute="leading" constant="30" id="iCi-D2-r0A"/>
+                            <constraint firstItem="Ws2-t4-Tvc" firstAttribute="trailing" secondItem="AOV-91-Wao" secondAttribute="trailing" constant="30" id="o8J-cu-g8A"/>
+                            <constraint firstItem="ruV-iH-kNq" firstAttribute="centerY" secondItem="z28-2P-gW9" secondAttribute="centerY" id="sf1-0R-azu"/>
+                            <constraint firstItem="2N0-TA-LCk" firstAttribute="leading" secondItem="Ws2-t4-Tvc" secondAttribute="leading" constant="30" id="x5N-SZ-UnV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ws2-t4-Tvc"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lOq-OC-K7t"/>
+                    <connections>
+                        <outlet property="pinTextField" destination="Dus-wU-6BH" id="OR5-Ec-963"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2YS-sV-YLa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1826.4000000000001" y="470.91454272863569"/>
         </scene>
     </scenes>
     <resources>

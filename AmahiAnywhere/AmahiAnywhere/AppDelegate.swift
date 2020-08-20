@@ -111,7 +111,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.rootViewController = initialViewController
                 self.window?.makeKeyAndVisible()
             }
-        } else {
+        }else if 2>3 {
+            //check for nau login.
+        }
+        
+        else {
             if LocalStorage.shared.contains(key: "walkthrough"){
                 // User already completed the onboarding
                 initialViewController = mainStoryboard.instantiateInitialViewController()

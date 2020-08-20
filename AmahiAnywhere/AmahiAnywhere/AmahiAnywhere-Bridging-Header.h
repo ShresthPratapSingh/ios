@@ -11,3 +11,4 @@
 //
 
 #import "MobileVLCKit/MobileVLCKit.h"
+#import "WifiGatewayIP.h"

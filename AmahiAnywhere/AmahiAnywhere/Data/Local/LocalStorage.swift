@@ -21,10 +21,27 @@ final class LocalStorage: NSObject {
         UserDefaults.standard.setValue(string, forKey: key);
         UserDefaults.standard.synchronize();
     }
+    
+    public func persistDictionaryArray(_ dictionary:[[String:String]],for key: String){
+        UserDefaults.standard.set(dictionary, forKey: key)
+    }
+    
+    public func getDictionaryArray(for key: String)->[[String:String]]?{
+        return UserDefaults.standard.object(forKey: key) as? [[String:String]]
+    }
+
 
     public func getString(key: String!) -> String? {
         UserDefaults.standard.synchronize()
         return UserDefaults.standard.value(forKey: key) as? String;
+    }
+    
+    public func getBool(_ key:String) -> Bool{
+        return UserDefaults.standard.bool(forKey: key)
+    }
+    
+    public func persist(_ bool:Bool, for key:String){
+        UserDefaults.standard.set(bool, forKey: key)
     }
     
     public func contains(key: String!) -> Bool{

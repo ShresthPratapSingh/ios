@@ -11,11 +11,11 @@ import Alamofire
 import EVReflection
 
 class ServerApi {
-    public static var shared: ServerApi?
+    public static var shared: ServerApi? = ServerApi()
     
-    private var server: Server!
+    private var server: Server?
     private var serverRoute: ServerRoute?
-    private var serverAddress: String?
+    var serverAddress: String?
     public var auth_token: String? // if nil -> server is default welcome to amahi
     
     private init() {}
@@ -44,9 +44,9 @@ class ServerApi {
     
     public func getServerHeaders() -> HTTPHeaders {
         if let authToken = auth_token{
-            return [ "Session": server.session_token!, "Authorization": authToken]
+            return ["Session": (server?.session_token ?? ""), "Authorization": authToken]
         }else{
-            return [ "Session": server.session_token! ]
+            return [ "Session": server?.session_token ?? "" ]
         }
     }
     
@@ -102,13 +102,13 @@ class ServerApi {
     }
     
     func getShares(completion: @escaping (_ serverShares: [ServerShare]?) -> Void ) {
-        if serverRoute == nil{
-            completion(nil)
-            return
-        }
-        
-        if serverAddress == nil{
-            serverAddress = ConnectionModeManager.shared.currentConnectionBaseURL(serverRoute: serverRoute!)
+        if !LocalStorage.shared.getBool(PersistenceIdentifiers.isNAULogin){
+            if serverRoute == nil{
+                completion(nil)
+            }
+            if serverAddress == nil{
+                serverAddress = ConnectionModeManager.shared.currentConnectionBaseURL(serverRoute: serverRoute!)
+            }
         }
         
         Network.shared.request(ApiEndPoints.getServerShares(serverAddress), headers: getServerHeaders(), completion: completion)
@@ -181,7 +181,7 @@ class ServerApi {
             URLQueryItem(name: "s", value: file.parentShare!.name),
             URLQueryItem(name: "p", value: file.getPath()),
             URLQueryItem(name: "mtime", value: String(file.getLastModifiedEpoch())),
-            URLQueryItem(name: "session", value: server.session_token),
+            URLQueryItem(name: "session", value: (server?.session_token)),
         ]
         
         if let authToken = auth_token{
@@ -200,7 +200,7 @@ class ServerApi {
             URLQueryItem(name: "s", value: file.parentShare!.name),
             URLQueryItem(name: "p", value: file.getPath()),
             URLQueryItem(name: "mtime", value: String(file.getLastModifiedEpoch())),
-            URLQueryItem(name: "session", value: server.session_token)
+            URLQueryItem(name: "session", value: (server?.session_token ?? ""))
         ]
         
         if let authToken = auth_token{

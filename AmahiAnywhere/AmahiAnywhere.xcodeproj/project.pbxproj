@@ -70,6 +70,10 @@
 		46657183205085FC000E0D45 /* FilesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46657182205085FC000E0D45 /* FilesPresenter.swift */; };
 		46CB896B204FB0FC0031151F /* SharesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB896A204FB0FC0031151F /* SharesPresenter.swift */; };
 		46F87397204CC69500F1AF37 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F87396204CC69500F1AF37 /* Server.swift */; };
+		7229DB3824EA9A490081AEF9 /* HACModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7229DB3724EA9A490081AEF9 /* HACModel.swift */; };
+		7229DB3A24EAF4700081AEF9 /* NAULoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7229DB3924EAF4700081AEF9 /* NAULoginController.swift */; };
+		7229DB4324EB303A0081AEF9 /* WifiGatewayIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 7229DB4224EB303A0081AEF9 /* WifiGatewayIP.m */; };
+		723E3D2A24EBD20C00FFFA9A /* NAUPinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723E3D2924EBD20C00FFFA9A /* NAUPinResponse.swift */; };
 		7253F21824BDA89F0094C385 /* AudioThumbnailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7253F21624BDA89F0094C385 /* AudioThumbnailCollectionCell.swift */; };
 		7253F21924BDA89F0094C385 /* AudioThumbnailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7253F21724BDA89F0094C385 /* AudioThumbnailCollectionCell.xib */; };
 		7253F21B24BDAF890094C385 /* AudioPlayerViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7253F21A24BDAF890094C385 /* AudioPlayerViewController+CollectionView.swift */; };
@@ -215,6 +219,13 @@
 		46F87396204CC69500F1AF37 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		499AAFCDBDAB4C05C7264992 /* Pods-AmahiAnywhere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.release.xcconfig"; sourceTree = "<group>"; };
 		665E1C7EF1F0DEBF3A9809B0 /* Pods-AmahiAnywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmahiAnywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmahiAnywhere/Pods-AmahiAnywhere.debug.xcconfig"; sourceTree = "<group>"; };
+		7229DB3724EA9A490081AEF9 /* HACModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HACModel.swift; sourceTree = "<group>"; };
+		7229DB3924EAF4700081AEF9 /* NAULoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAULoginController.swift; sourceTree = "<group>"; };
+		7229DB4224EB303A0081AEF9 /* WifiGatewayIP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WifiGatewayIP.m; sourceTree = "<group>"; };
+		7229DB4624EB31910081AEF9 /* WifiGatewayIPHelper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = WifiGatewayIPHelper.c; sourceTree = "<group>"; };
+		7229DB4824EB31CA0081AEF9 /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
+		723E3D2124EBA26600FFFA9A /* WifiGatewayIP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WifiGatewayIP.h; sourceTree = "<group>"; };
+		723E3D2924EBD20C00FFFA9A /* NAUPinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUPinResponse.swift; sourceTree = "<group>"; };
 		7253F21624BDA89F0094C385 /* AudioThumbnailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioThumbnailCollectionCell.swift; sourceTree = "<group>"; };
 		7253F21724BDA89F0094C385 /* AudioThumbnailCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioThumbnailCollectionCell.xib; sourceTree = "<group>"; };
 		7253F21A24BDAF890094C385 /* AudioPlayerViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewController+CollectionView.swift"; sourceTree = "<group>"; };
@@ -390,6 +401,17 @@
 			path = Walkthrough;
 			sourceTree = "<group>";
 		};
+		723E3D2824EBA78500FFFA9A /* Gateway IP Utility */ = {
+			isa = PBXGroup;
+			children = (
+				7229DB4224EB303A0081AEF9 /* WifiGatewayIP.m */,
+				723E3D2124EBA26600FFFA9A /* WifiGatewayIP.h */,
+				7229DB4824EB31CA0081AEF9 /* route.h */,
+				7229DB4624EB31910081AEF9 /* WifiGatewayIPHelper.c */,
+			);
+			path = "Gateway IP Utility";
+			sourceTree = "<group>";
+		};
 		7258718D2496BC6100AF0A61 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,6 +464,7 @@
 				3B37EBAE22ED11650065CB77 /* Units.swift */,
 				9935DAB32301FA21004816E1 /* RecentFiles.swift */,
 				727A95DF24D2DA350057C27C /* UIImageExtension.swift */,
+				723E3D2824EBA78500FFFA9A /* Gateway IP Utility */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -503,6 +526,7 @@
 				46098D03204FDF5500752EB6 /* ServerFile.swift */,
 				3B33324D22BAA17C00BC61EB /* FilteredServerFile.swift */,
 				3BF1E81922D0288700C531CD /* OfflineFileIndexes.swift */,
+				723E3D2924EBD20C00FFFA9A /* NAUPinResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -531,6 +555,7 @@
 			children = (
 				FB71BE99201CB2FC0005492C /* LoginViewController.swift */,
 				C83C639C203992460089B9D8 /* LoginPresenter.swift */,
+				7229DB3924EAF4700081AEF9 /* NAULoginController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -562,6 +587,7 @@
 				9935DAAE2301ED86004816E1 /* RecentFile+CoreDataClass.swift */,
 				3B2805E32312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift */,
 				72DAFE1B24B6276A00755E25 /* AudioPlayerDataModel.swift */,
+				7229DB3724EA9A490081AEF9 /* HACModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -893,6 +919,7 @@
 				4605964B204F35E9004FA066 /* ServerRoute.swift in Sources */,
 				3B4DB99722A0431100AF287B /* ServerCollectionViewCell.swift in Sources */,
 				3B33325622BAA2AF00BC61EB /* FilesCollectionFooterView.swift in Sources */,
+				7229DB3A24EAF4700081AEF9 /* NAULoginController.swift in Sources */,
 				C8DEBFAB20BAE1D300B09AED /* ConnectionModeManager.swift in Sources */,
 				C8ED025920B3E30300015846 /* URL.swift in Sources */,
 				C8DA5B1A20D5DC2200F5A527 /* DownloadService.swift in Sources */,
@@ -930,6 +957,7 @@
 				72DAFE1C24B6276A00755E25 /* AudioPlayerDataModel.swift in Sources */,
 				FDF80E94229FB2060087F9B8 /* VideoMenuCellSettings.swift in Sources */,
 				AD8F2FE1226E9351009C8C4B /* SettingsViewController+MFMailComposeViewControllerDelegate.swift in Sources */,
+				723E3D2A24EBD20C00FFFA9A /* NAUPinResponse.swift in Sources */,
 				AD8F2FE2226E9351009C8C4B /* SettingsViewController+TableViewDelegate.swift in Sources */,
 				C83C639D203992460089B9D8 /* LoginPresenter.swift in Sources */,
 				C8DA5B2920D5E18800F5A527 /* FileSort.swift in Sources */,
@@ -953,6 +981,7 @@
 				3B2805E42312CA1C0022ED48 /* RecentFile+CoreDataProperties.swift in Sources */,
 				3B3F43DF22FECF7300BB42B0 /* DissmissAnimator.swift in Sources */,
 				725871932496C65300AF0A61 /* PlayerQueueContainerView.swift in Sources */,
+				7229DB4324EB303A0081AEF9 /* WifiGatewayIP.m in Sources */,
 				C83C637E2038D5150089B9D8 /* StringIdentifiers.swift in Sources */,
 				3B33325022BAA26600BC61EB /* FilesGridCollectionCell.swift in Sources */,
 				3BCAFBA322C537DE0044057E /* DownloadsGridCollectionCell.swift in Sources */,
@@ -972,6 +1001,7 @@
 				46098D08204FFFBE00752EB6 /* ServerApi.swift in Sources */,
 				3B33325422BAA29700BC61EB /* FilesCollectionHeaderView.swift in Sources */,
 				3B3F43E122FECF9300BB42B0 /* Interactor.swift in Sources */,
+				7229DB3824EA9A490081AEF9 /* HACModel.swift in Sources */,
 				C8D86160209490230014D8AC /* WebViewController.swift in Sources */,
 				3BF1E81A22D0288700C531CD /* OfflineFileIndexes.swift in Sources */,
 				7253F21B24BDAF890094C385 /* AudioPlayerViewController+CollectionView.swift in Sources */,

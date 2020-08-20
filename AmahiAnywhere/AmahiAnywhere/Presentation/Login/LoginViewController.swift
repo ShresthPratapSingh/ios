@@ -15,6 +15,8 @@ class LoginViewController: BaseUIViewController {
     @IBOutlet private weak var passwordInputField: SkyFloatingLabelTextField!
     @IBOutlet private weak var showHideButton: UIButton!
     
+    @IBOutlet weak var pinLoginButton: UIButton!
+    
     private var presenter: LoginPresenter!
     
     override func viewDidLoad() {
@@ -72,6 +74,7 @@ class LoginViewController: BaseUIViewController {
         passwordInputField.isSecureTextEntry = true
         showHideButton.setImage(UIImage(named: "passHidden"), for: .normal)
         showHideButton.isHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: false)
         
     }
     

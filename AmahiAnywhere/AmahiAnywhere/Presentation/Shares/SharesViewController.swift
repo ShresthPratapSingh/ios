@@ -13,6 +13,7 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
     @IBOutlet fileprivate var sharesCollectionView: UICollectionView!
     @IBOutlet var serverNameLabel: UILabel!
     
+    var isNAULogin = false
     internal var server: Server?
     private var shares: [ServerShare] = [ServerShare]()
     private var presenter: SharesPresenter!
@@ -35,7 +36,7 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(unreachableHDA), name: .HDAUnreachable, object: nil)
-        if server?.name != "Welcome to Amahi"{
+        if server?.name != "Welcome to Amahi" && !isNAULogin{
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out", style: .done, target: self, action: #selector(logOutTapped))
             
            
@@ -51,7 +52,6 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
             serverNameLabel.textColor = UIColor.white
                    }
 
-        removePinVC()
         sharesCollectionView.delegate = self
         sharesCollectionView.dataSource = self
         sharesCollectionView.addSubview(refreshControl)
@@ -60,7 +60,13 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
         serverNameLabel.text =  ServerApi.shared!.getServer()?.name
         
         presenter = SharesPresenter(self)
-        presenter.loadServerRoute()
+        
+        if !isNAULogin{
+            removePinVC()
+            presenter.loadServerRoute()
+        }else{
+            presenter.getShares()
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(expiredAuthTokenHDA), name: .HDATokenExpired, object: nil)
     }

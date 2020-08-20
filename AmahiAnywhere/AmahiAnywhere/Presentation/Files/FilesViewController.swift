@@ -94,7 +94,9 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
         super.viewDidLoad()
         setupNotifications()
         presenter = FilesPresenter(self)
-        setupFloaty()
+        if share.writable{
+            setupFloaty()
+        }
         setupLayoutView()
         setupRefreshControl()
         setupSearchBar()
@@ -375,10 +377,6 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
                     self.removeOfflineFile(indexPath: indexPath)
                 }!
             
-            let delete = self.creatAlertAction(StringLiterals.delete, style: .destructive) { (action) in
-                self.deleteFile(file)
-                }!
-            
             let stop = self.creatAlertAction(StringLiterals.stopDownload, style: .default) { (action) in
                     if let offlineFile = OfflineFileIndexes.indexPathsForOfflineFiles[indexPath]{
                         DownloadService.shared.cancelDownload(offlineFile)
@@ -395,8 +393,13 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
             } else if state == .downloading {
                 actions.append(stop)
             }
-            
-            actions.append(delete)
+            if fileShare.writable{
+                let delete = self.creatAlertAction(StringLiterals.delete, style: .destructive) { (action) in
+                self.deleteFile(file)
+                }!
+                
+                actions.append(delete)
+            }
             
             let cancel = self.creatAlertAction(StringLiterals.cancel, style: .cancel, clicked: nil)!
             actions.append(cancel)

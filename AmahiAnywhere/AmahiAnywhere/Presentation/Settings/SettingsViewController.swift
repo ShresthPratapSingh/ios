@@ -53,11 +53,11 @@ class SettingsViewController: BaseUITableViewController {
     internal func signOut() {
         self.dismiss(animated: false, completion: nil)
         LocalStorage.shared.logout{}
-        let loginVc = self.viewController(viewControllerClass: LoginViewController.self, from: StoryBoardIdentifiers.main)
+        let loginNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let currentWindow =  appDelegate.window{
             UIView.transition(with: currentWindow, duration: 0.3, options: .transitionFlipFromRight, animations: {
                 //removing strong references from all other VC to let ARC automatically delete them from memmory
-                currentWindow.rootViewController = loginVc
+                currentWindow.rootViewController = loginNavigationController
                 currentWindow.makeKeyAndVisible()
             }, completion: nil)
         }

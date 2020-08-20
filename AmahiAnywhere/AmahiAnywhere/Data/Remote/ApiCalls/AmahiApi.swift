@@ -24,6 +24,10 @@ class AmahiApi {
                         headers: headers, completion: completion)
     }
     
+    func login(pin:String,url:URL,compltion: @escaping (_ success:Bool,_ authToken:String?)->Void){
+        Network.shared.login(pin: pin, url: url, completion: compltion)
+    }
+    
     func getServers(completion: @escaping (_ servers: [Server]?) -> Void ) {
         Network.shared.request(ApiEndPoints.fetchServers(), completion: completion)
     }
