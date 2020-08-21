@@ -94,11 +94,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         var initialViewController: UIViewController? = nil
-            
-        UINavigationBar.appearance().backgroundColor = UIColor(named:"tabBarBackground")
-        UINavigationBar.appearance().tintColor = UIColor(named:"tabBarBackground")
-        UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named:"textOpenColor")]
 
         if LocalStorage.shared.contains(key: PersistenceIdentifiers.accessToken) {
             

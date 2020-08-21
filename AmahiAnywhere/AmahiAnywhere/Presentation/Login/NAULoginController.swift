@@ -42,7 +42,6 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
         
         delayLabel.alpha = 0
         view.bringSubviewToFront(titleLabel)
-        navigationController?.navigationBar.backgroundColor = UIColor(named:"tabBarBackground")
     }
     
     func probeServerIP(){
