@@ -79,6 +79,9 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = UIColor(named:"tabBarBackground")
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(named:"textOpenColor")]
     }
     
     override func viewWillDisappear(_ animated: Bool) {
