@@ -136,6 +136,7 @@ extension RecentFilesViewController{
                 if !self.downloadCancelled{
                     self.showError(message: StringLiterals.errorDownloadingFileMessage)
                 }
+                self.downloadCancelled = false
                 return
             }
             

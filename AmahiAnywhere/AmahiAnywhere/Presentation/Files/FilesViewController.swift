@@ -458,8 +458,8 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
     internal func setupDownloadProgressIndicator() {
         downloadProgressAlertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
         downloadProgressAlertController?.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
-            self.currentDownloadRequest?.cancel(createResumeData: true)
             self.downloadCancelled = true
+            self.currentDownloadRequest?.cancel(createResumeData: true)
             self.downloadProgressAlertController?.dismiss(animated: true, completion: nil)
             self.currentDownloadRequest = nil
             self.downloadProgressAlertController = nil
