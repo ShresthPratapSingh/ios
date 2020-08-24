@@ -40,6 +40,7 @@ extension RecentFilesViewController{
         downloadProgressAlertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
         downloadProgressAlertController?.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
             self.currentFileDownloadRequest?.cancel(createResumeData: true)
+            self.downloadCancelled = true
             self.downloadProgressAlertController?.dismiss(animated: true, completion: nil)
             self.downloadProgressAlertController = nil
             self.progressView = nil

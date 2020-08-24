@@ -133,7 +133,9 @@ extension RecentFilesViewController{
             self.updateDownloadProgress(recentFile: recentFile, downloadJustStarted: false, progress: progress)
         }) { (wasSuccessfull) in
             if !wasSuccessfull{
-                self.showError(message: StringLiterals.errorDownloadingFileMessage)
+                if !self.downloadCancelled{
+                    self.showError(message: StringLiterals.errorDownloadingFileMessage)
+                }
                 return
             }
             

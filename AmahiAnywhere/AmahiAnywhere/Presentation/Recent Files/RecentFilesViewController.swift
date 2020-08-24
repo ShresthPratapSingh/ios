@@ -40,6 +40,8 @@ class RecentFilesViewController: BaseUIViewController {
         }
     }
     
+    var downloadCancelled = false
+    
     private func executeSearch() {
         if let fc = fetchedResultsController {
             do {

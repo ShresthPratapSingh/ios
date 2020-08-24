@@ -240,7 +240,9 @@ class FilesPresenter: BasePresenter {
         }, completion: { (wasSuccessful) in
             
             if !wasSuccessful  {
-                self.view?.showError(message: StringLiterals.errorDownloadingFileMessage)
+                if !(self.filesViewController?.downloadCancelled ?? false){
+                    self.view?.showError(message: StringLiterals.errorDownloadingFileMessage)
+                }
                 return
             }
             
