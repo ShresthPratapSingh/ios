@@ -214,9 +214,9 @@ public class Network {
         }
     }
     
-    public func pingOnce(_ ip:String,completion: @escaping (_ success:Bool)->Void){
+    public func pingOnce(_ ip:String,timeout:Double,completion: @escaping (_ success:Bool)->Void){
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 1
+        configuration.timeoutIntervalForRequest = timeout
         let hostUrl: String = "http://" + ip
         
         if let url = URL(string: hostUrl) {

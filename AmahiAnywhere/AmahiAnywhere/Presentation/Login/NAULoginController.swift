@@ -15,15 +15,19 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
     private var availableIPAddress = Set<String>()
     private var isPingingIP:Bool = false{
         willSet{
-            if !newValue && loginWaitingForIP{
-                hideDelay()
-                loginUser()
+            if !newValue{
+                hideLoader()
+                if loginWaitingForIP{
+                    hideDelay()
+                    loginUser()
+                }
             }
         }
     }
     private var loginWaitingForIP = false
     private var userPin :String = ""
     private let pinExpression = "[A-Za-z0-9]+"
+    private var userAuthenticated = false
     
     @IBOutlet weak var pinTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var loaderView: UIActivityIndicatorView!
@@ -32,8 +36,9 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var delayLabel: UILabel!
     
-    let pingDispatchGroup = DispatchGroup()
-    let cacheDispatchGroup = DispatchGroup()
+    private let pingDispatchGroup = DispatchGroup()
+    private let cacheDispatchGroup = DispatchGroup()
+    private let loginDispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +53,15 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
         view.bringSubviewToFront(titleLabel)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        let routerIP = WifiGatewayIP.getGatewayIP()
+        if routerIP == nil{
+            showAlert(withTitle: "Could not locate wifi router!", message: "Please make sure wifi is connected.", actions: [UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+                self.dismiss(animated: true, completion: nil)
+            })])
+        }
+    }
+    
     func probeServerIP(){
         if availableIPAddress.isEmpty{
             if let defaultGateway = WifiGatewayIP.getGatewayIP(){
@@ -55,9 +69,6 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
                 let localSubnet = gatewayBlocks[0] + "." + gatewayBlocks[1] + "." + gatewayBlocks[2] + "."
                 let startingHost = (Int(gatewayBlocks[3]) ?? 1) + 1
                 findAvailableIP(with: localSubnet, startingHost)
-            }else{
-                //show could not locate gateway.
-                showAlert(withTitle: "Could not locate router address!", message: "Please make sure wifi is connected.", actions: [UIAlertAction(title: "Ok", style: .default, handler: nil)])
             }
         }
     }
@@ -67,20 +78,26 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
             isPingingIP = true
             for cachedIP in hac.keys {
                 cacheDispatchGroup.enter()
-                Network.shared.pingOnce(cachedIP) { (success) in
-                    if success{
-                        DispatchQueue.main.async {
-                            AmahiLogger.log("Sucessfully pinged Cached IP :" + cachedIP + " for NAU")
-                            self.availableIPAddress.insert(cachedIP)
+                DispatchQueue.init(label: "cacheQueueFor_\(cachedIP)").async {
+                    Network.shared.pingOnce(cachedIP,timeout: 1.2) { (success) in
+                        if success{
+                            DispatchQueue.main.async {
+                                AmahiLogger.log("Sucessfully pinged Cached IP :" + cachedIP + " for NAU")
+                                self.availableIPAddress.insert(cachedIP)
+                            }
                         }
+                        self.cacheDispatchGroup.leave()
                     }
-                    self.cacheDispatchGroup.leave()
                 }
             }
             cacheDispatchGroup.notify(queue: .main) { [weak self] in
                 self?.isPingingIP = false
             }
         }
+    }
+    
+    @IBAction func cancelButtonTap(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +128,7 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
                                 self.showLoader()
                               }),
                                 UIAlertAction(title: "continue with username", style: .default, handler: { (_) in
-                                    self.navigationController?.popViewController(animated: true)
+                                    self.dismiss(animated: true, completion: nil)
                                 })])
                 }else{
                     //wait for IP
@@ -133,12 +150,26 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
     
     private func loginUser(){
         loginWaitingForIP = false
+        
+        if availableIPAddress.isEmpty{
+            showAlert(withTitle: "Failed to locate HDA server!", message: nil,
+                        actions: [UIAlertAction(title: "Try again?", style: .default, handler: { (_) in
+                                self.probeServerIP()
+                                self.showLoader()
+                              }),
+                                UIAlertAction(title: "continue with username", style: .default, handler: { (_) in
+                                    self.navigationController?.popViewController(animated: true)
+                                })])
+        }
+        
         for ip in availableIPAddress{
             if let url = ApiEndPoints.getNauAuthUrl(from: ip){
+                loginDispatchGroup.enter()
                 AmahiApi.shared.login(pin: userPin, url: url) { (success, authToken) in
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.loginDispatchGroup.leave()
                         if success{
-                            self.hideLoader()
+                            self?.hideLoader()
                             ServerApi.shared?.auth_token = authToken
                             let address = ApiEndPoints.getNauAddress(from: ip)
                             ServerApi.shared?.serverAddress = address
@@ -151,26 +182,25 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
                                 LocalStorage.shared.persistDictionary([ip:authCache.toDictionary], for: PersistenceIdentifiers.hdaAuthCache)
                             }
                             LocalStorage.shared.persist(true, for: PersistenceIdentifiers.isNAULogin)
-                            self.setupViewController()
+                            self?.setupViewController()
+                            self?.userAuthenticated = true
                             AmahiLogger.log("Successfully Logged in NAU on IP: " + ip)
                         }else{
+                            if let userIsAuthenticated = self?.userAuthenticated, !userIsAuthenticated{
+                                self?.userAuthenticated = false
+                            }
                             AmahiLogger.log("NAU login failed for IP: " + ip)
                         }
                     }
                 }
             }
         }
-//else{
-//            showAlert(withTitle: "Failed to locate HDA server!", message: nil,
-//            actions: [UIAlertAction(title: "Try again?", style: .default, handler: { (_) in
-//                self.showLoader()
-//              self.probeServerIP()
-//            }),
-//              UIAlertAction(title: "continue with username", style: .default, handler: { (_) in
-//                  self.navigationController?.popViewController(animated: true)
-//              })])
-//        }
-
+        
+        loginDispatchGroup.notify(queue: .main) { [weak self] in
+            if let userIsAuthenticated = self?.userAuthenticated, !userIsAuthenticated{
+                self?.showAlert(withTitle: "Authentication failed!", message: "Please enter a valid PIN", actions: [UIAlertAction(title: "Ok", style: .default, handler: nil)])
+            }
+        }
     }
     
     private func setupViewController(){
@@ -211,7 +241,7 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
             let ip = networkAddress + "\(hostDevice)"
             
             DispatchQueue.init(label: "queueFor\(hostDevice)").async {
-                Network.shared.pingOnce(ip) { [weak self] (success) in
+                Network.shared.pingOnce(ip,timeout: 1.2) { [weak self] (success) in
                     DispatchQueue.main.async {
                         if success{
                             AmahiLogger.log("Sucessfully pinged IP : " + ip + " for NAU")
