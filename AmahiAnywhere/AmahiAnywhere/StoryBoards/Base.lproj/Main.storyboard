@@ -291,7 +291,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="vTf-9N-frj"/>
                                 </constraints>
-                                <state key="normal" title="Login with Pin">
+                                <state key="normal" title="Login with PIN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -300,7 +300,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="lxD-XY-HUy" kind="show" identifier="NAU_pin_segue" id="4wL-0n-huF"/>
+                                    <action selector="loginWithPIN:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RgP-Hu-0YR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1889,7 +1889,7 @@
         <!--Login Controller-->
         <scene sceneID="r0K-hu-eqD">
             <objects>
-                <viewController id="lxD-XY-HUy" customClass="NAULoginController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NAULoginVC" id="lxD-XY-HUy" customClass="NAULoginController" customModule="AmahiAnywhere" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z28-2P-gW9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1954,7 +1954,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your 3-5 digit Pin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOV-91-Wao">
-                                <rect key="frame" x="30" y="118" width="354" height="18"/>
+                                <rect key="frame" x="30" y="74" width="354" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1966,8 +1966,8 @@
                                     <constraint firstAttribute="width" constant="25" id="rom-xB-u3x"/>
                                 </constraints>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching server IP in local subnet. This may take a few seconds!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHg-gA-l7Z">
-                                <rect key="frame" x="30" y="118" width="354" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching your server IP in local subnet. This may take some time!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHg-gA-l7Z">
+                                <rect key="frame" x="30" y="74" width="354" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

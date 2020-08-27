@@ -216,7 +216,7 @@ public class Network {
     
     public func pingOnce(_ ip:String,completion: @escaping (_ success:Bool)->Void){
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 0.5
+        configuration.timeoutIntervalForRequest = 1
         let hostUrl: String = "http://" + ip
         
         if let url = URL(string: hostUrl) {

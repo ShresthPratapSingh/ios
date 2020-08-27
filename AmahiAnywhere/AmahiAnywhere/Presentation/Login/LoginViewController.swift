@@ -135,6 +135,12 @@ class LoginViewController: BaseUIViewController {
         }
     }
     
+    @IBAction func loginWithPIN(_ sender: UIButton) {
+        let nauVC = UIStoryboard(name: StoryBoardIdentifiers.main, bundle: nil).instantiateViewController(withIdentifier: StoryBoardIdentifiers.nauViewController)
+//        self.navigationController?.pushViewController(nauVC, animated: true)
+        self.present(nauVC, animated: true, completion: nil)
+    }
+    
     @IBAction func showHideTapped(_ sender: UIButton) {
         if passwordInputField.isSecureTextEntry{
             showHideButton.setImage(UIImage(named: "passShown"), for: .normal)

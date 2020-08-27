@@ -24,6 +24,7 @@ struct StoryBoardIdentifiers {
     static let filesViewController =               "FilesViewController"
     static let navigationBarController =           "UINavigationBarController"
     static let recentsNavigationController = "RecentsNavigationBarController"
+    static let nauViewController = "NAULoginVC"
 }
 
 struct CellIdentifiers {
