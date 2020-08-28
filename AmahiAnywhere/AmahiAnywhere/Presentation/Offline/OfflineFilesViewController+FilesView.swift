@@ -26,6 +26,7 @@ extension OfflineFilesViewController : OfflineFilesView {
     func playMedia(at url: URL) {
         let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self, from: StoryBoardIdentifiers.videoPlayer)
         videoPlayerVc.mediaURL = url
+        videoPlayerVc.modalPresentationStyle = .fullScreen
         self.present(videoPlayerVc)
     }
     
@@ -33,18 +34,9 @@ extension OfflineFilesViewController : OfflineFilesView {
         
         let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
                                                 from: StoryBoardIdentifiers.videoPlayer)
-        AudioPlayerDataModel.shared.startPlayerItem = items[currentIndex]
-        AudioPlayerDataModel.shared.unshuffledQueueItems = items
-        AudioPlayerDataModel.shared.queuedItems = items
-        AudioPlayerDataModel.shared.itemURLs = URLs
         audioPlayerVc.offlineMode = true
-        AudioPlayerDataModel.shared.setupQueueMetadata()
-        if #available(iOS 13.0, *) {
-            audioPlayerVc.isModalInPresentation = true
-        }
-        if UIDevice().userInterfaceIdiom == .pad{
-            audioPlayerVc.modalPresentationStyle = .fullScreen
-        }
+        AudioPlayerDataModel.shared.configure(items: items, with: currentIndex)
+        audioPlayerVc.modalPresentationStyle = .fullScreen
         self.present(audioPlayerVc)
     }
     

@@ -31,6 +31,12 @@ class WalkthroughViewController: BaseUIViewController {
         arrowButton.imageView?.contentMode = .scaleAspectFit
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView.frame.size = size
+        collectionView.collectionViewLayout.invalidateLayout()
+        collectionView.scrollToItem(at: IndexPath(row: pageControl.currentPage, section: 0), at: .centeredHorizontally, animated: false)
+    }
+    
     @IBAction func skipTapped(_ sender: Any) {
         showLogin()
     }
@@ -50,6 +56,7 @@ class WalkthroughViewController: BaseUIViewController {
         let loginVC = mainStoryboard.instantiateViewController(withIdentifier: StoryBoardIdentifiers.loginViewController)
         
         LocalStorage.shared.persistString(string: "completed", key: "walkthrough")
+        loginVC.modalPresentationStyle = .fullScreen
         present(loginVC, animated: true, completion: nil)
     }
 }
@@ -85,14 +92,6 @@ extension WalkthroughViewController: UICollectionViewDelegate, UICollectionViewD
             collectionView.backgroundColor = UIColor(named: "303E9F")
         }else{
             collectionView.backgroundColor = .clear
-        }
-    }
-    
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        collectionView.collectionViewLayout.invalidateLayout()
-        
-        DispatchQueue.main.async {
-            self.collectionView.scrollToItem(at: IndexPath(item: self.pageControl.currentPage, section: 0), at: .centeredHorizontally, animated: true)
         }
     }
 }

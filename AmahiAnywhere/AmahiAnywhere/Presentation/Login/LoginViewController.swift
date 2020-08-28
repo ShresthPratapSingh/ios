@@ -149,7 +149,13 @@ extension LoginViewController: LoginView {
     
     func showHome() {
         let serverVc = self.instantiateViewController (withIdentifier: "RootVC", from: StoryBoardIdentifiers.main)
-        self.present(serverVc, animated: true, completion: nil)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let currentWindow =  appDelegate.window{
+           UIView.transition(with: currentWindow, duration: 0.3, options: .transitionFlipFromRight, animations: {
+            //removing strong references from login VC to let ARC automatically delete it from memmory
+                currentWindow.rootViewController = serverVc
+                currentWindow.makeKeyAndVisible()
+           }, completion: nil)
+       }
     }
     
 }

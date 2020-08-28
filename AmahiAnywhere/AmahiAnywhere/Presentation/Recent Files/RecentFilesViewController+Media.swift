@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import Alamofire
 
 extension RecentFilesViewController{
     
@@ -44,11 +45,16 @@ extension RecentFilesViewController{
         }else{
             let audioPlayerVc = self.viewController(viewControllerClass: AudioPlayerViewController.self,
                                                     from: StoryBoardIdentifiers.videoPlayer)
-            AudioPlayerDataModel.shared.startPlayerItem = items[currentIndex]
-            AudioPlayerDataModel.shared.unshuffledQueueItems = items
-            AudioPlayerDataModel.shared.queuedItems = items
-            AudioPlayerDataModel.shared.itemURLs = URLs
-            AudioPlayerDataModel.shared.setupQueueMetadata()
+            if !NetworkReachabilityManager()!.isReachable{
+                let alertVC = UIAlertController(title: "Internet Error", message: "Please check your Internet Connection!", preferredStyle: .alert)
+                alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                    alertVC.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alertVC, animated: true, completion: nil)
+                return
+            }
+            AudioPlayerDataModel.shared.configure(items: items, with: currentIndex)
+            audioPlayerVc.recentsMode = true
             present(audioPlayerVc, animated: true, completion: nil)
         }
     }
@@ -85,6 +91,7 @@ extension RecentFilesViewController{
             }else{
                 let videoPlayerVc = self.viewController(viewControllerClass: VideoPlayerViewController.self, from: StoryBoardIdentifiers.videoPlayer)
                 videoPlayerVc.mediaURL = url
+                videoPlayerVc.modalPresentationStyle = .fullScreen
                 present(videoPlayerVc, animated: true, completion: nil)
             }
         }

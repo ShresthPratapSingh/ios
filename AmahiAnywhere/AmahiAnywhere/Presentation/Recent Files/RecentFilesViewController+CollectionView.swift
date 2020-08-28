@@ -21,6 +21,10 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
             imageView.sd_setImage(with: URL, placeholderImage: nil, options: .refreshCached, completed: { (image, data, error, true) in
                 completion?(nil)
             })
+            LightboxConfig.CloseButton.textAttributes = [
+                           .font: UIFont.boldSystemFont(ofSize: 18),
+                           .foregroundColor: UIColor.blue
+                       ]
         }
         
         let recentFile = filteredRecentFiles[indexPath.item]
@@ -87,46 +91,42 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
         let recentFile = filteredRecentFiles[indexPath.item]
         
         if orientation == .left{
+            let clearAction = SwipeAction(style: .default, title: "Clear") { (action, indexPath) in
+                self.filteredRecentFiles.remove(at: indexPath.row)
+                self.filesCollectionView.deleteItems(at: [indexPath])
+            }
+            clearAction.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+            clearAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+            clearAction.textColor = .white
+            return [clearAction]
+        }else{
             let shareAction = SwipeAction(style: .default, title: StringLiterals.share) { (action, indexPath) in
                 self.shareFile(recentFile, from: self.filesCollectionView.cellForItem(at: indexPath))
             }
             shareAction.backgroundColor = #colorLiteral(red: 0.2704460415, green: 0.5734752943, blue: 1, alpha: 1)
             shareAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-            if #available(iOS 13.0, *) {
-                shareAction.textColor = .label
-            } else {
-                shareAction.textColor = .white
-            }
-            return [shareAction]
-        }else{
+            shareAction.textColor = .white
+
             let state = checkFileOfflineState(recentFile)
-            if state == .none{
+            if state == .none {
                 let downloadAction = SwipeAction(style: .default, title: "Download") { (action, indexPath) in
                     self.makeFileAvailableOffline(recentFile, indexPath: indexPath)
                 }
                 
                 downloadAction.backgroundColor = #colorLiteral(red: 0.2172219259, green: 0.7408193211, blue: 0.1805167178, alpha: 1)
                 downloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-                if #available(iOS 13.0, *) {
-                    downloadAction.textColor = .label
-                } else {
-                    downloadAction.textColor = .white
-                }
-                return [downloadAction]
-            }else if state == .downloaded{
+                downloadAction.textColor = .white
+                return [downloadAction, shareAction]
+            } else if state == .downloaded {
                 let removeDownloadAction = SwipeAction(style: .default, title: "Remove Download") { (action, indexPath) in
                     self.removeOfflineFile(indexPath: indexPath)
                 }
                 
                 removeDownloadAction.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.1215686275, blue: 0.1882352941, alpha: 1)
-                if #available(iOS 13.0, *) {
-                    removeDownloadAction.textColor = .label
-                } else {
-                    removeDownloadAction.textColor = .white
-                }
+                removeDownloadAction.textColor = .white
                 removeDownloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-                return [removeDownloadAction]
-            }else if state == .downloading{
+                return [removeDownloadAction, shareAction]
+            } else if state == .downloading {
                 let cancelDownloadAction = SwipeAction(style: .default, title: "Cancel Download") { (action, indexPath) in
                     if let offlineFile = OfflineFileIndexesRecents.indexPathsForOfflineFiles[indexPath]{
                         DownloadService.shared.cancelDownload(offlineFile)
@@ -134,14 +134,10 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
                 }
                 
                 cancelDownloadAction.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.1215686275, blue: 0.1882352941, alpha: 1)
-                if #available(iOS 13.0, *) {
-                    cancelDownloadAction.textColor = .label
-                } else {
-                    cancelDownloadAction.textColor = .white
-                }
+                cancelDownloadAction.textColor = .white
                 cancelDownloadAction.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-                return [cancelDownloadAction]
-            }else{
+                return [cancelDownloadAction, shareAction]
+            } else {
                 return nil
             }
         }
@@ -152,7 +148,7 @@ extension RecentFilesViewController: UICollectionViewDelegate, UICollectionViewD
         var options = SwipeOptions()
         options.expansionStyle = .selection
         if orientation == .left{
-            options.backgroundColor = #colorLiteral(red: 0.2704460415, green: 0.5734752943, blue: 1, alpha: 1)
+            options.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
         }else{
             let recentFile = filteredRecentFiles[indexPath.item]
             let state = checkFileOfflineState(recentFile)
