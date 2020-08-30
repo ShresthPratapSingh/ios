@@ -83,6 +83,9 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
                 LocalStorage.shared.delete(key: serverName)
             }
             self.navigationController?.popToRootViewController(animated: true)
+            if self.isNAULogin{
+                self.signOutNAU()
+            }
         }))
         self.present(alertVC, animated: true, completion: nil)
     }
@@ -100,6 +103,18 @@ class SharesViewController: BaseUIViewController, UICollectionViewDelegate, UICo
         LocalStorage.shared.delete(key: serverName)
         ServerApi.shared!.logoutHDA()
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func signOutNAU(){
+        LocalStorage.shared.logout{}
+        let loginNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let currentWindow =  appDelegate.window{
+            UIView.transition(with: currentWindow, duration: 0.3, options: .transitionFlipFromRight, animations: {
+                //removing strong references from all other VC to let ARC automatically delete them from memmory
+                currentWindow.rootViewController = loginNavigationController
+                currentWindow.makeKeyAndVisible()
+            }, completion: nil)
+        }
     }
     
     func removePinVC(){

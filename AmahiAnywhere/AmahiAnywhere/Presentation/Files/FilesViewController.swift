@@ -156,9 +156,26 @@ class FilesViewController: BaseUIViewController, GCKRemoteMediaClientListener {
                 LocalStorage.shared.delete(key: serverName)
             }
             self.navigationController?.popToRootViewController(animated: true)
+            
+            if LocalStorage.shared.getBool(PersistenceIdentifiers.isNAULogin){
+                self.signOutNAU()
+            }
         }))
         self.present(alertVC, animated: true, completion: nil)
     }
+    
+    private func signOutNAU(){
+        LocalStorage.shared.logout{}
+        let loginNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let currentWindow =  appDelegate.window{
+            UIView.transition(with: currentWindow, duration: 0.3, options: .transitionFlipFromRight, animations: {
+                //removing strong references from all other VC to let ARC automatically delete them from memmory
+                currentWindow.rootViewController = loginNavigationController
+                currentWindow.makeKeyAndVisible()
+            }, completion: nil)
+        }
+    }
+
     
     func uploadImageTapped(){
         let alertVC = UIAlertController(title: "Select your source", message: nil, preferredStyle: .actionSheet)

@@ -60,6 +60,15 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
                 self.dismiss(animated: true, completion: nil)
             })])
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(unreachableHDA), name: .HDAUnreachable, object: nil)
+    }
+    
+    @objc func unreachableHDA(){
+        let alertVC = UIAlertController(title: "Unable to reach HDA", message: "Please check if your HDA is connected and try again.", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     func probeServerIP(){
