@@ -187,6 +187,7 @@ class NAULoginController: UIViewController, UITextFieldDelegate {
                             var storedCache = LocalStorage.shared.getDictionary(for: PersistenceIdentifiers.hdaAuthCache)
                             if storedCache != nil{
                                 storedCache![ip] = authCache.toDictionary
+                                LocalStorage.shared.persistDictionary(storedCache!, for: PersistenceIdentifiers.hdaAuthCache)
                             }else{
                                 LocalStorage.shared.persistDictionary([ip:authCache.toDictionary], for: PersistenceIdentifiers.hdaAuthCache)
                             }

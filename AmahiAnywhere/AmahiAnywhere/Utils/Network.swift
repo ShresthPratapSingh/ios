@@ -244,11 +244,7 @@ public class Network {
     public func login(pin:String,url:URL,completion: @escaping (_ success:Bool,_ authToken:String?)->Void){
         Alamofire.request(url, method: .post, parameters: ["pin":pin], encoding: JSONEncoding.default, headers: getDefaultHeaders()).responseJSON{ response in
             
-            if response.response == nil{
-                NotificationCenter.default.post(name: .HDAUnreachable, object: nil)
-                
-            }else{
-                switch response.result{
+            switch response.result{
                 case .success(let json):
                     let dict = json as! NSDictionary
                     if let authToken = dict["auth_token"] as? String{
@@ -259,7 +255,6 @@ public class Network {
                 case .failure(let error):
                     print(error.localizedDescription)
                     completion(false,nil)
-                }
             }
         }
     }
